@@ -6,19 +6,27 @@ using Photon.Realtime;
 
 public class Racket : MonoBehaviourPun
 {
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = 1f;
-            gameObject.transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
+            if (Vector3.Distance(gameManager.ball.transform.position, gameManager.player.transform.GetChild(0).position) <= 1.0f)
+            {
+                Vector3 direction = new Vector3(0f, 0.425f, 1f);
+                gameManager.ball.GetComponent<Rigidbody>().velocity = direction * 10.0f;
+            }
         }
     }
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-        rb.velocity = Vector3.zero;
-        rb.AddForce(gameObject.transform.forward * 5.0f, ForceMode.Impulse);
+        collision.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0.425f, 1f) * 10.0f;
     }
 }

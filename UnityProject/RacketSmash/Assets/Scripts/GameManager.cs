@@ -6,30 +6,29 @@ using Photon.Realtime;
 
 public class GameManager : MonoBehaviourPun
 {
-    private GameObject ball;
-    private GameObject racket;
+    public GameObject ball;
+    public GameObject player;
 
     private void Start()
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            ball = PhotonNetwork.Instantiate("Ball", new Vector3(0f, 2f, 0f), Quaternion.identity);
+            ball = PhotonNetwork.Instantiate("Ball", new Vector3(1.3f, 1f, -2f), Quaternion.identity);
         }
         else
         {
             ball = GameObject.Find("Ball");
         }
 
-        racket = PhotonNetwork.Instantiate("Racket", new Vector3(0f, 2f, -3f), Quaternion.identity);
+        player = PhotonNetwork.Instantiate("Player", new Vector3(0f, 0.35f, -3f), Quaternion.identity);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (PhotonNetwork.IsMasterClient && Input.GetKeyDown(KeyCode.Space))
         {
-            ball.transform.position = racket.transform.position + new Vector3(0f, 0f, 0.5f);
+            ball.transform.position = player.transform.GetChild(0).position + new Vector3(0f, 0.5f, 0.5f);
             ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            ball.GetComponent<Rigidbody>().AddForce(racket.transform.forward * 5.0f, ForceMode.Impulse);
         }
     }
 }
