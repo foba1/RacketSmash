@@ -47,6 +47,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         connectText.text = "게임에 참가 중...";
-        PhotonNetwork.CreateRoom("test", new RoomOptions { MaxPlayers = 1 });
+        PhotonNetwork.CreateRoom("test", new RoomOptions { MaxPlayers = 2 });
     }
 }

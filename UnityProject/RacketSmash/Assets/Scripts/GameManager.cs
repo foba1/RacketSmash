@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviourPun
         }
         else
         {
-            ball = GameObject.Find("Ball");
+            ball = GameObject.Find("Ball(Clone)");
         }
 
         player = PhotonNetwork.Instantiate("Player", new Vector3(0f, 0.35f, -3f), Quaternion.identity);
@@ -25,10 +25,22 @@ public class GameManager : MonoBehaviourPun
 
     private void Update()
     {
-        if (PhotonNetwork.IsMasterClient && Input.GetKeyDown(KeyCode.Space))
+        if (ball == null)
         {
-            ball.transform.position = player.transform.GetChild(0).position + new Vector3(0f, 0.5f, 0.5f);
-            ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            ball = GameObject.Find("Ball(Clone)");
+        }
+        if (PhotonNetwork.IsMasterClient)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ball.transform.position = player.transform.GetChild(0).position + new Vector3(0f, 0.5f, 0.5f);
+                ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+            if (ball.transform.position.z <= -4f)
+            {
+                ball.transform.position = player.transform.GetChild(0).position + new Vector3(0f, 0.5f, 0.5f);
+                ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
         }
     }
 }
