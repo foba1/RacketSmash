@@ -41,7 +41,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         connectText.text = "게임에 참가하였습니다.";
-        PhotonNetwork.LoadLevel("TestScene");
+        PhotonNetwork.LoadLevel("VRInteractionTestScene");
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
