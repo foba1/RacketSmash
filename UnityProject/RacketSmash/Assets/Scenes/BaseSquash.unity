@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
+  m_IndirectSpecularColor: {r: 0.172768, g: 0.21589169, b: 0.29782546, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -217,6 +217,55 @@ Transform:
   m_Father: {fileID: 748187520}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &112124131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 112124132}
+  - component: {fileID: 112124133}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &112124132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112124131}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.7147882, y: 0.8776, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &112124133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112124131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d86619fa0e21f47a2185e9504652a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTurn: {fileID: 0}
+  players:
+  - {fileID: 1480274054}
+  - {fileID: 1546791664}
+  frontWall: {fileID: 1617026325}
 --- !u!1 &158299269
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,14 +455,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210747405}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.08011193, y: 0, z: 0, w: 0.9967859}
+  m_LocalPosition: {x: 0, y: 5.77, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 9.19, y: 0, z: 0}
 --- !u!1 &272119107
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,6 +589,7 @@ GameObject:
   - component: {fileID: 437623255}
   - component: {fileID: 437623254}
   - component: {fileID: 437623257}
+  - component: {fileID: 437623258}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -641,6 +691,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &437623258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437623252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeec55f387446ea4ca77af07142ad5cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &447118152
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,6 +736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351ddc3b62fe4f04980e4cad426a9d30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigidbody: {fileID: 447118154}
 --- !u!54 &447118154
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -956,6 +1019,7 @@ GameObject:
   - component: {fileID: 1480274051}
   - component: {fileID: 1480274050}
   - component: {fileID: 1480274053}
+  - component: {fileID: 1480274054}
   m_Layer: 0
   m_Name: Racket
   m_TagString: Untagged
@@ -1057,6 +1121,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &1480274054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480274048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1d06974514d544d92831083f11bf16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitPower: 10
+  HitDirection: {x: 0, y: 0.7, z: 1}
+  swingDuration: 1
 --- !u!1 &1546791658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,6 +1149,7 @@ GameObject:
   - component: {fileID: 1546791661}
   - component: {fileID: 1546791660}
   - component: {fileID: 1546791663}
+  - component: {fileID: 1546791664}
   m_Layer: 0
   m_Name: Racket
   m_TagString: Untagged
@@ -1171,6 +1251,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &1546791664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546791658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1d06974514d544d92831083f11bf16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitPower: 10
+  HitDirection: {x: 0, y: 0.7, z: 1}
+  swingDuration: 1
 --- !u!1 &1617026320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,6 +1377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872979bb0332736439e7e9feeffed66e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelManager: {fileID: 112124133}
 --- !u!54 &1617026326
 Rigidbody:
   m_ObjectHideFlags: 0

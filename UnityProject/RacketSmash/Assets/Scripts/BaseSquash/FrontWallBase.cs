@@ -6,24 +6,16 @@ namespace BaseSquash
 {
     public class FrontWallBase : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        [SerializeField] LevelManagerBase levelManager;
 
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
+        protected LevelManagerBase LevelManager { get { return levelManager; } }
         private void OnCollisionEnter(Collision collision)
         {
             BallBase ball = collision.gameObject.GetComponent<BallBase>();
             if(ball != null)
             {
                 OnBallCollision(ball);
+                levelManager.OnBallHitWall();
             }
         }
 
