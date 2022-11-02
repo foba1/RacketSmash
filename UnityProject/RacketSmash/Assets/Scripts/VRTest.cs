@@ -9,9 +9,9 @@ public class VRTest : MonoBehaviourPun
     public GameObject leftControllerObject;
     public GameObject rightControllerObject;
 
-    private GameObject ball;
-    private Vector3 prevPosition;
-    private float prevTime;
+    private GameObject ball, hitObject;
+    private Vector3 prevPosition, hitPoint, hitNormal;
+    private bool isRacketDetected;
 
     private List<InputDevice> leftDevices;
     private List<InputDevice> rightDevices;
@@ -26,6 +26,7 @@ public class VRTest : MonoBehaviourPun
 
         ball = PhotonNetwork.Instantiate("Ball", new Vector3(0.5f, 1f, -2f), Quaternion.identity);
         prevPosition = new Vector3(0.5f, 1f, -2f);
+        isRacketDetected = false;
     }
 
     private void Update()
@@ -81,23 +82,48 @@ public class VRTest : MonoBehaviourPun
 
     private void FixedUpdate()
     {
+        Rigidbody rb = ball.GetComponent<Rigidbody>();
         RaycastHit hit;
-        if (prevPosition != ball.transform.position && Physics.Linecast(prevPosition, ball.transform.position, out hit))
+        if (rb.velocity.magnitude >= 1f)
         {
-            if (hit.transform.tag == "Racket")
+            Ray ray = new Ray(ball.transform.position, rb.velocity);
+            if (Physics.Raycast(ray, out hit))
             {
-                Rigidbody rb = ball.GetComponent<Rigidbody>();
-                Vector3 racketVelocity = hit.transform.gameObject.GetComponent<Racket>().velocity;
-                rb.velocity = Vector3.Reflect(rb.velocity, hit.normal) + racketVelocity;
-
-                Vector3 positionOffset = hit.point - prevPosition;
-                positionOffset = Vector3.Reflect(positionOffset, hit.normal);
-                float deltaTime = Time.time - prevTime;
-                ball.transform.position = hit.point + positionOffset + racketVelocity * deltaTime;
+                if (hit.transform.tag == "Racket")
+                {
+                    isRacketDetected = true;
+                    hitPoint = hit.point;
+                    hitNormal = hit.normal;
+                    hitObject = hit.transform.gameObject;
+                }
+            }
+            else
+            {
+                if (isRacketDetected)
+                {
+                    ball.transform.position = hitPoint;
+                    Vector3 racketVelocity = hitObject.GetComponent<Racket>().velocity;
+                    rb.velocity = Vector3.Reflect(rb.velocity, hitNormal) + racketVelocity;
+                    isRacketDetected = false;
+                    Debug.Log("Collision is detected!");
+                }
             }
         }
+
+        //if (prevPosition != ball.transform.position && Physics.Linecast(prevPosition, ball.transform.position, out hit))
+        //{
+        //    if (hit.transform.tag == "Racket")
+        //    {
+        //        Vector3 racketVelocity = hit.transform.gameObject.GetComponent<Racket>().velocity;
+        //        rb.velocity = Vector3.Reflect(rb.velocity, hit.normal) + racketVelocity;
+
+        //        Vector3 positionOffset = hit.point - prevPosition;
+        //        positionOffset = Vector3.Reflect(positionOffset, hit.normal);
+        //        ball.transform.position = hit.point + positionOffset;
+        //    }
+        //}
+
         prevPosition = ball.transform.position;
-        prevTime = Time.time;
     }
 
     private void GetController()
