@@ -11,12 +11,12 @@ public class VRTest : MonoBehaviourPun
 
     private GameObject ball;
     private Vector3 prevPosition;
+    private float prevTime;
 
     private List<InputDevice> leftDevices;
     private List<InputDevice> rightDevices;
     private InputDevice leftController;
     private InputDevice rightController;
-    
 
     private void Start()
     {
@@ -86,15 +86,18 @@ public class VRTest : MonoBehaviourPun
         {
             if (hit.transform.tag == "Racket")
             {
+                Rigidbody rb = ball.GetComponent<Rigidbody>();
+                Vector3 racketVelocity = hit.transform.gameObject.GetComponent<Racket>().velocity;
+                rb.velocity = Vector3.Reflect(rb.velocity, hit.normal) + racketVelocity;
+
                 Vector3 positionOffset = hit.point - prevPosition;
                 positionOffset = Vector3.Reflect(positionOffset, hit.normal);
-                ball.transform.position = hit.point + positionOffset;
-
-                Rigidbody rb = ball.GetComponent<Rigidbody>();
-                rb.velocity = Vector3.Reflect(rb.velocity, hit.normal) + hit.transform.gameObject.GetComponent<Racket>().velocity;
+                float deltaTime = Time.time - prevTime;
+                ball.transform.position = hit.point + positionOffset + racketVelocity * deltaTime;
             }
         }
         prevPosition = ball.transform.position;
+        prevTime = Time.time;
     }
 
     private void GetController()
