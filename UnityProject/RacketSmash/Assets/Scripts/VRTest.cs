@@ -10,6 +10,7 @@ public class VRTest : MonoBehaviourPun
     public GameObject rightControllerObject;
 
     private GameObject ball;
+    private Vector3 prevPosition;
 
     private List<InputDevice> leftDevices;
     private List<InputDevice> rightDevices;
@@ -24,6 +25,7 @@ public class VRTest : MonoBehaviourPun
         GetController();
 
         ball = PhotonNetwork.Instantiate("Ball", new Vector3(0.5f, 1f, -2f), Quaternion.identity);
+        prevPosition = new Vector3(0.5f, 1f, -2f);
     }
 
     private void Update()
@@ -43,6 +45,7 @@ public class VRTest : MonoBehaviourPun
         {
             Debug.Log("Pressing left primary button");
             ball.transform.position = leftControllerObject.transform.position;
+            prevPosition = ball.transform.position;
             ball.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         }
 
@@ -74,6 +77,24 @@ public class VRTest : MonoBehaviourPun
         rightController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 rightPrimary2DAxisValue);
         if (rightPrimary2DAxisValue != Vector2.zero)
             Debug.Log("Right primary touchpad " + rightPrimary2DAxisValue);
+    }
+
+    private void FixedUpdate()
+    {
+        RaycastHit hit;
+        if (prevPosition != ball.transform.position && Physics.Linecast(prevPosition, ball.transform.position, out hit))
+        {
+            if (hit.transform.tag == "Racket")
+            {
+                Vector3 positionOffset = hit.point - prevPosition;
+                positionOffset = Vector3.Reflect(positionOffset, hit.normal);
+                ball.transform.position = hit.point + positionOffset;
+
+                Rigidbody rb = ball.GetComponent<Rigidbody>();
+                rb.velocity = Vector3.Reflect(rb.velocity, hit.normal) + hit.transform.gameObject.GetComponent<Racket>().velocity;
+            }
+        }
+        prevPosition = ball.transform.position;
     }
 
     private void GetController()
