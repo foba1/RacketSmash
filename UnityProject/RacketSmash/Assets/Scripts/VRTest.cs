@@ -22,7 +22,8 @@ public class VRTest : MonoBehaviourPun
         rightDevices = new List<InputDevice>();
         GetController();
 
-        ball = PhotonNetwork.Instantiate("Ball", new Vector3(0.5f, 1f, -2f), Quaternion.identity);
+        //ball = PhotonNetwork.Instantiate("Ball", new Vector3(0.5f, 1f, -2f), Quaternion.identity);
+        ball = Instantiate(Resources.Load("Ball") as GameObject);
     }
 
     private void Update()
