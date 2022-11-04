@@ -6,6 +6,7 @@ using Photon.Pun;
 
 public class VRTest : MonoBehaviourPun
 {
+    public GameObject originObject;
     public GameObject leftControllerObject;
     public GameObject rightControllerObject;
 
@@ -51,7 +52,10 @@ public class VRTest : MonoBehaviourPun
 
         leftController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 leftPrimary2DAxisValue);
         if (leftPrimary2DAxisValue != Vector2.zero)
+        {
             Debug.Log("Left primary touchpad " + leftPrimary2DAxisValue);
+            originObject.transform.position += new Vector3(leftPrimary2DAxisValue.x / 30f, 0f, leftPrimary2DAxisValue.y / 30f);
+        }
 
         rightController.TryGetFeatureValue(CommonUsages.primaryButton, out bool rightPrimaryButtonValue);
         if (rightPrimaryButtonValue)
