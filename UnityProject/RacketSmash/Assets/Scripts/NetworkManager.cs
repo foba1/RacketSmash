@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 
@@ -36,6 +37,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             connectText.text = "게임에 참가 중...";
             PhotonNetwork.JoinRandomRoom();
         }
+    }
+
+    public void LoadSingleSquashScene()
+    {
+        SceneManager.LoadScene("SingleSquash");
     }
 
     public override void OnJoinedRoom()
