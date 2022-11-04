@@ -37,42 +37,53 @@ public class VRTest : MonoBehaviourPun
         leftController.TryGetFeatureValue(CommonUsages.primaryButton, out bool leftPrimaryButtonValue);
         if (leftPrimaryButtonValue)
         {
-            Debug.Log("Pressing left primary button");
+            //Debug.Log("Pressing left primary button");
             ball.transform.position = leftControllerObject.transform.position;
             ball.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         }
 
         leftController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool leftSecondaryButtonValue);
         if (leftSecondaryButtonValue)
-            Debug.Log("Pressing left secondary button");
+        {
+            //Debug.Log("Pressing left secondary button");
+        }
 
         leftController.TryGetFeatureValue(CommonUsages.trigger, out float leftTriggerValue);
         if (leftTriggerValue > 0.1F)
-            Debug.Log("Left trigger pressed " + leftTriggerValue);
+        {
+            //Debug.Log("Left trigger pressed " + leftTriggerValue);
+        }
 
         leftController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 leftPrimary2DAxisValue);
         if (leftPrimary2DAxisValue != Vector2.zero)
         {
-            Debug.Log("Left primary touchpad " + leftPrimary2DAxisValue);
+            //Debug.Log("Left primary touchpad " + leftPrimary2DAxisValue);
             originObject.transform.position += new Vector3(leftPrimary2DAxisValue.x / 30f, 0f, leftPrimary2DAxisValue.y / 30f);
         }
 
         rightController.TryGetFeatureValue(CommonUsages.primaryButton, out bool rightPrimaryButtonValue);
         if (rightPrimaryButtonValue)
-            Debug.Log("Pressing right primary button");
+        {
+            //Debug.Log("Pressing right primary button");
+        }
 
         rightController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool rightSecondaryButtonValue);
         if (rightSecondaryButtonValue)
-            Debug.Log("Pressing right secondary button");
+        {
+            //Debug.Log("Pressing right secondary button");
+        }
 
         rightController.TryGetFeatureValue(CommonUsages.trigger, out float rightTriggerValue);
         if (rightTriggerValue > 0.1F)
-            Debug.Log("Right trigger pressed " + rightTriggerValue);
-
+        {
+            //Debug.Log("Right trigger pressed " + rightTriggerValue);
+        }
 
         rightController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 rightPrimary2DAxisValue);
         if (rightPrimary2DAxisValue != Vector2.zero)
-            Debug.Log("Right primary touchpad " + rightPrimary2DAxisValue);
+        {
+            //Debug.Log("Right primary touchpad " + rightPrimary2DAxisValue);
+        }
     }
 
     private void GetController()
