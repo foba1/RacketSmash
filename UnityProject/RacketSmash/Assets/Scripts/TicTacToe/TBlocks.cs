@@ -17,8 +17,8 @@ namespace TicTacToe
         void Start()
         {
             frontWall = GameObject.Find("Front").GetComponent<FrontWallBase>();
-            levelManager = frontWall.GetComponent<LevelManagerBase>();
- 
+            levelManager = GameObject.Find("LevelManager").GetComponent<LevelManagerBase>();
+
             blockList.Add(GameObject.Find("A"));
             blockList.Add(GameObject.Find("B"));
             blockList.Add(GameObject.Find("C"));
@@ -33,7 +33,7 @@ namespace TicTacToe
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            /*if (Input.GetKeyDown(KeyCode.A))
             {
                 texIdx[0] = (texIdx[0] + 1) % 3;
                 blockList[0].GetComponent<MeshRenderer>().material = mat[texIdx[0]];
@@ -77,7 +77,7 @@ namespace TicTacToe
             {
                 texIdx[8] = (texIdx[8] + 1) % 3;
                 blockList[8].GetComponent<MeshRenderer>().material = mat[texIdx[8]];
-            }
+            }*/
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -97,49 +97,68 @@ namespace TicTacToe
             float y = ball.transform.position.y;
             float z = ball.transform.position.z;
             // A에 맞을 경우
-            if(-6.44<=x && x<=0.56 && -2.42<=y && y <= 2.58)
+            if(x < -3.51 && 9.8<=y)
             {
                 Debug.Log("A에 맞음");
+                texIdx[0] = (texIdx[0] + 1) % 3;
+                blockList[0].GetComponent<MeshRenderer>().material = mat[texIdx[0]];
+
             }
             // B에 맞을 경우
-            if(0.68<=x && x<=7.68 && -2.42 <= y && y <= 2.58)
+            else if(-3.51<=x && x<3.51 && 9.8 <= y)
             {
                 Debug.Log("B에 맞음");
+                texIdx[1] = (texIdx[1] + 1) % 3;
+                blockList[1].GetComponent<MeshRenderer>().material = mat[texIdx[1]];
             }
             // C에 맞을 경우
-            if(7.78<=x && x<=14.78 && -2.42 <= y && y <= 2.58)
+            else if(3.51<=x && 9.8 <= y)
             {
                 Debug.Log("C에 맞음");
+                texIdx[2] = (texIdx[2] + 1) % 3;
+                blockList[2].GetComponent<MeshRenderer>().material = mat[texIdx[2]];
             }
             // D에 맞을 경우
-            if(-6.44 <= x && x <= 0.56 && -2.47 <= y && y <= -7.47)
+            else if(x < -3.51 && 4.8<=y && y<9.8)
             {
                 Debug.Log("D에 맞음");
+                texIdx[3] = (texIdx[3] + 1) % 3;
+                blockList[3].GetComponent<MeshRenderer>().material = mat[texIdx[3]];
             }
             // E에 맞을 경우
-            if(0.68 <= x && x <= 7.68 && -2.47 <= y && y <= -7.47)
+            else if(-3.51 <= x && x < 3.51 && 4.8 <= y && y < 9.8)
             {
                 Debug.Log("E에 맞음");
+                texIdx[4] = (texIdx[4] + 1) % 3;
+                blockList[4].GetComponent<MeshRenderer>().material = mat[texIdx[4]];
             }
             // F에 맞을 경우
-            if(7.78 <= x && x <= 14.78 && -2.47 <= y && y <= -7.47)
+            else if (3.51<=x && 4.8 <= y && y < 9.8)
             {
                 Debug.Log("F에 맞음");
+                texIdx[5] = (texIdx[5] + 1) % 3;
+                blockList[5].GetComponent<MeshRenderer>().material = mat[texIdx[5]];
             }
             // G에 맞을 경우
-            if (-6.44 <= x && x <= 0.56 && -7.52 <= y && y <= -12.52)
+            else if (x < -3.51 && y<4.8)
             {
                 Debug.Log("G에 맞음");
+                texIdx[6] = (texIdx[6] + 1) % 3;
+                blockList[6].GetComponent<MeshRenderer>().material = mat[texIdx[6]];
             }
             // H에 맞을 경우
-            if (0.68 <= x && x <= 7.68 && -7.52 <= y && y <= -12.52)
+            else if (-3.51 <= x && x < 3.51 && y < 4.8)
             {
                 Debug.Log("H에 맞음");
+                texIdx[7] = (texIdx[7] + 1) % 3;
+                blockList[7].GetComponent<MeshRenderer>().material = mat[texIdx[7]];
             }
             // I에 맞을 경우
-            if (7.78 <= x && x <= 14.78 && -7.52 <= y && y <= -12.52)
+            else if (3.51 <= x && y < 4.8)
             {
                 Debug.Log("I에 맞음");
+                texIdx[8] = (texIdx[8] + 1) % 3;
+                blockList[8].GetComponent<MeshRenderer>().material = mat[texIdx[8]];
             }
         }
     }
