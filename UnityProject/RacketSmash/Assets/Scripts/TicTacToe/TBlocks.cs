@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BaseSquash;
 
 namespace TicTacToe
 { 
@@ -8,10 +9,16 @@ namespace TicTacToe
     {
         [SerializeField] private List<GameObject> blockList = new List<GameObject>();
         [SerializeField] private Material[] mat = new Material[3];
-         private int[] texIdx = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        [SerializeField] private FrontWallBase frontWall;
+        [SerializeField] private LevelManagerBase levelManager;
+        private int[] texIdx = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+ 
         // Start is called before the first frame update
         void Start()
         {
+            frontWall = GameObject.Find("Front").GetComponent<FrontWallBase>();
+            levelManager = frontWall.GetComponent<LevelManagerBase>();
+ 
             blockList.Add(GameObject.Find("A"));
             blockList.Add(GameObject.Find("B"));
             blockList.Add(GameObject.Find("C"));
@@ -73,6 +80,68 @@ namespace TicTacToe
             }
         }
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            BallBase ball = collision.gameObject.GetComponent<BallBase>();
+            if (ball != null)
+            {
+                OnBallCollision(ball);
+                levelManager.OnBallHitWall();
+            }
+        }
+
+        protected virtual void OnBallCollision(BallBase ball)
+        {
+            Debug.Log(ball.transform.position);
+            float x = ball.transform.position.x;
+            float y = ball.transform.position.y;
+            float z = ball.transform.position.z;
+            // A에 맞을 경우
+            if(-6.44<=x && x<=0.56 && -2.42<=y && y <= 2.58)
+            {
+                Debug.Log("A에 맞음");
+            }
+            // B에 맞을 경우
+            if(0.68<=x && x<=7.68 && -2.42 <= y && y <= 2.58)
+            {
+                Debug.Log("B에 맞음");
+            }
+            // C에 맞을 경우
+            if(7.78<=x && x<=14.78 && -2.42 <= y && y <= 2.58)
+            {
+                Debug.Log("C에 맞음");
+            }
+            // D에 맞을 경우
+            if(-6.44 <= x && x <= 0.56 && -2.47 <= y && y <= -7.47)
+            {
+                Debug.Log("D에 맞음");
+            }
+            // E에 맞을 경우
+            if(0.68 <= x && x <= 7.68 && -2.47 <= y && y <= -7.47)
+            {
+                Debug.Log("E에 맞음");
+            }
+            // F에 맞을 경우
+            if(7.78 <= x && x <= 14.78 && -2.47 <= y && y <= -7.47)
+            {
+                Debug.Log("F에 맞음");
+            }
+            // G에 맞을 경우
+            if (-6.44 <= x && x <= 0.56 && -7.52 <= y && y <= -12.52)
+            {
+                Debug.Log("G에 맞음");
+            }
+            // H에 맞을 경우
+            if (0.68 <= x && x <= 7.68 && -7.52 <= y && y <= -12.52)
+            {
+                Debug.Log("H에 맞음");
+            }
+            // I에 맞을 경우
+            if (7.78 <= x && x <= 14.78 && -7.52 <= y && y <= -12.52)
+            {
+                Debug.Log("I에 맞음");
+            }
+        }
     }
 }
 
