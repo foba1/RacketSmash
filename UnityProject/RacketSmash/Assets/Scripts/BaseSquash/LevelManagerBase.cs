@@ -15,7 +15,7 @@ namespace BaseSquash
 
         int currentTurnIndex = 0;
         private void Awake()
-        {
+        {  
             currentTurn = players[currentTurnIndex];
             currentTurn.IsCurrentTurn = true;
         }
