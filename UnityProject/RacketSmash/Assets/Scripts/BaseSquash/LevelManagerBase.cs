@@ -31,6 +31,10 @@ namespace BaseSquash
             currentTurn.IsCurrentTurn = true;
         }
 
+        public int GetCurrentTurn()
+        {
+            return currentTurnIndex;
+        }
     }
 
 }
