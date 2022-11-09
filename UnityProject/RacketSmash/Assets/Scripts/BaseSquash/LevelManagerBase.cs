@@ -13,6 +13,9 @@ namespace BaseSquash
         [SerializeField] RacketBase[] players;
         [SerializeField] FrontWallBase frontWall;
 
+        protected FrontWallBase FrontWall { get { return frontWall; } }
+        protected RacketBase [] Players { get { return players; } }
+
         int currentTurnIndex = 0;
         private void Awake()
         {

@@ -10,12 +10,11 @@ namespace BaseSquash
         [SerializeField] int bounceGroundCount = 0;
         [SerializeField] new Rigidbody rigidbody;
 
+        public int BounceCount { get { return bounceGroundCount; } }
         public Rigidbody Rigidbody { get { return rigidbody; } }
 
         protected virtual void OnGroundHit()
         {
-            if (bounceGroundCount == 2)
-                Debug.Log("Hitted ground twice");
         }
         public virtual void OnHittedByRacket(Vector3 hitVector)
         {
