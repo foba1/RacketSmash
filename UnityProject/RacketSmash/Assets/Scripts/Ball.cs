@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    private float maxVelocity = 10f;
+    private float maxVelocity = 8f;
 
     private Rigidbody rb;
 
@@ -20,4 +20,12 @@ public class Ball : MonoBehaviour
             rb.velocity *= maxVelocity / rb.velocity.magnitude;
         }
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Racket")
+    //    {
+    //        Debug.Log("Hit racket.");
+    //    }
+    //}
 }
