@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
-using Photon.Pun;
 
-public class VRTest : MonoBehaviourPun
+public class VRTest : MonoBehaviour
 {
     public GameObject originObject;
     public GameObject leftControllerObject;
@@ -23,17 +22,7 @@ public class VRTest : MonoBehaviourPun
         rightDevices = new List<InputDevice>();
         GetController();
 
-        if (PhotonNetwork.IsMasterClient)
-        {
-            ball = PhotonNetwork.Instantiate("Ball", new Vector3(0.5f, 1f, -2f), Quaternion.identity);
-        }
-        else
-        {
-            ball = GameObject.Find("Ball");
-        }
-        PhotonNetwork.Instantiate("Racket", new Vector3(0.5f, 1f, -2f), Quaternion.identity);
-
-        //ball = Instantiate(Resources.Load("Ball") as GameObject);
+        ball = Instantiate(Resources.Load("Ball") as GameObject);
     }
 
     private void Update()

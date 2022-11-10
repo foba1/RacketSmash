@@ -712,6 +712,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4422834981219430893, guid: e98f2543dd4049c43986685012727d62,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4835203853175331202, guid: e98f2543dd4049c43986685012727d62,
         type: 3}
       propertyPath: rightController

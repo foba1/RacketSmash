@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-public class Racket : MonoBehaviourPun
+public class Racket : MonoBehaviour
 {
     private GameObject rightController;
 
@@ -14,16 +13,13 @@ public class Racket : MonoBehaviourPun
 
     private void FixedUpdate()
     {
-        if (photonView.IsMine)
+        if (transform.position != rightController.transform.position)
         {
-            if (transform.position != rightController.transform.position)
-            {
-                GetComponent<Rigidbody>().MovePosition(rightController.transform.position);
-            }
-            if (transform.eulerAngles != rightController.transform.eulerAngles)
-            {
-                GetComponent<Rigidbody>().MoveRotation(rightController.transform.rotation);
-            }
+            GetComponent<Rigidbody>().MovePosition(rightController.transform.position);
+        }
+        if (transform.eulerAngles != rightController.transform.eulerAngles)
+        {
+            GetComponent<Rigidbody>().MoveRotation(rightController.transform.rotation);
         }
     }
 }

@@ -14,9 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SingleSquash.unity
     guid: 2b51586a0d3d1864aab7bcb9f0176bd7
-  - enabled: 1
-    path: Assets/Scenes/MultiSquash.unity
-    guid: b3595abe64f18d942a056aea51afa68d
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}
