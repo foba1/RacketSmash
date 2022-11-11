@@ -8,9 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Scenes/VRInteractionTestScene.unity
-    guid: a56cf13ef5348c34e9bac0c8513f8fed
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/SingleSquash.unity
     guid: 2b51586a0d3d1864aab7bcb9f0176bd7

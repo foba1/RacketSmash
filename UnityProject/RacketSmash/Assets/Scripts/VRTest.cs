@@ -9,7 +9,7 @@ public class VRTest : MonoBehaviour
     public GameObject leftControllerObject;
     public GameObject rightControllerObject;
 
-    private GameObject ball;
+    public GameObject ball;
 
     private List<InputDevice> leftDevices;
     private List<InputDevice> rightDevices;
@@ -22,7 +22,7 @@ public class VRTest : MonoBehaviour
         rightDevices = new List<InputDevice>();
         GetController();
 
-        ball = Instantiate(Resources.Load("Ball") as GameObject);
+        //ball = Instantiate(Resources.Load("Ball") as GameObject);
     }
 
     private void Update()
