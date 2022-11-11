@@ -21,11 +21,15 @@ public class Ball : MonoBehaviour
         }
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "Racket")
-    //    {
-    //        Debug.Log("Hit racket.");
-    //    }
-    //}
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Racket")
+        {
+            AudioSource audioSource = collision.gameObject.GetComponent<AudioSource>();
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+    }
 }
