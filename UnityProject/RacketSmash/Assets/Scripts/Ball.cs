@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Ball : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class Ball : MonoBehaviour
             if (!audioSource.isPlaying)
             {
                 audioSource.Play();
+                GameObject.Find("RightHand Controller").GetComponent<XRController>().SendHapticImpulse(0.4f, 0.2f);
             }
         }
     }
