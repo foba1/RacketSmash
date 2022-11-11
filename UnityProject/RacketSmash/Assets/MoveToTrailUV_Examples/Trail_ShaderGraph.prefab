@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 3841384982787575142}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 862
+  m_shaderPropertyID: 972
   m_materialData:
   - m_trailRenderer: {fileID: 0}
     m_uvTiling: {x: 1, y: 1}
