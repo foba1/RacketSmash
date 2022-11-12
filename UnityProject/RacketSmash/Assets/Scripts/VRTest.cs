@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
-using Photon.Pun;
 
-public class VRTest : MonoBehaviourPun
+public class VRTest : MonoBehaviour
 {
+    public GameObject originObject;
     public GameObject leftControllerObject;
     public GameObject rightControllerObject;
 
-    private GameObject ball, hitObject;
-    private Vector3 prevPosition, hitPoint, hitNormal;
-    private bool isRacketDetected;
+    public GameObject ball;
 
     private List<InputDevice> leftDevices;
     private List<InputDevice> rightDevices;
@@ -24,18 +22,11 @@ public class VRTest : MonoBehaviourPun
         rightDevices = new List<InputDevice>();
         GetController();
 
-        ball = PhotonNetwork.Instantiate("Ball", new Vector3(0.5f, 1f, -2f), Quaternion.identity);
-        prevPosition = new Vector3(0.5f, 1f, -2f);
-        isRacketDetected = false;
+        //ball = Instantiate(Resources.Load("Ball") as GameObject);
     }
 
     private void Update()
     {
-        /**
-         * Boolean: 버튼 누른 여부
-         * Float: Axis Range 0 ~ 1
-         * Vector2: Touchpad 움직임 -1 ~ 1
-         */
         if (!leftController.isValid || !rightController.isValid)
         {
             GetController();
@@ -44,86 +35,53 @@ public class VRTest : MonoBehaviourPun
         leftController.TryGetFeatureValue(CommonUsages.primaryButton, out bool leftPrimaryButtonValue);
         if (leftPrimaryButtonValue)
         {
-            Debug.Log("Pressing left primary button");
+            //Debug.Log("Pressing left primary button");
             ball.transform.position = leftControllerObject.transform.position;
-            prevPosition = ball.transform.position;
             ball.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         }
 
         leftController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool leftSecondaryButtonValue);
         if (leftSecondaryButtonValue)
-            Debug.Log("Pressing left secondary button");
+        {
+            //Debug.Log("Pressing left secondary button");
+        }
 
         leftController.TryGetFeatureValue(CommonUsages.trigger, out float leftTriggerValue);
         if (leftTriggerValue > 0.1F)
-            Debug.Log("Left trigger pressed " + leftTriggerValue);
+        {
+            //Debug.Log("Left trigger pressed " + leftTriggerValue);
+        }
 
         leftController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 leftPrimary2DAxisValue);
         if (leftPrimary2DAxisValue != Vector2.zero)
-            Debug.Log("Left primary touchpad " + leftPrimary2DAxisValue);
+        {
+            //Debug.Log("Left primary touchpad " + leftPrimary2DAxisValue);
+            originObject.transform.position += new Vector3(leftPrimary2DAxisValue.x / 30f, 0f, leftPrimary2DAxisValue.y / 30f);
+        }
 
         rightController.TryGetFeatureValue(CommonUsages.primaryButton, out bool rightPrimaryButtonValue);
         if (rightPrimaryButtonValue)
-            Debug.Log("Pressing right primary button");
+        {
+            //Debug.Log("Pressing right primary button");
+        }
 
         rightController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool rightSecondaryButtonValue);
         if (rightSecondaryButtonValue)
-            Debug.Log("Pressing right secondary button");
+        {
+            //Debug.Log("Pressing right secondary button");
+        }
 
         rightController.TryGetFeatureValue(CommonUsages.trigger, out float rightTriggerValue);
         if (rightTriggerValue > 0.1F)
-            Debug.Log("Right trigger pressed " + rightTriggerValue);
-
+        {
+            //Debug.Log("Right trigger pressed " + rightTriggerValue);
+        }
 
         rightController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 rightPrimary2DAxisValue);
         if (rightPrimary2DAxisValue != Vector2.zero)
-            Debug.Log("Right primary touchpad " + rightPrimary2DAxisValue);
-    }
-
-    private void FixedUpdate()
-    {
-        Rigidbody rb = ball.GetComponent<Rigidbody>();
-        RaycastHit hit;
-        if (rb.velocity.magnitude >= 1f)
         {
-            Ray ray = new Ray(ball.transform.position, rb.velocity);
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.tag == "Racket")
-                {
-                    isRacketDetected = true;
-                    hitPoint = hit.point;
-                    hitNormal = hit.normal;
-                    hitObject = hit.transform.gameObject;
-                }
-            }
-            else
-            {
-                if (isRacketDetected)
-                {
-                    ball.transform.position = hitPoint;
-                    Vector3 racketVelocity = hitObject.GetComponent<Racket>().velocity;
-                    rb.velocity = Vector3.Reflect(rb.velocity, hitNormal) + racketVelocity;
-                    isRacketDetected = false;
-                    Debug.Log("Collision is detected!");
-                }
-            }
+            //Debug.Log("Right primary touchpad " + rightPrimary2DAxisValue);
         }
-
-        //if (prevPosition != ball.transform.position && Physics.Linecast(prevPosition, ball.transform.position, out hit))
-        //{
-        //    if (hit.transform.tag == "Racket")
-        //    {
-        //        Vector3 racketVelocity = hit.transform.gameObject.GetComponent<Racket>().velocity;
-        //        rb.velocity = Vector3.Reflect(rb.velocity, hit.normal) + racketVelocity;
-
-        //        Vector3 positionOffset = hit.point - prevPosition;
-        //        positionOffset = Vector3.Reflect(positionOffset, hit.normal);
-        //        ball.transform.position = hit.point + positionOffset;
-        //    }
-        //}
-
-        prevPosition = ball.transform.position;
     }
 
     private void GetController()

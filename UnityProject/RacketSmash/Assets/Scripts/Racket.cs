@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class Racket : MonoBehaviour
 {
-    public Vector3 velocity;
-    private Vector3 prevPosition = new Vector3(0f, 0f, 0f);
+    private GameObject rightController;
+
+    private void Start()
+    {
+        rightController = GameObject.Find("RightHand Controller");
+    }
 
     private void FixedUpdate()
     {
-        if (prevPosition != transform.position)
+        if (transform.position != rightController.transform.position)
         {
-            velocity = transform.position - prevPosition;
+            GetComponent<Rigidbody>().MovePosition(rightController.transform.position);
         }
-
-        prevPosition = transform.position;
+        if (transform.eulerAngles != rightController.transform.eulerAngles)
+        {
+            GetComponent<Rigidbody>().MoveRotation(rightController.transform.rotation);
+        }
     }
 }
