@@ -21,7 +21,6 @@ namespace BaseSquash
 
         protected virtual void OnBallCollision(BallBase ball)
         {
-            Debug.Log(ball.transform.position);
         }
     }
 }
