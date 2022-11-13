@@ -30,8 +30,8 @@ namespace BaseSquash
             right.position = new Vector3((xSize + thickness) / 2, ySize / 2, 0);
             right.localScale = new Vector3(thickness, ySize, zSize + 2 * thickness);
 
-            front.position = new Vector3(0, ySize / 2, (zSize + thickness) / 2);
-            front.localScale = new Vector3(xSize, ySize, thickness);
+            front.position = new Vector3(-1.87f, 4.009f, 3.162f);
+            front.localScale = new Vector3(0.025f, 0.025f, 0.05f);
             if (back.gameObject.activeSelf)
             {
                 back.position = new Vector3(0, ySize / 2, -(zSize + thickness) / 2);
