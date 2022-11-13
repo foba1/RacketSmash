@@ -34,7 +34,7 @@ public class Ball : MonoBehaviour
                 collision.gameObject.GetComponent<AudioSource>().Play();
                 GameObject.Find("RightHand Controller").GetComponent<XRController>().SendHapticImpulse(0.4f, 0.2f);
 
-                GameObject effect = Instantiate(hitEffectPrefab[racket.selectedRacket], collision.contacts[0].point, Quaternion.identity);
+                GameObject effect = Instantiate(hitEffectPrefab[racket.selectedRacket], transform.position, Quaternion.identity);
                 Destroy(effect, 2f);
 
                 prevCollisionTime = Time.time;
