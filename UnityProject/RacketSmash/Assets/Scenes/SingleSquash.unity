@@ -2323,7 +2323,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7037333916884876019}
   m_LocalRotation: {x: 0.4055798, y: -0.579228, z: -0.2988362, w: 0.64085644}
-  m_LocalPosition: {x: -0.0085, y: 0.038, z: 0.15}
+  m_LocalPosition: {x: -0.0085, y: 0.038, z: 0.1335}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2701,7 +2701,7 @@ MonoBehaviour:
   m_materialData:
   - m_trailRenderer: {fileID: 5901767275315938930}
     m_uvTiling: {x: 0.06, y: 0.4}
-    m_move: 0.04296
+    m_move: 0
 --- !u!33 &8908762477291406864
 MeshFilter:
   m_ObjectHideFlags: 0
