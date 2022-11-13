@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &531592267067587378
+--- !u!1 &1937287233492554326
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9128423599488723074}
-  - component: {fileID: 5348084020006843483}
-  - component: {fileID: 5042234200906529246}
-  - component: {fileID: 508980917589622710}
+  - component: {fileID: 5352447739222766472}
+  - component: {fileID: 2204707204613340175}
   m_Layer: 0
-  m_Name: Racket1
-  m_TagString: Racket
+  m_Name: Racket4
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9128423599488723074
+--- !u!4 &5352447739222766472
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 531592267067587378}
-  m_LocalRotation: {x: 0.4055798, y: -0.579228, z: -0.2988362, w: 0.64085644}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0699}
-  m_LocalScale: {x: 0.008000008, y: 0.008000007, z: 0.008000006}
+  m_GameObject: {fileID: 1937287233492554326}
+  m_LocalRotation: {x: -0.117638335, y: 0.82320863, z: -0.43903208, w: 0.3402054}
+  m_LocalPosition: {x: -0.012964706, y: 0.01, z: 0.092}
+  m_LocalScale: {x: 3.5, y: 3.5000002, z: 3.5}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8192992999067847304}
+  m_Children:
+  - {fileID: 3884939753797227258}
+  m_Father: {fileID: 4364131186241793878}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 10, y: -90, z: -60}
---- !u!33 &5348084020006843483
-MeshFilter:
+  m_LocalEulerAnglesHint: {x: 40, y: 120, z: -40}
+--- !u!137 &2204707204613340175
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 531592267067587378}
-  m_Mesh: {fileID: 8548972395584939632, guid: 9c78d9a40d5d6344fa08ddabd8f81419, type: 3}
---- !u!23 &5042234200906529246
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 531592267067587378}
+  m_GameObject: {fileID: 1937287233492554326}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -57,12 +48,12 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 3
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3525bbe25f2cdcb4ea7fb69c9cb9a285, type: 2}
+  - {fileID: -4184221569645273973, guid: b86aebae760dadb418bbfdd235c54a16, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,22 +74,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &508980917589622710
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 531592267067587378}
-  m_Material: {fileID: 13400000, guid: d6f3dbd9aecfb2246bf3c6c8310bd40e, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8548972395584939632, guid: 9c78d9a40d5d6344fa08ddabd8f81419, type: 3}
---- !u!1 &8799678141519515428
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 1
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -1694678752187055445, guid: b86aebae760dadb418bbfdd235c54a16, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0.011438694, y: 0.005390875, z: 0.0051678456}
+    m_Extent: {x: 0.074302316, y: 0.053928282, z: 0.08032596}
+  m_DirtyAABB: 0
+--- !u!1 &3884939753797227257
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,40 +94,85 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8192992999067847304}
-  - component: {fileID: 2057936579485752417}
-  - component: {fileID: 8271573055476020500}
-  - component: {fileID: 1181350491277435755}
+  - component: {fileID: 3884939753797227258}
+  - component: {fileID: 3884939753797227259}
   m_Layer: 0
-  m_Name: Racket1
-  m_TagString: Racket
+  m_Name: Collider
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8192992999067847304
+--- !u!4 &3884939753797227258
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8799678141519515428}
+  m_GameObject: {fileID: 3884939753797227257}
+  m_LocalRotation: {x: 0.55403227, y: 0.14845248, z: -0.21201214, w: 0.79124016}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5352447739222766472}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 70, y: 0, z: -30}
+--- !u!65 &3884939753797227259
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3884939753797227257}
+  m_Material: {fileID: 13400000, guid: d6f3dbd9aecfb2246bf3c6c8310bd40e, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01337182, y: 0.1176645, z: 0.04672504}
+  m_Center: {x: -0.013962972, y: -0.026910093, z: -0.0003721426}
+--- !u!1 &3980448893281020666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4364131186241793878}
+  - component: {fileID: 5885250208552532415}
+  - component: {fileID: 4605315821462474954}
+  - component: {fileID: 6721298685898376885}
+  m_Layer: 0
+  m_Name: Racket4
+  m_TagString: Racket
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4364131186241793878
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3980448893281020666}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.244, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 9128423599488723074}
+  - {fileID: 5352447739222766472}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &2057936579485752417
+--- !u!54 &5885250208552532415
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8799678141519515428}
+  m_GameObject: {fileID: 3980448893281020666}
   serializedVersion: 2
   m_Mass: 0.2
   m_Drag: 0
@@ -149,13 +182,13 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &8271573055476020500
+--- !u!114 &4605315821462474954
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8799678141519515428}
+  m_GameObject: {fileID: 3980448893281020666}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84944f98fd9d1f941868f44a6a9149d0, type: 3}
@@ -163,13 +196,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedRacket: 0
   velocity: 0
---- !u!82 &1181350491277435755
+--- !u!82 &6721298685898376885
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8799678141519515428}
+  m_GameObject: {fileID: 3980448893281020666}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
