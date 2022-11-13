@@ -2304,9 +2304,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitEffectPrefab:
   - {fileID: 1250507045210962, guid: 3fe0df07025a3e747855b1bb671fc04e, type: 3}
-  - {fileID: 4564677337280977054, guid: b328795a9f0e40740900693cc123fdf1, type: 3}
+  - {fileID: 6431306218642173471, guid: 38613e5088e35e249a42192feef88e0a, type: 3}
   - {fileID: 3005609866406114602, guid: b8d10229191f736418d953a0ae80958e, type: 3}
-  - {fileID: 4564677337280977054, guid: 1b3ad09ec558745449dedbd1d75738d3, type: 3}
+  - {fileID: 1674598606890803462, guid: 22906eb86da017248be9c8c2688f6db5, type: 3}
 --- !u!4 &4410404750150695248
 Transform:
   m_ObjectHideFlags: 0
