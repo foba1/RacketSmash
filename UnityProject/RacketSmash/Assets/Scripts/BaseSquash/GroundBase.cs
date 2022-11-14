@@ -9,7 +9,6 @@ namespace BaseSquash
     {
         public virtual void OnHittedByBall(BallBase ball)
         {
-
         }
     }
 }
