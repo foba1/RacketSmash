@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1037
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 450}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 70
+  controlID: 63
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 78
+  controlID: 64
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 79
+  controlID: 53
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -486,9 +486,9 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 0
-      snapOffset: {x: 0, y: 25}
+      snapOffset: {x: -231, y: -197}
       snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 0
+      snapCorner: 3
       id: Scene View/Particles
       index: 10
       layout: 4
@@ -502,9 +502,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 3.4970608, y: -4.396225, z: 22.132328}
+    m_Target: {x: 0.2248088, y: -0.081552014, z: 3.1674743}
     speed: 2
-    m_Value: {x: 3.4970608, y: -4.396225, z: 22.132328}
+    m_Value: {x: 0.2248088, y: -0.081552014, z: 3.1674743}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -551,19 +551,19 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.10776727, y: 0.08047662, z: -0.008745865, w: 0.9910717}
+    m_Target: {x: -0.07369077, y: -0.042516604, z: 0.003345691, w: -0.9966484}
     speed: 2
-    m_Value: {x: 0.10775927, y: 0.07897453, z: -0.0085825315, w: 0.99099815}
+    m_Value: {x: -0.073670246, y: -0.04250476, z: 0.003344759, w: -0.9963708}
   m_Size:
-    m_Target: 12.124355
+    m_Target: 2.3382092
     speed: 2
-    m_Value: 12.124354
+    m_Value: 2.3382092
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 1
+    m_Speed: 1.005
     m_SpeedNormalized: 0.5
     m_SpeedMin: 0.01
     m_SpeedMax: 2
@@ -616,7 +616,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 8232ffff9a5bffffaaa0ffff56bfffff8ce9ffff62ebffffacf1ffffa8f2ffffdef7ffff30fbffff0c720000
+      m_ExpandedIDs: 4a88fdff6c8bfdffe630feff6c50fffffa72ffffd0c9fffff4caffff78f5ffff30fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -775,36 +775,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Models/Racket
+    - Assets/Particles
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Models/Racket
+  - Assets/Particles
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\foba1\Documents\GitHub\RacketSmash\UnityProject\RacketSmash
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 24}
-    m_SelectedIDs: 14840000
-    m_LastClickedID: 33812
-    m_ExpandedIDs: 00000000cc730000e873000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 30b80000
+    m_LastClickedID: 47152
+    m_ExpandedIDs: 00000000c473000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Particles
+      m_OriginalName: Particles
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 36580
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 4
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -818,7 +818,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000cc730000ce730000
+    m_ExpandedIDs: 00000000c4730000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -846,7 +846,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: 2c6f000000000000
+    m_ExpandedInstanceIDs: 2c6f0000000000007c760000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
