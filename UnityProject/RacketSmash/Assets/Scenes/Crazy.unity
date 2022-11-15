@@ -2348,6 +2348,7 @@ MonoBehaviour:
   - {fileID: 3005609866406114602, guid: b8d10229191f736418d953a0ae80958e, type: 3}
   - {fileID: 5082203971281735965, guid: 10434d6bf3af98b46a88ab696f543ee3, type: 3}
   - {fileID: 4564677337280977054, guid: 1b3ad09ec558745449dedbd1d75738d3, type: 3}
+  groundHitCount: 0
 --- !u!4 &4281352248972196836
 Transform:
   m_ObjectHideFlags: 0
@@ -2938,8 +2939,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 443635502910134590}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 860
+  m_shaderPropertyID: 888
   m_materialData:
   - m_trailRenderer: {fileID: 5901767275315938930}
     m_uvTiling: {x: 0.06, y: 0.4}
-    m_move: 0
+    m_move: 0.04296
