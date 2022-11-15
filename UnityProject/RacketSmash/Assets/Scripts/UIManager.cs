@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour
     {
         if (index == (int)Mode.mole)
         {
-
+            SceneManager.LoadScene("Mole");
         }
         else if (index == (int)Mode.crazy)
         {
