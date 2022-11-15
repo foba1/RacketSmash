@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 5266455c1dc416e489dd42394a642b3e
   - enabled: 1
+    path: Assets/Scenes/Mole.unity
+    guid: 08b4d216adb764c48a9375b345da690c
+  - enabled: 1
     path: Assets/Scenes/Crazy.unity
     guid: 2b51586a0d3d1864aab7bcb9f0176bd7
   m_configObjects:
