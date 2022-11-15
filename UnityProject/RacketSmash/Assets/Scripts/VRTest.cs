@@ -9,12 +9,14 @@ public class VRTest : MonoBehaviour
     public GameObject leftControllerObject;
     public GameObject rightControllerObject;
 
-    public GameObject ball;
-
+    private GameObject ballObject;
+    private GameObject racketObject;
     private List<InputDevice> leftDevices;
     private List<InputDevice> rightDevices;
     private InputDevice leftController;
     private InputDevice rightController;
+
+    private bool prevLeftSecondaryButtonValue;
 
     private void Start()
     {
@@ -22,7 +24,8 @@ public class VRTest : MonoBehaviour
         rightDevices = new List<InputDevice>();
         GetController();
 
-        //ball = Instantiate(Resources.Load("Ball") as GameObject);
+        ballObject = GameObject.Find("Ball");
+        racketObject = GameObject.Find("Racket");
     }
 
     private void Update()
@@ -36,14 +39,27 @@ public class VRTest : MonoBehaviour
         if (leftPrimaryButtonValue)
         {
             //Debug.Log("Pressing left primary button");
-            ball.transform.position = leftControllerObject.transform.position;
-            ball.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+            ballObject.transform.position = leftControllerObject.transform.position;
+            ballObject.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         }
 
         leftController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool leftSecondaryButtonValue);
         if (leftSecondaryButtonValue)
         {
+            prevLeftSecondaryButtonValue = true;
             //Debug.Log("Pressing left secondary button");
+        }
+        else
+        {
+            if (prevLeftSecondaryButtonValue)
+            {
+                prevLeftSecondaryButtonValue = false;
+                Racket racket = racketObject.GetComponent<Racket>();
+                int selectedRacket = racket.selectedRacket;
+                if (selectedRacket >= racketObject.transform.childCount - 1) selectedRacket = 0;
+                else selectedRacket++;
+                racket.SelectRacket(selectedRacket);
+            }
         }
 
         leftController.TryGetFeatureValue(CommonUsages.trigger, out float leftTriggerValue);

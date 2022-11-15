@@ -5,9 +5,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Ball : MonoBehaviour
 {
-    private float maxVelocity = 9f;
-    
+    public GameObject[] hitEffectPrefab;
+    private float maxVelocity = 12f;
     private Rigidbody rb;
+    private float prevCollisionTime = 0f;
 
     [SerializeField] private int groundHitCount;
     public int groundHit { get { return groundHitCount; } set { groundHitCount += value; } }
@@ -29,19 +30,24 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.tag == "Racket")
         {
-            AudioSource audioSource = collision.gameObject.GetComponent<AudioSource>();
-            if (!audioSource.isPlaying)
+            Racket racket = collision.gameObject.GetComponent<Racket>();
+            if (racket.velocity >= 0.015f && Time.time - prevCollisionTime >= 0.5f)
             {
-                audioSource.Play();
+                collision.gameObject.GetComponent<AudioSource>().Play();
                 GameObject.Find("RightHand Controller").GetComponent<XRController>().SendHapticImpulse(0.4f, 0.2f);
+
+                GameObject effect = Instantiate(hitEffectPrefab[racket.selectedRacket], transform.position, Quaternion.identity);
+                Destroy(effect, 2f);
+
+                prevCollisionTime = Time.time;
             }
         }else if (collision.gameObject.tag == "Ground")
         {
-            // ¹Ù´Ú¿¡ Æ¨±ä È½¼ö Áõ°¡
+            // ï¿½Ù´Ú¿ï¿½ Æ¨ï¿½ï¿½ È½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             groundHit = 1;
         }else if (collision.gameObject.tag == "Mole")
         {
-            // µÎ´õÁö Å¸°ÝÀ½
+            // ï¿½Î´ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½
             AudioSource audioSource = collision.gameObject.GetComponent<AudioSource>();
             if (!audioSource.isPlaying)
             {
