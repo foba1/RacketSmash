@@ -9,7 +9,7 @@ public class Ball : MonoBehaviour
     
     private Rigidbody rb;
 
-    private int groundHitCount;
+    [SerializeField] private int groundHitCount;
     public int groundHit { get { return groundHitCount; } set { groundHitCount += value; } }
 
     private void Start()
@@ -22,7 +22,7 @@ public class Ball : MonoBehaviour
         if (rb.velocity.magnitude > maxVelocity)
         {
             rb.velocity *= maxVelocity / rb.velocity.magnitude;
-        }
+        } 
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -39,6 +39,14 @@ public class Ball : MonoBehaviour
         {
             // 바닥에 튕긴 횟수 증가
             groundHit = 1;
+        }else if (collision.gameObject.tag == "Mole")
+        {
+            // 두더지 타격음
+            AudioSource audioSource = collision.gameObject.GetComponent<AudioSource>();
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
     }
 }

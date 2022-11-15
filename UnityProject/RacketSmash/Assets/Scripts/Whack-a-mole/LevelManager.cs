@@ -12,7 +12,7 @@ namespace WhackAMole
         [SerializeField] private TextMeshPro timerText;
         [SerializeField] private GameObject gameEndText;
         [SerializeField] private MolesController molesController;
-        [SerializeField] private Ball ball;
+        [SerializeField] private GameObject ball;
         [SerializeField] private float timeOut;
         [SerializeField] private int maxLevel;
         [SerializeField] private int level=1;
@@ -48,17 +48,17 @@ namespace WhackAMole
             {
                 gameEndText.GetComponent<TextMeshPro>().text = "You Win!\nScore : " + totalScore.ToString();
                 gameEndText.SetActive(true);
-                ball.GetComponent<GameObject>().SetActive(false);
+                ball.SetActive(false);
                 molesController.hideMoles();
             }
 
             // 바닥에 연속 두번 튕기면 게임 오버
-            if (ball.groundHit == 2)
+            if (ball.GetComponent<Ball>().groundHit == 2)
             {
                 gameEndText.GetComponent<TextMeshPro>().text = "Game Over !\nScore : " + totalScore.ToString();
                 gameEndText.SetActive(true);
 
-                ball.GetComponent<GameObject>().SetActive(false);
+                ball.SetActive(false);
                 molesController.hideMoles();
             }
 
@@ -69,7 +69,7 @@ namespace WhackAMole
                 gameEndText.GetComponent<TextMeshPro>().text = "Game Over !\nScore : " + totalScore.ToString();
                 gameEndText.SetActive(true);
 
-                ball.GetComponent<GameObject>().SetActive(false);
+                ball.SetActive(false);
                 molesController.hideMoles();
             }
             timerText.text = "Elapsed Time : " + string.Format("{0:N}", elapsedTime.ToString());
@@ -89,8 +89,10 @@ namespace WhackAMole
                 gameEndText.SetActive(true);
                 molesController.hideMoles();
                 level += 1;
+                molesController.round = 1;
                 clearTime = Time.time;
                 catchCount = 0;
+                molesController.roundClearState = true;
             }
 
             

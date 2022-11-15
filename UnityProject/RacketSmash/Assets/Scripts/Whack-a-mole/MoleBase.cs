@@ -13,38 +13,59 @@ namespace WhackAMole
         [SerializeField] private float zMin = 0.3f;
         [SerializeField] private int score;
         [SerializeField] private bool isMove;
+        [SerializeField] private bool isHit;
+        private Vector3 initPosition;
         
         public int moleScore { get { return score; } set { score = value; } }
         // Start is called before the first frame update
         void Start()
         {
             levelManger = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-            currentPosition = transform.localPosition.z;
-            Debug.Log(currentPosition.ToString());
+            currentPosition = transform.localPosition.z; 
             isMove = false;
+            initPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
         }
 
         // Update is called once per frame
         void Update()
         {
+            currentPosition += Time.deltaTime * direction;
+            // 움직일 때
             if (isMove)
             {
-                currentPosition += Time.deltaTime * direction;
-                // 나오기
-                if (currentPosition >= zMax)
+                // 안맞았을 때
+                if (!isHit)
                 {
-                    direction *= -1;
-                    currentPosition = zMax;
+                    // 나오기
+                    if (currentPosition >= zMax)
+                    {
+                        direction *= -1;
+                        currentPosition = zMax;
+                    }
+                    // 들어가기
+                    else if (currentPosition <= zMin)
+                    {
+                        direction *= -1;
+                        currentPosition = zMin;
+                    }
                 }
-                // 들어가기
-                else if (currentPosition <= zMin)
+                // 맞았을 때
+                else
                 {
-                    direction *= -1;
-                    currentPosition = zMin;
+                    if (direction < 0)
+                    {
+                        direction *= -1;
+                    }
+                    if (transform.localPosition.z >= initPosition.z)
+                    {
+                        Debug.Log("도착");
+                        currentPosition = initPosition.z;
+                    }
                 }
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, currentPosition);
             }
-            
-            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, currentPosition);
+
+
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -57,15 +78,36 @@ namespace WhackAMole
                 // 총점 증가
                 levelManger.totalScore = score;
                 Debug.Log(score.ToString() + "점 획득! \n 현재 스코어 : " + levelManger.totalScore);
-                
+                // 두더지 타격 체크
+                isHit = true;
             }
         }
 
-        public void changeMoveState()
+        public void setMolehit()
         {
-            isMove = !isMove;
+            Debug.Log("Set isHit to :" + isHit);
+            isHit=true;
+        }
+
+        public void setMoleUnHit()
+        {
+            isHit = false;
+        }
+
+        public void setMoleMove()
+        {
+            isMove =true;
+        }
+
+        public void setMoleNotMove()
+        {
+            isMove = false;
         }
         
+        public void resetPosition()
+        {
+            transform.localPosition = initPosition;
+        }
     }
 
 }
