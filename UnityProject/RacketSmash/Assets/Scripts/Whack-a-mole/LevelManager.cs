@@ -53,14 +53,14 @@ namespace WhackAMole
             }
 
             // 바닥에 연속 두번 튕기면 게임 오버
-            if (ball.GetComponent<Ball>().groundHit == 2)
-            {
-                gameEndText.GetComponent<TextMeshPro>().text = "Game Over !\nScore : " + totalScore.ToString();
-                gameEndText.SetActive(true);
+            //if (ball.GetComponent<Ball>().groundHit == 2)
+            //{
+            //    gameEndText.GetComponent<TextMeshPro>().text = "Game Over !\nScore : " + totalScore.ToString();
+            //    gameEndText.SetActive(true);
 
-                ball.SetActive(false);
-                molesController.hideMoles();
-            }
+            //    ball.SetActive(false);
+            //    molesController.hideMoles();
+            //}
 
             // 타임아웃 게임 오버
             elapsedTime += Time.deltaTime;
