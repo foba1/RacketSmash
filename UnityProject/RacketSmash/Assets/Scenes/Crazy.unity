@@ -1206,8 +1206,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617026320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 3.25}
-  m_LocalScale: {x: 3, y: 4, z: 0.5}
+  m_LocalPosition: {x: -1.87, y: 4.009, z: 3.162}
+  m_LocalScale: {x: 0.025, y: 0.025, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 748187520}
@@ -2939,8 +2939,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 443635502910134590}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 888
+  m_shaderPropertyID: 879
   m_materialData:
   - m_trailRenderer: {fileID: 5901767275315938930}
     m_uvTiling: {x: 0.06, y: 0.4}
-    m_move: 0.04296
+    m_move: 0
