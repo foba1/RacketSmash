@@ -5,9 +5,11 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Ball : MonoBehaviour
 {
-    private float maxVelocity = 9f;
+    public GameObject[] hitEffectPrefab;
 
+    private float maxVelocity = 12f;
     private Rigidbody rb;
+    private float prevCollisionTime = 0f;
 
     private void Start()
     {
@@ -26,11 +28,16 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.tag == "Racket")
         {
-            AudioSource audioSource = collision.gameObject.GetComponent<AudioSource>();
-            if (!audioSource.isPlaying)
+            Racket racket = collision.gameObject.GetComponent<Racket>();
+            if (racket.velocity >= 0.015f && Time.time - prevCollisionTime >= 0.5f)
             {
-                audioSource.Play();
+                collision.gameObject.GetComponent<AudioSource>().Play();
                 GameObject.Find("RightHand Controller").GetComponent<XRController>().SendHapticImpulse(0.4f, 0.2f);
+
+                GameObject effect = Instantiate(hitEffectPrefab[racket.selectedRacket], transform.position, Quaternion.identity);
+                Destroy(effect, 2f);
+
+                prevCollisionTime = Time.time;
             }
         }
     }
