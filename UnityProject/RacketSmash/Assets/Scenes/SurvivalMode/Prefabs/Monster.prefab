@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1915559188689977485}
   - component: {fileID: 3713808553994633403}
   - component: {fileID: 6217554310695096158}
+  - component: {fileID: 560305520119051200}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7675821705074154629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,8 +97,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6831f80618c6ba4c86f5bb7a5e4a97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  idleRange: 0.3
-  idleSpeed: 0.5
-  fallSpeed: 2.5
-  hitRadius: 2
+  moveSpeed: 3
+  idleRange: 0.15
+  idleSpeed: 0.3
+  fallSpeed: 1.5
+--- !u!136 &560305520119051200
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7675821705074154629}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.49999997
+  m_Height: 1.9999999
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Coop
+namespace SurvivalMode
 {
 
     public class Monster : MonoBehaviour
@@ -14,10 +14,8 @@ namespace Coop
         [SerializeField] float idleSpeed;
 
         [SerializeField] float fallSpeed;
-        [SerializeField] float hitRadius;
 
         public State CurrentState { get; private set; } = State.Spawning;
-        public float HitRadius { get { return hitRadius; } }
 
         public void SetStartPosition(Vector3 startPosition)
         {
@@ -44,15 +42,10 @@ namespace Coop
         {
             CurrentState = State.Moving;
         }
-        public void OnHitted(Vector2 ballPos)
+        public void OnHitted()
         {
             CurrentState = State.Dead;
             Debug.Log("Monser Hit!");
-        }
-        private void OnDrawGizmos()
-        {
-
-            Gizmos.DrawWireSphere(transform.position, hitRadius);
         }
 
         void Update()
@@ -60,6 +53,14 @@ namespace Coop
             if(CurrentState == State.Moving)
                 transform.position += new Vector3(0, -1, 0) * fallSpeed * Time.deltaTime;
 
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            Debug.Log(other.gameObject.GetComponent<Ball>());
+            if (other.gameObject.GetComponent<Ball>() != null)
+            {
+                OnHitted();
+            }
         }
     }
 }
