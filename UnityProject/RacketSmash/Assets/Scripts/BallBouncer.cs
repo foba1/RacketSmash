@@ -8,6 +8,8 @@ public class BallBouncer : MonoBehaviour
     [SerializeField] Rigidbody ball;
     [SerializeField] float landZOffset = 1;
 
+    [SerializeField] Vector3 ballShootDir = new Vector3(0, 10, 10);
+
     private void OnDrawGizmos()
     {
         if(player != null)
@@ -21,7 +23,7 @@ public class BallBouncer : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            ball.velocity = new Vector3(0, 1, 1) * 10;
+            ball.velocity = ballShootDir;
         }
     }
 
@@ -36,16 +38,12 @@ public class BallBouncer : MonoBehaviour
             Vector3 collisionPoint = ball.transform.position;
             Vector3 targetPoint = player.transform.position + new Vector3(0, 0, landZOffset);
 
-            Vector3 directLine = (targetPoint - collisionPoint);
+            float y = targetPoint.z * Physics.gravity.y / collisionPoint.z - collisionPoint.y;
 
-            //S(t) = S0 + V0 * dt + G * dt^2
-            //0 = Physics.gravity * t^2 + directLine * t + collisionPoint
+            float power = ballRB.velocity.magnitude;
 
-
-            float estimatedTime = SolveEquation(Physics.gravity.y, directLine.y, collisionPoint.y);
-
-            ballRB.velocity = (targetPoint - collisionPoint);
-
+            Vector3 directLine = targetPoint - collisionPoint;
+            ballRB.velocity = new Vector3(directLine.x, y, directLine.z);
         }
     }
 
