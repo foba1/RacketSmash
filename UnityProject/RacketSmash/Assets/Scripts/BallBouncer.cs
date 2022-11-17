@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class BallBouncer : MonoBehaviour
 {
+    [Header("Settings")]
     [SerializeField] Transform player;
-    [SerializeField] Rigidbody ball;
     [SerializeField] float landZOffset = 1;
 
+    [Header("Test Variables")]
+    [SerializeField] Rigidbody ball;
     [SerializeField] Vector3 ballShootDir = new Vector3(0, 10, 10);
 
     private void OnDrawGizmos()
@@ -23,7 +25,8 @@ public class BallBouncer : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            ball.velocity = ballShootDir;
+            if(ball != null)
+                ball.velocity = ballShootDir;
         }
     }
 

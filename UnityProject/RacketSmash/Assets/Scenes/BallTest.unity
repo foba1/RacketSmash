@@ -1843,22 +1843,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1987266263}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1987266265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987266264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eebb2df99e63c147a4277b3dc768f30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 5433357726418547501}
-  ball: {fileID: 8814382052000581744}
-  landZOffset: 1
-  ballShootDir: {x: 2, y: 10, z: 10}
 --- !u!54 &1987266266
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1875,6 +1859,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &1987266267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987266264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eebb2df99e63c147a4277b3dc768f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 5433357726418547501}
+  landZOffset: 1
+  ball: {fileID: 8814382052000581744}
+  ballShootDir: {x: 0, y: 10, z: 10}
 --- !u!1 &2121583327 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: f17fe84f7def5744ba877be45ee0ba1d,
@@ -2481,7 +2481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 4387819459699052471}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 963
+  m_shaderPropertyID: 854
   m_materialData:
   - m_trailRenderer: {fileID: 7722543886838927611}
     m_uvTiling: {x: 0.06, y: 0.4}
