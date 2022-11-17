@@ -3,28 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class VRTest : MonoBehaviour
+public class VRInteractionManager : MonoBehaviour
 {
-    public GameObject originObject;
-    public GameObject leftControllerObject;
-    public GameObject rightControllerObject;
-
-    private GameObject ballObject;
+    private GameObject originObject;
+    private GameObject leftControllerObject;
+    private GameObject rightControllerObject;
     private GameObject racketObject;
     private List<InputDevice> leftDevices;
     private List<InputDevice> rightDevices;
     private InputDevice leftController;
     private InputDevice rightController;
 
-    private bool prevLeftSecondaryButtonValue;
+    private bool prevLeftPrimaryButtonValue = false;
+    private bool prevLeftSecondaryButtonValue = false;
 
     private void Start()
     {
+        originObject = GameObject.Find("XR Origin");
+        leftControllerObject = GameObject.Find("LeftHand Controller");
+        rightControllerObject = GameObject.Find("RightHand Controller");
+
         leftDevices = new List<InputDevice>();
         rightDevices = new List<InputDevice>();
         GetController();
 
-        ballObject = GameObject.Find("Ball");
         racketObject = GameObject.Find("Racket");
     }
 
@@ -39,15 +41,23 @@ public class VRTest : MonoBehaviour
         if (leftPrimaryButtonValue)
         {
             //Debug.Log("Pressing left primary button");
-            ballObject.transform.position = leftControllerObject.transform.position;
-            ballObject.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+            prevLeftPrimaryButtonValue = true;
+        }
+        else
+        {
+            if (prevLeftPrimaryButtonValue)
+            {
+                prevLeftPrimaryButtonValue = false;
+                GameObject ball = GameObject.Find("Ball");
+                if (ball != null) ball.GetComponent<Ball>().RespawnOrDrop();
+            }
         }
 
         leftController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool leftSecondaryButtonValue);
         if (leftSecondaryButtonValue)
         {
-            prevLeftSecondaryButtonValue = true;
             //Debug.Log("Pressing left secondary button");
+            prevLeftSecondaryButtonValue = true;
         }
         else
         {
@@ -72,7 +82,6 @@ public class VRTest : MonoBehaviour
         if (leftPrimary2DAxisValue != Vector2.zero)
         {
             //Debug.Log("Left primary touchpad " + leftPrimary2DAxisValue);
-            originObject.transform.position += new Vector3(leftPrimary2DAxisValue.x / 30f, 0f, leftPrimary2DAxisValue.y / 30f);
         }
 
         rightController.TryGetFeatureValue(CommonUsages.primaryButton, out bool rightPrimaryButtonValue);
