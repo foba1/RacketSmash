@@ -4,27 +4,34 @@ using UnityEngine;
 
 public class BallManager : MonoBehaviour
 {
-    public GameObject[] ballPoint;
-    public GameObject playerPoint;
-    public GameObject ballPrefab;
+    [Header("Ball Prefab")]
+    [SerializeField] GameObject ballPrefab;
 
+    private List<GameObject> ballPoint;
+    private GameObject playerPoint;
     private float time;
-    private float magnitude = 5f;
 
     private void Start()
     {
         time = Time.time;
+        playerPoint = GameObject.Find("PlayerPoint");
+        ballPoint = new List<GameObject>();
+
+        GameObject curvedWall = GameObject.Find("CurvedWall");
+        for (int i = 0; i < curvedWall.transform.childCount; i++)
+        {
+            ballPoint.Add(curvedWall.transform.GetChild(i).gameObject);
+        }
     }
 
     private void Update()
     {
-        if (Time.time - time >= 1.5f)
+        if (Time.time - time >= 5f)
         {
             time = Time.time;
-            int index = Random.Range(0, 12);
+            int index = Random.Range(0, ballPoint.Count);
             GameObject ball = Instantiate(ballPrefab, ballPoint[index].transform.position, Quaternion.identity);
             ball.GetComponent<Rigidbody>().velocity = (playerPoint.transform.position - ballPoint[index].transform.position);
-            Destroy(ball, 3f);
         }
     }
 }
