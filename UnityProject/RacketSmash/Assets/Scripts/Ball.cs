@@ -5,10 +5,19 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Ball : MonoBehaviour
 {
-    public GameObject[] hitEffectPrefab;
-    private float maxVelocity = 12f;
+    [Header("EffectPrefab")]
+    [SerializeField] GameObject[] hitEffectPrefab;
+
+    [Header("CurrentMode")]
+    [SerializeField] int curMode;
+
+    [Header("Setting")]
+    [SerializeField] float maxVelocity = 20f;
+
     private Rigidbody rb;
     private float prevCollisionTime = 0f;
+    private GameObject leftControllerObject;
+    private bool isStickedToController = false;
 
     [SerializeField] private int groundHitCount;
     public int groundHit { get { return groundHitCount; } set { groundHitCount += value; } }
@@ -16,6 +25,7 @@ public class Ball : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        leftControllerObject = GameObject.Find("LeftHand Controller");
     }
 
     private void Update()
@@ -23,7 +33,13 @@ public class Ball : MonoBehaviour
         if (rb.velocity.magnitude > maxVelocity)
         {
             rb.velocity *= maxVelocity / rb.velocity.magnitude;
-        } 
+        }
+        if (isStickedToController)
+        {
+            transform.position = leftControllerObject.transform.position;
+            rb.velocity = new Vector3(0f, 0f, 0f);
+            rb.angularVelocity = new Vector3(0f, 0f, 0f);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -41,18 +57,41 @@ public class Ball : MonoBehaviour
 
                 prevCollisionTime = Time.time;
             }
-        }else if (collision.gameObject.tag == "Ground")
+        }
+        if (curMode == (int)Mode.mole)
         {
-            // �ٴڿ� ƨ�� Ƚ�� ����
-            groundHit = 1;
-        }else if (collision.gameObject.tag == "Mole")
-        {
-            // �δ��� Ÿ����
-            AudioSource audioSource = collision.gameObject.GetComponent<AudioSource>();
-            if (!audioSource.isPlaying)
+            if (collision.gameObject.tag == "Ground")
             {
-                audioSource.Play();
+                // �ٴڿ� ƨ�� Ƚ�� ����
+                groundHit = 1;
+            }
+            else if (collision.gameObject.tag == "Mole")
+            {
+                // �δ��� Ÿ����
+                AudioSource audioSource = collision.gameObject.GetComponent<AudioSource>();
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.Play();
+                }
             }
         }
+        else if (curMode == (int)Mode.crazy)
+        {
+
+        }
+        else if (curMode == (int)Mode.survival)
+        {
+
+        }
+        else if (curMode == (int)Mode.brick)
+        {
+
+        }
+    }
+
+    public void RespawnOrDrop()
+    {
+        if (isStickedToController) isStickedToController = false;
+        else if (leftControllerObject != null) isStickedToController = true;
     }
 }
