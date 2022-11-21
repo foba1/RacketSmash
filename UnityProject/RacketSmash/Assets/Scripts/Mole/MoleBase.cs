@@ -12,8 +12,8 @@ namespace WhackAMole
         [SerializeField] private float zMax = 0.8f;
         [SerializeField] private float zMin = 0.3f;
         [SerializeField] private int score;
-        [SerializeField] private bool isMove;
-        [SerializeField] private bool isHit;
+        [SerializeField] private bool isMove=false;
+        [SerializeField] private bool isHit=true;
         private Vector3 initPosition;
         
         public int moleScore { get { return score; } set { score = value; } }
@@ -22,7 +22,6 @@ namespace WhackAMole
         {
             levelManger = GameObject.Find("LevelManager").GetComponent<LevelManager>();
             currentPosition = transform.localPosition.z; 
-            isMove = false;
             initPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
         }
 
@@ -58,7 +57,6 @@ namespace WhackAMole
                     }
                     if (transform.localPosition.z >= initPosition.z)
                     {
-                        Debug.Log("도착");
                         currentPosition = initPosition.z;
                     }
                 }
@@ -72,14 +70,17 @@ namespace WhackAMole
         {
             Ball ball = collision.gameObject.GetComponent<Ball>();
             if (ball != null) 
-            { 
-                // 두더지 잡은 횟수 증가
-                levelManger.count = 1;
-                // 총점 증가
-                levelManger.totalScore = score;
-                Debug.Log(score.ToString() + "점 획득! \n 현재 스코어 : " + levelManger.totalScore);
-                // 두더지 타격 체크
-                isHit = true;
+            {
+                if (!isHit)
+                {
+                    // 두더지 잡은 횟수 증가
+                    levelManger.count = 1;
+                    // 총점 증가
+                    levelManger.totalScore = score;
+                    Debug.Log(score.ToString() + "점 획득! \n 현재 스코어 : " + levelManger.totalScore);
+                    // 두더지 타격 체크
+                    isHit = true;
+                }
             }
         }
 
@@ -94,8 +95,9 @@ namespace WhackAMole
             isHit = false;
         }
 
-        public void setMoleMove()
+        public void setMoleMove(int idx)
         {
+            Debug.Log("Mole" + idx.ToString() + "Set to move");
             isMove =true;
         }
 
