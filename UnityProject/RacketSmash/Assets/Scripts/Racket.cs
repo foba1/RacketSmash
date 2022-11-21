@@ -22,7 +22,7 @@ public class Racket : MonoBehaviour
 
     private void FixedUpdate()
     {
-        velocity = (transform.position - prevPosition).magnitude;
+        velocity = (transform.GetChild(selectedRacket).position - prevPosition).magnitude;
 
         if (transform.position != rightController.transform.position)
         {
@@ -33,7 +33,7 @@ public class Racket : MonoBehaviour
             transform.GetChild(selectedRacket).GetComponent<Rigidbody>().MoveRotation(rightController.transform.rotation);
         }
 
-        prevPosition = transform.position;
+        prevPosition = transform.GetChild(selectedRacket).position;
     }
 
     public void SelectRacket(int index)

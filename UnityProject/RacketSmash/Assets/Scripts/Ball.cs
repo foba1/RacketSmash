@@ -12,7 +12,7 @@ public class Ball : MonoBehaviour
     [SerializeField] int curMode;
 
     [Header("Setting")]
-    [SerializeField] float maxVelocity = 20f;
+    [SerializeField] float maxVelocity = 15f;
 
     private Rigidbody rb;
     private float prevCollisionTime = 0f;
@@ -47,10 +47,10 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.tag == "Racket")
         {
-            Racket racket = collision.gameObject.GetComponent<Racket>();
+            Racket racket = collision.transform.parent.GetComponent<Racket>();
             if (racket.velocity >= 0.015f && Time.time - prevCollisionTime >= 0.5f)
             {
-                collision.gameObject.GetComponent<AudioSource>().Play();
+                collision.transform.parent.GetComponent<AudioSource>().Play();
                 GameObject.Find("RightHand Controller").GetComponent<XRController>().SendHapticImpulse(0.4f, 0.2f);
 
                 GameObject effect = Instantiate(hitEffectPrefab[racket.selectedRacket], transform.position, Quaternion.identity);
@@ -78,7 +78,7 @@ public class Ball : MonoBehaviour
         }
         else if (curMode == (int)Mode.crazy)
         {
-            if (collision.gameObject.tag == "Wall")
+            if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Racket")
             {
                 ableToFallDown = true;
             }
