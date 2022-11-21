@@ -75,10 +75,8 @@ namespace WhackAMole
                 catchCount = 0;
                 molesController.roundClearState = true;
             }
-
             
         }
-
         
     }
 }

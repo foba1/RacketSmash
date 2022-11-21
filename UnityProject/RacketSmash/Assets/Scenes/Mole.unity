@@ -234,6 +234,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3759c7048109a7a4c839d1f784866251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffectPrefab:
+  - {fileID: 7226583673155636401, guid: 2bbb6c48b552b52468924229031af64a, type: 3}
+  - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
+  - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
+  - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
   zMax: 0.9
   zMin: 0.1
@@ -562,6 +567,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3759c7048109a7a4c839d1f784866251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffectPrefab:
+  - {fileID: 7226583673155636401, guid: 2bbb6c48b552b52468924229031af64a, type: 3}
+  - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
+  - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
+  - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
   zMax: 0.9
   zMin: 0.3
@@ -949,6 +959,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3759c7048109a7a4c839d1f784866251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffectPrefab:
+  - {fileID: 7226583673155636401, guid: 2bbb6c48b552b52468924229031af64a, type: 3}
+  - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
+  - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
+  - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
   zMax: 0.9
   zMin: 0.3
@@ -1162,6 +1177,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3759c7048109a7a4c839d1f784866251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffectPrefab:
+  - {fileID: 7226583673155636401, guid: 2bbb6c48b552b52468924229031af64a, type: 3}
+  - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
+  - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
+  - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
   zMax: 0.9
   zMin: 0.1
@@ -1616,6 +1636,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3759c7048109a7a4c839d1f784866251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffectPrefab:
+  - {fileID: 7226583673155636401, guid: 2bbb6c48b552b52468924229031af64a, type: 3}
+  - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
+  - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
+  - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
   zMax: 0.9
   zMin: 0.3
@@ -2027,6 +2052,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3759c7048109a7a4c839d1f784866251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffectPrefab:
+  - {fileID: 7226583673155636401, guid: 2bbb6c48b552b52468924229031af64a, type: 3}
+  - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
+  - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
+  - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
   zMax: 0.9
   zMin: 0.3
@@ -2240,6 +2270,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3759c7048109a7a4c839d1f784866251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffectPrefab:
+  - {fileID: 7226583673155636401, guid: 2bbb6c48b552b52468924229031af64a, type: 3}
+  - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
+  - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
+  - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
   zMax: 0.9
   zMin: 0.3
@@ -2551,6 +2586,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3759c7048109a7a4c839d1f784866251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffectPrefab:
+  - {fileID: 7226583673155636401, guid: 2bbb6c48b552b52468924229031af64a, type: 3}
+  - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
+  - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
+  - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
   zMax: 0.9
   zMin: 0.1
@@ -3150,9 +3190,8 @@ MonoBehaviour:
   scoreText: {fileID: 1634026186}
   molesController: {fileID: 1126115467}
   ball: {fileID: 4012560077634983181}
-  timeOut: 10
+  timeOut: 100
   catchCount: 0
-  threshold: 2
 --- !u!4 &1539536959
 Transform:
   m_ObjectHideFlags: 0
@@ -4455,6 +4494,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3759c7048109a7a4c839d1f784866251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffectPrefab:
+  - {fileID: 7226583673155636401, guid: 2bbb6c48b552b52468924229031af64a, type: 3}
+  - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
+  - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
+  - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
   zMax: 0.9
   zMin: 0.3
@@ -5165,7 +5209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 4387819459699052471}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 828
+  m_shaderPropertyID: 831
   m_materialData:
   - m_trailRenderer: {fileID: 7722543886838927611}
     m_uvTiling: {x: 0.06, y: 0.4}

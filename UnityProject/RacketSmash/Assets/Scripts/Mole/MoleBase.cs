@@ -8,6 +8,8 @@ namespace WhackAMole
     {
         private LevelManager levelManger;
         private float currentPosition;
+        [Header("EffectPrefab")]
+        [SerializeField] GameObject[] hitEffectPrefab;
         [SerializeField] private float direction = 0.3f;
         [SerializeField] private float zMax = 0.8f;
         [SerializeField] private float zMin = 0.3f;
@@ -15,6 +17,8 @@ namespace WhackAMole
         [SerializeField] private bool isMove=false;
         [SerializeField] private bool isHit=true;
         private Vector3 initPosition;
+        private System.Random random;
+        private int randomEffectIdx;
         
         public int moleScore { get { return score; } set { score = value; } }
         // Start is called before the first frame update
@@ -23,6 +27,7 @@ namespace WhackAMole
             levelManger = GameObject.Find("LevelManager").GetComponent<LevelManager>();
             currentPosition = transform.localPosition.z; 
             initPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
+            random = new System.Random();
         }
 
         // Update is called once per frame
@@ -73,6 +78,10 @@ namespace WhackAMole
             {
                 if (!isHit)
                 {
+                    // 두더지 피격 효과
+                    randomEffectIdx = random.Next(0, 4);
+                    GameObject effect = Instantiate(hitEffectPrefab[randomEffectIdx], transform.position, Quaternion.identity);
+                    Destroy(effect, 2f);
                     // 두더지 잡은 횟수 증가
                     levelManger.count = 1;
                     // 총점 증가
