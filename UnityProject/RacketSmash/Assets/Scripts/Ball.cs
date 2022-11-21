@@ -19,6 +19,8 @@ public class Ball : MonoBehaviour
     private GameObject leftControllerObject;
     private bool isStickedToController = false;
     private bool ableToFallDown = true;
+    private float[] amplitude = new float[5] { 0.5f, 0.38f, 0.44f, 0.6f, 0.45f };
+    private float[] duration = new float[5] { 0.25f, 0.18f, 0.22f, 0.3f, 0.24f };
 
     [SerializeField] private int groundHitCount;
     public int groundHit { get { return groundHitCount; } set { groundHitCount += value; } }
@@ -48,10 +50,10 @@ public class Ball : MonoBehaviour
         if (collision.gameObject.tag == "Racket")
         {
             Racket racket = collision.transform.parent.GetComponent<Racket>();
-            if (racket.velocity >= 0.015f && Time.time - prevCollisionTime >= 0.5f)
+            if (racket.velocity >= 0.015f && Time.time - prevCollisionTime >= 0.4f)
             {
                 collision.transform.parent.GetComponent<AudioSource>().Play();
-                GameObject.Find("RightHand Controller").GetComponent<XRController>().SendHapticImpulse(0.4f, 0.2f);
+                GameObject.Find("RightHand Controller").GetComponent<XRController>().SendHapticImpulse(amplitude[racket.selectedRacket], duration[racket.selectedRacket]);
 
                 GameObject effect = Instantiate(hitEffectPrefab[racket.selectedRacket], transform.position, Quaternion.identity);
                 Destroy(effect, 2f);

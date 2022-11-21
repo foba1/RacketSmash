@@ -3703,7 +3703,7 @@ MonoBehaviour:
   m_materialData:
   - m_trailRenderer: {fileID: 3796709651227869195}
     m_uvTiling: {x: 0.06, y: 0.4}
-    m_move: 0
+    m_move: 0.12
 --- !u!135 &2281020174709865743
 SphereCollider:
   m_ObjectHideFlags: 0
