@@ -11,14 +11,16 @@ namespace WhackAMole
     {
         [SerializeField] private TextMeshPro timerText;
         [SerializeField] private GameObject gameEndText;
+        [SerializeField] private TextMeshPro scoreText;
         [SerializeField] private MolesController molesController;
         [SerializeField] private GameObject ball;
+        [Header("Setting")]
         [SerializeField] private float timeOut;
-        [SerializeField] private int maxLevel;
-        [SerializeField] private int level=1;
-        public int round { get { return level; } set { level += value; } }
         private float elapsedTime;
         private int score;
+        private bool isGameOver;
+        
+        [Header("Catch test")]
         [SerializeField] private int catchCount;
         public int count { get { return catchCount; } set { catchCount += value; } }
         public int totalScore { get { return score; } set { score += value; } }
@@ -30,37 +32,21 @@ namespace WhackAMole
         void Start()
         {
             gameEndText.SetActive(false);
-            molesController.round = level;
+            isGameOver = false;
         }
 
         // Update is called once per frame
         void Update()
         {
+            // 점수 표시
+            scoreText.text = "Score : " + totalScore;
+
             // 라운드 클리어 텍스트 제거
             if (Time.time - clearTime > 5)
             {
                 gameEndText.SetActive(false);
                 molesController.showMoles();
             }
-
-            // 마지막 라운드까지 생존하면 승리
-            if (level > maxLevel)
-            {
-                gameEndText.GetComponent<TextMeshPro>().text = "You Win!\nScore : " + totalScore.ToString();
-                gameEndText.SetActive(true);
-                ball.SetActive(false);
-                molesController.hideMoles();
-            }
-
-            // 바닥에 연속 두번 튕기면 게임 오버
-            //if (ball.GetComponent<Ball>().groundHit == 2)
-            //{
-            //    gameEndText.GetComponent<TextMeshPro>().text = "Game Over !\nScore : " + totalScore.ToString();
-            //    gameEndText.SetActive(true);
-
-            //    ball.SetActive(false);
-            //    molesController.hideMoles();
-            //}
 
             // 타임아웃 게임 오버
             elapsedTime += Time.deltaTime;
@@ -71,26 +57,21 @@ namespace WhackAMole
 
                 ball.SetActive(false);
                 molesController.hideMoles();
+                isGameOver = true;
             }
-            timerText.text = "Elapsed Time : " + string.Format("{0:N}", elapsedTime.ToString());
+            if (!isGameOver) { timerText.text = "Elapsed Time : " + string.Format("{0:N}", elapsedTime); }
+            
 
-            // 게임 종료 테스트
+            // 재시작
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                gameEndText.GetComponent<TextMeshPro>().text = "Game Over !\nScore : " + totalScore.ToString();
-                gameEndText.SetActive(true);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
             }
 
-            // 라운드 확인 (일시 정지 후 다시 시작)
-            if (catchCount >= level)
+            // 다 잡았을 시
+            if (catchCount == molesController.randomMoleSize)
             {
                 Debug.Log("라운드 클리어");
-                gameEndText.GetComponent<TextMeshPro>().text="Round "+level.ToString()+ " Clear !\nScore : " + totalScore.ToString();
-                gameEndText.SetActive(true);
-                molesController.hideMoles();
-                level += 1;
-                molesController.round = 1;
-                clearTime = Time.time;
                 catchCount = 0;
                 molesController.roundClearState = true;
             }
