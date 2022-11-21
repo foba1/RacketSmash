@@ -18,6 +18,7 @@ public class Ball : MonoBehaviour
     private float prevCollisionTime = 0f;
     private GameObject leftControllerObject;
     private bool isStickedToController = false;
+    private bool ableToFallDown = true;
 
     [SerializeField] private int groundHitCount;
     public int groundHit { get { return groundHitCount; } set { groundHitCount += value; } }
@@ -77,7 +78,22 @@ public class Ball : MonoBehaviour
         }
         else if (curMode == (int)Mode.crazy)
         {
-
+            if (collision.gameObject.tag == "Wall")
+            {
+                ableToFallDown = true;
+            }
+            else if (collision.gameObject.tag == "Ground")
+            {
+                if (ableToFallDown)
+                {
+                    ableToFallDown = false;
+                }
+                else
+                {
+                    CrazyManager.Instance.FailToReceiveBall();
+                    Destroy(gameObject);
+                }
+            }
         }
         else if (curMode == (int)Mode.survival)
         {
@@ -93,5 +109,10 @@ public class Ball : MonoBehaviour
     {
         if (isStickedToController) isStickedToController = false;
         else if (leftControllerObject != null) isStickedToController = true;
+    }
+
+    public void SetCrazyMode()
+    {
+        curMode = (int)Mode.crazy;
     }
 }

@@ -9,11 +9,13 @@ public class BallManager : MonoBehaviour
 
     private List<GameObject> ballPoint;
     private GameObject playerPoint;
-    private float time;
+    private float prevSpawnTime;
+    private float[] spawnDeltaTime = new float[10] { 5f, 4.5f, 4f, 3.7f, 3.3f, 3f, 2.8f, 2.6f, 2.3f, 2f };
+    private int curLevel = 0;
 
     private void Start()
     {
-        time = Time.time;
+        prevSpawnTime = Time.time;
         playerPoint = GameObject.Find("PlayerPoint");
         ballPoint = new List<GameObject>();
 
@@ -26,12 +28,15 @@ public class BallManager : MonoBehaviour
 
     private void Update()
     {
-        if (Time.time - time >= 5f)
+        if (Time.time - prevSpawnTime >= spawnDeltaTime[curLevel])
         {
-            time = Time.time;
+            prevSpawnTime = Time.time;
             int index = Random.Range(0, ballPoint.Count);
             GameObject ball = Instantiate(ballPrefab, ballPoint[index].transform.position, Quaternion.identity);
             ball.GetComponent<Rigidbody>().velocity = (playerPoint.transform.position - ballPoint[index].transform.position);
+            ball.GetComponent<Ball>().SetCrazyMode();
+
+            if (curLevel < spawnDeltaTime.Length - 1) curLevel++;
         }
     }
 }
