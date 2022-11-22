@@ -19,7 +19,7 @@ namespace WhackAMole
         private float elapsedTime;
         private int score;
         private bool isGameOver;
-        
+
         [Header("Catch test")]
         [SerializeField] private int catchCount;
         public int count { get { return catchCount; } set { catchCount += value; } }
@@ -69,14 +69,16 @@ namespace WhackAMole
             }
 
             // 다 잡았을 시
+           
             if (catchCount == molesController.randomMoleSize)
             {
+                Debug.Log(catchCount.ToString()+ "/" + molesController.randomMoleSize.ToString());
                 Debug.Log("라운드 클리어");
                 catchCount = 0;
                 molesController.roundClearState = true;
             }
             
         }
-        
+
     }
 }
