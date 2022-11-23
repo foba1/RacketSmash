@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Coop
+namespace SurvivalMode
 {
 
     public class FrontWall : BaseSquash.FrontWallBase
