@@ -7,6 +7,7 @@ public class BallBouncer : MonoBehaviour
     [Header("Settings")]
     [SerializeField] Transform player;
     [SerializeField] float landZOffset = 1;
+    [SerializeField] bool controlXAxis = false;
 
     [Header("Test Variables")]
     [SerializeField] Rigidbody ball;
@@ -39,14 +40,19 @@ public class BallBouncer : MonoBehaviour
             Rigidbody ballRB = ball.gameObject.GetComponent<Rigidbody>();
 
             Vector3 collisionPoint = ball.transform.position;
-            Vector3 targetPoint = player.transform.position + new Vector3(0, 0, landZOffset);
 
-            float y = targetPoint.z * Physics.gravity.y / collisionPoint.z - collisionPoint.y;
+            Vector3 collisionToPlayer = collisionPoint - player.transform.position;
+            float xOffset = collisionToPlayer.x * landZOffset / collisionToPlayer.z;   
+            if (!controlXAxis)
+                xOffset = 0;
 
-            float power = ballRB.velocity.magnitude;
-
+            
+            Vector3 targetPoint = player.transform.position + new Vector3(xOffset, 0, landZOffset);
             Vector3 directLine = targetPoint - collisionPoint;
-            ballRB.velocity = new Vector3(directLine.x, y, directLine.z);
+
+            float v0 =  -Physics.gravity.y/2 - Mathf.Abs(directLine.y);
+                
+            ballRB.velocity = new Vector3(directLine.x, v0, directLine.z);
         }
     }
 

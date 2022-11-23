@@ -420,7 +420,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500064125}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1232,7 +1232,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1766804186}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1335,7 +1335,7 @@ BoxCollider:
   m_GameObject: {fileID: 1808052930}
   m_Material: {fileID: 13400000, guid: f24a330ab748fb04fa716bf7e3c9177f, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1694,7 +1694,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940921787}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1872,9 +1872,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5433357726418547501}
-  landZOffset: 1
+  landZOffset: 2
+  controlXAxis: 1
   ball: {fileID: 8814382052000581744}
-  ballShootDir: {x: 0, y: 10, z: 10}
+  ballShootDir: {x: 3, y: 5, z: 10}
 --- !u!1 &2121583327 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: f17fe84f7def5744ba877be45ee0ba1d,
@@ -2481,7 +2482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 4387819459699052471}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 854
+  m_shaderPropertyID: 849
   m_materialData:
   - m_trailRenderer: {fileID: 7722543886838927611}
     m_uvTiling: {x: 0.06, y: 0.4}
