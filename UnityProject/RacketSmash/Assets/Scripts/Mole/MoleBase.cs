@@ -8,21 +8,36 @@ namespace WhackAMole
     {
         private LevelManager levelManger;
         private float currentPosition;
+        [Header("EffectPrefab")]
+        [SerializeField] GameObject[] hitEffectPrefab;
+        [Header("Settings")]
         [SerializeField] private float direction = 0.3f;
         [SerializeField] private float zMax = 0.8f;
         [SerializeField] private float zMin = 0.3f;
         [SerializeField] private int score;
         [SerializeField] private bool isMove=false;
         [SerializeField] private bool isHit=true;
+        [SerializeField] private float moleSpeed;
         private Vector3 initPosition;
-        
+        [SerializeField] private Quaternion initRotation;
+        private System.Random random;
+        private int randomEffectIdx;
+        private Animator anim;
+        float damp = 3.0f;
+        Quaternion rotate;
+
         public int moleScore { get { return score; } set { score = value; } }
+        public bool moveState { get { return isMove; } set { isMove = value; } }
+        public bool hitState { get { return isHit; } set { isHit = value; } }
         // Start is called before the first frame update
         void Start()
         {
             levelManger = GameObject.Find("LevelManager").GetComponent<LevelManager>();
             currentPosition = transform.localPosition.z; 
             initPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
+            initRotation = transform.rotation;
+            random = new System.Random();
+            anim = GetComponent<Animator>();
         }
 
         // Update is called once per frame
@@ -35,14 +50,26 @@ namespace WhackAMole
                 // 안맞았을 때
                 if (!isHit)
                 {
+                    // 두더지 똑바로 세우기
+                    transform.rotation = initRotation;
+                    anim.speed = 1;
                     // 나오기
-                    if (currentPosition >= zMax)
+                    if (currentPosition == zMax)
                     {
+                        anim.speed *= 1;
+                    }
+                    else if (currentPosition > zMax)
+                    {
+                        
                         direction *= -1;
                         currentPosition = zMax;
                     }
                     // 들어가기
-                    else if (currentPosition <= zMin)
+                    else if (currentPosition == zMin)
+                    {
+                        anim.speed *= -1;
+                    }
+                    else if (currentPosition < zMin)
                     {
                         direction *= -1;
                         currentPosition = zMin;
@@ -51,13 +78,18 @@ namespace WhackAMole
                 // 맞았을 때
                 else
                 {
+                    rotate = Quaternion.LookRotation(new Vector3(0, -transform.localPosition.y, 0));
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rotate, Time.deltaTime * damp);
+                    anim.speed = 0;
+
                     if (direction < 0)
                     {
+                        
                         direction *= -1;
                     }
-                    if (transform.localPosition.z >= initPosition.z)
+                    if (transform.localPosition.z >= zMax)
                     {
-                        currentPosition = initPosition.z;
+                        currentPosition = zMax;
                     }
                 }
                 transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, currentPosition);
@@ -73,6 +105,11 @@ namespace WhackAMole
             {
                 if (!isHit)
                 {
+                    // 두더지 피격 효과
+                    randomEffectIdx = random.Next(0, 4);
+                    GameObject effect = Instantiate(hitEffectPrefab[randomEffectIdx], transform.position, Quaternion.identity);
+                    effect.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
+                    Destroy(effect, 2f);
                     // 두더지 잡은 횟수 증가
                     levelManger.count = 1;
                     // 총점 증가
@@ -82,28 +119,6 @@ namespace WhackAMole
                     isHit = true;
                 }
             }
-        }
-
-        public void setMolehit()
-        {
-            Debug.Log("Set isHit to :" + isHit);
-            isHit=true;
-        }
-
-        public void setMoleUnHit()
-        {
-            isHit = false;
-        }
-
-        public void setMoleMove(int idx)
-        {
-            Debug.Log("Mole" + idx.ToString() + "Set to move");
-            isMove =true;
-        }
-
-        public void setMoleNotMove()
-        {
-            isMove = false;
         }
         
         public void resetPosition()
