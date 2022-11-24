@@ -4,27 +4,56 @@ using UnityEngine;
 
 public class BallManager : MonoBehaviour
 {
-    public GameObject[] ballPoint;
-    public GameObject playerPoint;
-    public GameObject ballPrefab;
+    [Header("Ball Prefab")]
+    [SerializeField] GameObject ballPrefab;
 
-    private float time;
-    private float magnitude = 5f;
+    [Header("Settings")]
+    [SerializeField] float landZOffset = 1;
+    [SerializeField] bool controlXAxis = false;
+
+    private List<GameObject> ballPoint;
+    private GameObject playerPoint;
+    private float prevSpawnTime;
+    private float[] spawnDeltaTime = new float[10] { 5f, 4.5f, 4f, 3.7f, 3.3f, 3f, 2.8f, 2.6f, 2.3f, 2f };
+    private int curLevel = 0;
 
     private void Start()
     {
-        time = Time.time;
+        prevSpawnTime = Time.time;
+        playerPoint = GameObject.Find("PlayerPoint");
+        ballPoint = new List<GameObject>();
+
+        GameObject curvedWall = GameObject.Find("CurvedWall");
+        for (int i = 0; i < curvedWall.transform.childCount; i++)
+        {
+            ballPoint.Add(curvedWall.transform.GetChild(i).gameObject);
+        }
     }
 
     private void Update()
     {
-        if (Time.time - time >= 1.5f)
+        if (Time.time - prevSpawnTime >= spawnDeltaTime[curLevel])
         {
-            time = Time.time;
-            int index = Random.Range(0, 12);
+            prevSpawnTime = Time.time;
+            int index = Random.Range(0, ballPoint.Count);
             GameObject ball = Instantiate(ballPrefab, ballPoint[index].transform.position, Quaternion.identity);
-            ball.GetComponent<Rigidbody>().velocity = (playerPoint.transform.position - ballPoint[index].transform.position);
-            Destroy(ball, 3f);
+
+            Vector3 collisionPoint = ball.transform.position;
+
+            Vector3 collisionToPlayer = collisionPoint - playerPoint.transform.position;
+            float xOffset = collisionToPlayer.x * landZOffset / collisionToPlayer.z;
+            if (!controlXAxis)
+                xOffset = 0;
+
+            Vector3 targetPoint = playerPoint.transform.position + new Vector3(xOffset, 0, landZOffset);
+            Vector3 directLine = targetPoint - collisionPoint;
+
+            float v0 = -Physics.gravity.y / 2 - Mathf.Abs(directLine.y);
+
+            ball.GetComponent<Rigidbody>().velocity = new Vector3(directLine.x, v0, directLine.z);
+            ball.GetComponent<Ball>().SetCrazyMode();
+
+            if (curLevel < spawnDeltaTime.Length - 1) curLevel++;
         }
     }
 }
