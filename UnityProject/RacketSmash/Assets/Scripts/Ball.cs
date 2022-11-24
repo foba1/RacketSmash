@@ -12,12 +12,15 @@ public class Ball : MonoBehaviour
     [SerializeField] int curMode;
 
     [Header("Setting")]
-    [SerializeField] float maxVelocity = 20f;
+    [SerializeField] float maxVelocity = 15f;
 
     private Rigidbody rb;
     private float prevCollisionTime = 0f;
     private GameObject leftControllerObject;
     private bool isStickedToController = false;
+    private bool ableToFallDown = true;
+    private float[] amplitude = new float[5] { 0.5f, 0.38f, 0.44f, 0.6f, 0.45f };
+    private float[] duration = new float[5] { 0.25f, 0.18f, 0.22f, 0.3f, 0.24f };
 
     [SerializeField] private int groundHitCount;
     public int groundHit { get { return groundHitCount; } set { groundHitCount += value; } }
@@ -46,11 +49,11 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.tag == "Racket")
         {
-            Racket racket = collision.gameObject.GetComponent<Racket>();
-            if (racket.velocity >= 0.015f && Time.time - prevCollisionTime >= 0.5f)
+            Racket racket = collision.transform.parent.GetComponent<Racket>();
+            if (racket.velocity >= 0.015f && Time.time - prevCollisionTime >= 0.4f)
             {
-                collision.gameObject.GetComponent<AudioSource>().Play();
-                GameObject.Find("RightHand Controller").GetComponent<XRController>().SendHapticImpulse(0.4f, 0.2f);
+                collision.transform.parent.GetComponent<AudioSource>().Play();
+                GameObject.Find("RightHand Controller").GetComponent<XRController>().SendHapticImpulse(amplitude[racket.selectedRacket], duration[racket.selectedRacket]);
 
                 GameObject effect = Instantiate(hitEffectPrefab[racket.selectedRacket], transform.position, Quaternion.identity);
                 Destroy(effect, 2f);
@@ -77,7 +80,22 @@ public class Ball : MonoBehaviour
         }
         else if (curMode == (int)Mode.crazy)
         {
-
+            if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Racket")
+            {
+                ableToFallDown = true;
+            }
+            else if (collision.gameObject.tag == "Ground")
+            {
+                if (ableToFallDown)
+                {
+                    ableToFallDown = false;
+                }
+                else
+                {
+                    CrazyManager.Instance.FailToReceiveBall();
+                    Destroy(gameObject);
+                }
+            }
         }
         else if (curMode == (int)Mode.survival)
         {
@@ -93,5 +111,10 @@ public class Ball : MonoBehaviour
     {
         if (isStickedToController) isStickedToController = false;
         else if (leftControllerObject != null) isStickedToController = true;
+    }
+
+    public void SetCrazyMode()
+    {
+        curMode = (int)Mode.crazy;
     }
 }
