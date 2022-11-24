@@ -7,6 +7,10 @@ public class BallManager : MonoBehaviour
     [Header("Ball Prefab")]
     [SerializeField] GameObject ballPrefab;
 
+    [Header("Settings")]
+    [SerializeField] float landZOffset = 1;
+    [SerializeField] bool controlXAxis = false;
+
     private List<GameObject> ballPoint;
     private GameObject playerPoint;
     private float prevSpawnTime;
@@ -33,7 +37,20 @@ public class BallManager : MonoBehaviour
             prevSpawnTime = Time.time;
             int index = Random.Range(0, ballPoint.Count);
             GameObject ball = Instantiate(ballPrefab, ballPoint[index].transform.position, Quaternion.identity);
-            ball.GetComponent<Rigidbody>().velocity = (playerPoint.transform.position - ballPoint[index].transform.position);
+
+            Vector3 collisionPoint = ball.transform.position;
+
+            Vector3 collisionToPlayer = collisionPoint - playerPoint.transform.position;
+            float xOffset = collisionToPlayer.x * landZOffset / collisionToPlayer.z;
+            if (!controlXAxis)
+                xOffset = 0;
+
+            Vector3 targetPoint = playerPoint.transform.position + new Vector3(xOffset, 0, landZOffset);
+            Vector3 directLine = targetPoint - collisionPoint;
+
+            float v0 = -Physics.gravity.y / 2 - Mathf.Abs(directLine.y);
+
+            ball.GetComponent<Rigidbody>().velocity = new Vector3(directLine.x, v0, directLine.z);
             ball.GetComponent<Ball>().SetCrazyMode();
 
             if (curLevel < spawnDeltaTime.Length - 1) curLevel++;
