@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
         }
         else if (index == (int)Mode.survival)
         {
-
+            SceneManager.LoadScene("Survival");
         }
         else if (index == (int)Mode.brick)
         {
