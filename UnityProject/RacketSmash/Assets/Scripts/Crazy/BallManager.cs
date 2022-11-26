@@ -15,7 +15,11 @@ public class BallManager : MonoBehaviour
     private List<GameObject> ballPoint;
     private List<GameObject> ballList;
     private float prevSpawnTime;
-    private float[] spawnDeltaTime = new float[10] { 5f, 4.5f, 4f, 3.7f, 3.3f, 3f, 2.8f, 2.6f, 2.3f, 2f };
+    private float waveDeltaTime = 3f;
+    private float[] spawnDeltaTime = new float[10] { 1.5f, 1.3f, 1.1f, 0.9f, 0.7f, 0.5f, 0.4f, 0.3f, 0.2f, 0.1f };
+    private int maxSpawnCount = 7;
+    private int spawnCount;
+    private int curSpawnCount;
     private int curLevel;
 
     static BallManager instance;
@@ -52,28 +56,42 @@ public class BallManager : MonoBehaviour
     {
         if (!CrazyManager.Instance.isGameFinished)
         {
-            if (Time.time - prevSpawnTime >= spawnDeltaTime[curLevel])
+            if (curSpawnCount == -1)
             {
-                prevSpawnTime = Time.time;
-                int index = Random.Range(0, ballPoint.Count);
-                GameObject ball = Instantiate(ballPrefab, ballPoint[index].transform.position, Quaternion.identity);
-                ballList.Add(ball);
+                if (Time.time - prevSpawnTime >= waveDeltaTime)
+                {
+                    curSpawnCount++;
+                    prevSpawnTime = Time.time - spawnDeltaTime[curLevel];
+                }
+            }
+            else if (curSpawnCount < spawnCount)
+            {
+                if (Time.time - prevSpawnTime >= spawnDeltaTime[curLevel])
+                {
+                    prevSpawnTime = Time.time;
 
-                Vector3 collisionPoint = ball.transform.position;
+                    int index = Random.Range(0, ballPoint.Count);
+                    GameObject ball = Instantiate(ballPrefab, ballPoint[index].transform.position, Quaternion.identity);
+                    ballList.Add(ball);
 
-                Vector3 collisionToPlayer = collisionPoint - playerPoint.transform.position;
-                float xOffset = collisionToPlayer.x * landZOffset / collisionToPlayer.z;
-                if (!controlXAxis)
-                    xOffset = 0;
+                    Vector3 collisionPoint = ball.transform.position;
+                    Vector3 collisionToPlayer = collisionPoint - playerPoint.transform.position;
+                    float xOffset = collisionToPlayer.x * landZOffset / collisionToPlayer.z;
+                    if (!controlXAxis)
+                        xOffset = 0;
+                    Vector3 targetPoint = playerPoint.transform.position + new Vector3(xOffset, 0, landZOffset);
+                    Vector3 directLine = targetPoint - collisionPoint;
+                    float v0 = -Physics.gravity.y / 2 - Mathf.Abs(directLine.y);
+                    ball.GetComponent<Rigidbody>().velocity = new Vector3(directLine.x, v0, directLine.z);
+                    ball.GetComponent<Ball>().SetCrazyMode();
 
-                Vector3 targetPoint = playerPoint.transform.position + new Vector3(xOffset, 0, landZOffset);
-                Vector3 directLine = targetPoint - collisionPoint;
-
-                float v0 = -Physics.gravity.y / 2 - Mathf.Abs(directLine.y);
-
-                ball.GetComponent<Rigidbody>().velocity = new Vector3(directLine.x, v0, directLine.z);
-                ball.GetComponent<Ball>().SetCrazyMode();
-
+                    curSpawnCount++;
+                }
+            }
+            else
+            {
+                curSpawnCount = -1;
+                if (spawnCount < maxSpawnCount) spawnCount++;
                 if (curLevel < spawnDeltaTime.Length - 1) curLevel++;
             }
 
@@ -97,6 +115,8 @@ public class BallManager : MonoBehaviour
     {
         prevSpawnTime = Time.time;
         curLevel = 0;
+        spawnCount = 2;
+        curSpawnCount = -1;
     }
 
     public void GameOver()
