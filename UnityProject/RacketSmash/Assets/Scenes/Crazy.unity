@@ -327,6 +327,7 @@ MonoBehaviour:
   - {fileID: 772361684}
   destroyEffectPrefab: {fileID: 2065676739775510494, guid: f34d53a9f8cd409428b8d1e3addf4807,
     type: 3}
+  isGameFinished: 0
 --- !u!1 &161779169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,6 +1193,7 @@ MonoBehaviour:
     type: 3}
   landZOffset: 1.5
   controlXAxis: 1
+  playerPoint: {fileID: 1894048414}
 --- !u!1 &905996023
 GameObject:
   m_ObjectHideFlags: 0
@@ -1953,37 +1955,6 @@ MonoBehaviour:
   m_MoveObjectIn: 14
   m_MoveObjectOut: 15
   m_PoseProvider: {fileID: 0}
---- !u!1 &1444326874
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1444326875}
-  m_Layer: 0
-  m_Name: PlayerPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1444326875
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1444326874}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1564622352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2753,7 +2724,7 @@ Transform:
   - {fileID: 341047676}
   - {fileID: 772361685}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2061509976
 GameObject:
@@ -3489,7 +3460,7 @@ MonoBehaviour:
   m_materialData:
   - m_trailRenderer: {fileID: 3796709651227869195}
     m_uvTiling: {x: 0.06, y: 0.4}
-    m_move: 0
+    m_move: 0.12
 --- !u!135 &2281020174709865743
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4122,7 +4093,7 @@ Transform:
   - {fileID: 731133077272743916}
   - {fileID: 731133076798948955}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6580889347501637989
 MonoBehaviour:
@@ -4208,7 +4179,7 @@ Transform:
   - {fileID: 3020699753127058106}
   - {fileID: 3335729759513905425}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7180622595247079466
 MeshFilter:

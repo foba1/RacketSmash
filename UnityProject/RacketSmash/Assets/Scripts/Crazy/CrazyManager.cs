@@ -10,13 +10,14 @@ public class CrazyManager : MonoBehaviour
     [Header("Ball Destroy Effect")]
     public GameObject destroyEffectPrefab;
 
+    public bool isGameFinished;
+
     private float prevTime;
     private float speedTime;
     private float remainedTime;
     private float curSpeed;
-    private bool isGameFinished;
 
-    private float initRemainedTime = 120f;
+    private float initRemainedTime = 60f;
     private float initSpeed = 1f;
 
     private static readonly float initLocalPosY = 2.5f;
@@ -50,8 +51,12 @@ public class CrazyManager : MonoBehaviour
     {
         if (!isGameFinished)
         {
-            UpdateHealthBar();
+            float deltaTime = (Time.time - prevTime) * curSpeed;
+            remainedTime -= deltaTime;
+            UpdateHealthBar(deltaTime);
             UpdateSpeed();
+
+            prevTime = Time.time;
         }
         else
         {
@@ -65,6 +70,7 @@ public class CrazyManager : MonoBehaviour
     public void StartGame()
     {
         isGameFinished = false;
+        BallManager.Instance.StartGame();
 
         speedTime = Time.time;
         prevTime = Time.time;
@@ -80,29 +86,26 @@ public class CrazyManager : MonoBehaviour
     public void FailToReceiveBall()
     {
         remainedTime -= failTime;
+        UpdateHealthBar(failTime);
         if (remainedTime <= 0)
         {
             GameOver();
         }
     }
 
-    private void UpdateHealthBar()
+    private void UpdateHealthBar(float time)
     {
-        float deltaTime = Time.time - prevTime;
-        remainedTime -= deltaTime * curSpeed;
         for (int i = 0; i < healthBar.Length; i++)
         {
-            healthBar[i].transform.localPosition -= new Vector3(0f, (initHeight / initRemainedTime) * deltaTime, 0f);
+            healthBar[i].transform.localPosition -= new Vector3(0f, (initHeight / initRemainedTime) * time, 0f);
         }
-
-        prevTime = Time.time;
     }
 
     private void UpdateSpeed()
     {
         if (Time.time - speedTime >= 10f)
         {
-            curSpeed += 0.1f;
+            curSpeed += 0.5f;
             speedTime = Time.time;
         }
     }
@@ -110,5 +113,6 @@ public class CrazyManager : MonoBehaviour
     private void GameOver()
     {
         isGameFinished = true;
+        BallManager.Instance.GameOver();
     }
 }
