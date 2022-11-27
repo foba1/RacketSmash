@@ -110,10 +110,10 @@ namespace WhackAMole
 
         }
 
-        private void OnCollisionEnter(Collision collision)
+        public void collisionEnter(Collision collision)
         {
             Ball ball = collision.gameObject.GetComponent<Ball>();
-            if (ball != null) 
+            if (ball != null)
             {
                 if (!isHit)
                 {
@@ -132,6 +132,7 @@ namespace WhackAMole
                 }
             }
         }
+        
         
         public IEnumerator setMoleMove(int time)
         {            
