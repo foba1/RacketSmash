@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276807, g: 0.21589197, b: 0.29782572, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -152,14 +152,16 @@ MonoBehaviour:
   - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
-  direction: 0.2
+  direction: 0.15
   zMax: 1.1
   zMin: 0
   score: 0
+  isSpawned: 0
   isMove: 0
   isHit: 0
   moleSpeed: 0
   initRotation: {x: 0, y: 0, z: 0, w: 0}
+  spawnWaitingTime: 0
 --- !u!64 &9976192
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -508,14 +510,16 @@ MonoBehaviour:
   - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
-  direction: 0.2
+  direction: 0.15
   zMax: 1.1
   zMin: 0.2
   score: 0
+  isSpawned: 0
   isMove: 0
   isHit: 0
   moleSpeed: 0
   initRotation: {x: 0, y: 0, z: 0, w: 0}
+  spawnWaitingTime: 0
 --- !u!64 &233169698
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1199,6 +1203,7 @@ MonoBehaviour:
   - {fileID: 1350810379}
   - {fileID: 1409050825}
   levelManager: {fileID: 1539536958}
+  maxSpawnDelay: 12
   waitingTime: 3
 --- !u!1 &626986443 stripped
 GameObject:
@@ -1229,14 +1234,16 @@ MonoBehaviour:
   - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
-  direction: 0.2
+  direction: 0.15
   zMax: 1.1
   zMin: 0
   score: 0
+  isSpawned: 0
   isMove: 0
   isHit: 0
   moleSpeed: 0
   initRotation: {x: 0, y: 0, z: 0, w: 0}
+  spawnWaitingTime: 0
 --- !u!64 &626986447
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1574,14 +1581,16 @@ MonoBehaviour:
   - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
-  direction: 0.2
+  direction: 0.15
   zMax: 1.1
   zMin: 0.1
   score: 0
+  isSpawned: 0
   isMove: 0
   isHit: 0
   moleSpeed: 0
   initRotation: {x: 0, y: 0, z: 0, w: 0}
+  spawnWaitingTime: 0
 --- !u!64 &836883689
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1755,28 +1764,16 @@ MonoBehaviour:
   - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
-  direction: 0.2
+  direction: 0.15
   zMax: 1.1
   zMin: 0.1
   score: 0
+  isSpawned: 0
   isMove: 0
   isHit: 0
   moleSpeed: 0
   initRotation: {x: 0, y: 0, z: 0, w: 0}
---- !u!64 &1089262204
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1089262200}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8196770008080379148, guid: 5c14c99557b54074eb3b65351a34447c, type: 3}
+  spawnWaitingTime: 0
 --- !u!82 &1089262206
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1873,6 +1870,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!64 &1089262208
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089262200}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8196770008080379148, guid: 38f124c2f2ea5b0459fe8b08e88f7157, type: 3}
 --- !u!1 &1100923641 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2732684518155842968, guid: c73ae6621f8832748a78dfb8aec6dd12,
@@ -1902,14 +1913,16 @@ MonoBehaviour:
   - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
-  direction: 0.2
+  direction: 0.15
   zMax: 1.1
   zMin: 0.1
   score: 0
+  isSpawned: 0
   isMove: 0
   isHit: 0
   moleSpeed: 0
   initRotation: {x: 0, y: 0, z: 0, w: 0}
+  spawnWaitingTime: 0
 --- !u!64 &1100923645
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2281,14 +2294,16 @@ MonoBehaviour:
   - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
-  direction: 0.2
+  direction: 0.15
   zMax: 1.1
   zMin: 0.2
   score: 0
+  isSpawned: 0
   isMove: 0
   isHit: 0
   moleSpeed: 0
   initRotation: {x: 0, y: 0, z: 0, w: 0}
+  spawnWaitingTime: 0
 --- !u!64 &1350810383
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2428,14 +2443,16 @@ MonoBehaviour:
   - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
-  direction: 0.2
+  direction: 0.15
   zMax: 1.1
   zMin: 0
   score: 0
+  isSpawned: 0
   isMove: 0
   isHit: 0
   moleSpeed: 0
   initRotation: {x: 0, y: 0, z: 0, w: 0}
+  spawnWaitingTime: 0
 --- !u!64 &1409050829
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3006,6 +3023,26 @@ PrefabInstance:
     - target: {fileID: 3361834574544056098, guid: c73ae6621f8832748a78dfb8aec6dd12,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264119811822447710, guid: c73ae6621f8832748a78dfb8aec6dd12,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264119811822447710, guid: c73ae6621f8832748a78dfb8aec6dd12,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264119811822447710, guid: c73ae6621f8832748a78dfb8aec6dd12,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264119811822447710, guid: c73ae6621f8832748a78dfb8aec6dd12,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8667052616836904280, guid: c73ae6621f8832748a78dfb8aec6dd12,
@@ -4696,14 +4733,16 @@ MonoBehaviour:
   - {fileID: 5024009746357069194, guid: 930a6375a41f06249a3729be357268f8, type: 3}
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
-  direction: 0.2
+  direction: 0.15
   zMax: 1.1
   zMin: 0.2
   score: 0
+  isSpawned: 0
   isMove: 0
   isHit: 0
   moleSpeed: 0
   initRotation: {x: 0, y: 0, z: 0, w: 0}
+  spawnWaitingTime: 0
 --- !u!64 &2097970606
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5335,11 +5374,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 6028865724889565380}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 884
+  m_shaderPropertyID: 866
   m_materialData:
   - m_trailRenderer: {fileID: 316803788048209800}
     m_uvTiling: {x: 0.06, y: 0.4}
-    m_move: 0
+    m_move: 0.04296
 --- !u!23 &3540358659028913092
 MeshRenderer:
   m_ObjectHideFlags: 0
