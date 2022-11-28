@@ -18,7 +18,7 @@ public class Ball : MonoBehaviour
     private float prevCollisionTime = 0f;
     private GameObject leftControllerObject;
     private bool isStickedToController = false;
-    private bool ableToFallDown = true;
+    public bool hitByRacket = false;
     private float[] amplitude = new float[5] { 0.5f, 0.38f, 0.44f, 0.6f, 0.45f };
     private float[] duration = new float[5] { 0.25f, 0.18f, 0.22f, 0.3f, 0.24f };
 
@@ -80,20 +80,17 @@ public class Ball : MonoBehaviour
         }
         else if (curMode == (int)Mode.crazy)
         {
-            if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Racket")
+            if (collision.gameObject.tag == "Racket")
             {
-                ableToFallDown = true;
+                hitByRacket = true;
+                CrazyManager.Instance.DestroyBall(gameObject, 2f);
             }
-            else if (collision.gameObject.tag == "Ground")
+            else if (collision.gameObject.tag == "Wall")
             {
-                if (ableToFallDown)
+                if (hitByRacket)
                 {
-                    ableToFallDown = false;
-                }
-                else
-                {
-                    CrazyManager.Instance.FailToReceiveBall();
-                    Destroy(gameObject);
+                    CrazyManager.Instance.SuccessToReceiveBall();
+                    CrazyManager.Instance.DestroyBall(gameObject);
                 }
             }
         }
