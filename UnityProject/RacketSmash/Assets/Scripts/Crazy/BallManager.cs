@@ -16,8 +16,8 @@ public class BallManager : MonoBehaviour
     private List<GameObject> ballList;
     private float prevSpawnTime;
     private float waveDeltaTime = 3f;
-    private float[] spawnDeltaTime = new float[10] { 1.5f, 1.3f, 1.1f, 0.9f, 0.7f, 0.5f, 0.4f, 0.3f, 0.2f, 0.1f };
-    private int maxSpawnCount = 7;
+    private float[] spawnDeltaTime = new float[10] { 1.5f, 1.3f, 1.1f, 0.9f, 0.8f, 0.7f, 0.6f, 0.5f, 0.4f, 0.3f };
+    private int maxSpawnCount = 10;
     private int spawnCount;
     private int curSpawnCount;
     private int curLevel;

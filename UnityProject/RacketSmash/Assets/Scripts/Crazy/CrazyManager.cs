@@ -22,7 +22,7 @@ public class CrazyManager : MonoBehaviour
 
     private static readonly float initLocalPosY = 2.5f;
     private static readonly float initHeight = 4f;
-    private static readonly float successTime = 2f;
+    private static readonly float successTime = 2.5f;
     private static readonly float failTime = 2f;
 
     static CrazyManager instance;
@@ -102,10 +102,13 @@ public class CrazyManager : MonoBehaviour
 
     public void DestroyBall(GameObject ball)
     {
-        GameObject effect = Instantiate(destroyEffectPrefab, ball.transform.position, Quaternion.identity);
-        Destroy(effect, 2f);
-        BallManager.Instance.DestroyBall(ball);
-        Destroy(ball);
+        if (ball != null)
+        {
+            GameObject effect = Instantiate(destroyEffectPrefab, ball.transform.position, Quaternion.identity);
+            Destroy(effect, 2f);
+            BallManager.Instance.DestroyBall(ball);
+            Destroy(ball);
+        }
     }
 
     IEnumerator DestroyBallCoroutine(GameObject ball, float time)
@@ -121,9 +124,20 @@ public class CrazyManager : MonoBehaviour
 
     private void UpdateHealthBar(float time)
     {
-        for (int i = 0; i < healthBar.Length; i++)
+        if (remainedTime >= initRemainedTime)
         {
-            healthBar[i].transform.localPosition += new Vector3(0f, (initHeight / initRemainedTime) * time, 0f);
+            remainedTime = initRemainedTime;
+            for (int i = 0; i < healthBar.Length; i++)
+            {
+                healthBar[i].transform.localPosition = new Vector3(healthBar[i].transform.localPosition.x, initLocalPosY, healthBar[i].transform.localPosition.z);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < healthBar.Length; i++)
+            {
+                healthBar[i].transform.localPosition += new Vector3(0f, (initHeight / initRemainedTime) * time, 0f);
+            }
         }
     }
 
@@ -131,7 +145,7 @@ public class CrazyManager : MonoBehaviour
     {
         if (Time.time - speedTime >= 10f)
         {
-            curSpeed += 0.5f;
+            curSpeed += 0.3f;
             speedTime = Time.time;
         }
     }
