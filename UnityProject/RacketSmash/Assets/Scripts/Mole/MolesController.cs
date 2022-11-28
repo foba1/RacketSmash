@@ -12,6 +12,8 @@ namespace WhackAMole
         private bool isRoundCleared = false;
         private float timer;
         private int randomSize;
+        [Header("Random spawn delay range")]
+        [SerializeField] private int maxSpawnDelay;
         public int randomMoleSize { get { return randomSize; } set { randomSize = value; } }
 
         [Header("Waiting time for next wave")]
@@ -82,7 +84,8 @@ namespace WhackAMole
             Debug.Log("randomMoles size : "+ randomMoles.Count.ToString());
             // 두더지 움직임 활성화
             for (int i = 0; i < randomSize; i++)
-            {   
+            {
+                moles[randomMoles[i]].GetComponent<MoleBase>().spawnTime= random.Next(1, maxSpawnDelay);
                 moles[randomMoles[i]].GetComponent<MoleBase>().moveState=true;
             }
         }
