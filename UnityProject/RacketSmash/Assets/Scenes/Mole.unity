@@ -989,7 +989,7 @@ Transform:
   m_GameObject: {fileID: 437623252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.25, z: 0}
-  m_LocalScale: {x: 6.5, y: 0.5, z: 6.5}
+  m_LocalScale: {x: 4, y: 0.5, z: 7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 748187520}
@@ -2196,6 +2196,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afa8ed2729258334eabdddb8038c2c1d, type: 3}
+--- !u!1 &838912117 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: afa8ed2729258334eabdddb8038c2c1d,
+    type: 3}
+  m_PrefabInstance: {fileID: 838912116}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &838912118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838912117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eebb2df99e63c147a4277b3dc768f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6993014774094267567}
+  landZOffset: 1
+  controlXAxis: 0
+  ball: {fileID: 1521238266129960707}
+  ballShootDir: {x: 0, y: 10, z: 10}
+--- !u!64 &838912119
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838912117}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2166492941270796057, guid: afa8ed2729258334eabdddb8038c2c1d, type: 3}
 --- !u!1 &971127049
 GameObject:
   m_ObjectHideFlags: 0
