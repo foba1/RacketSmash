@@ -83,13 +83,14 @@ public class Ball : MonoBehaviour
             if (collision.gameObject.tag == "Racket")
             {
                 hitByRacket = true;
-                Destroy(gameObject, 2f);
+                CrazyManager.Instance.DestroyBall(gameObject, 2f);
             }
             else if (collision.gameObject.tag == "Wall")
             {
                 if (hitByRacket)
                 {
-                    Destroy(gameObject);
+                    CrazyManager.Instance.SuccessToReceiveBall();
+                    CrazyManager.Instance.DestroyBall(gameObject);
                 }
             }
         }
@@ -112,14 +113,5 @@ public class Ball : MonoBehaviour
     public void SetCrazyMode()
     {
         curMode = (int)Mode.crazy;
-    }
-
-    public void OnDestroy()
-    {
-        if (curMode == (int)Mode.mole)
-        {
-            GameObject effect = Instantiate(CrazyManager.Instance.destroyEffectPrefab, transform.position, Quaternion.identity);
-            Destroy(effect, 2f);
-        }
     }
 }

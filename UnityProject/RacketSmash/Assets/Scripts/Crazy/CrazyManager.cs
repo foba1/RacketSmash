@@ -8,7 +8,7 @@ public class CrazyManager : MonoBehaviour
     [SerializeField] GameObject[] healthBar;
 
     [Header("Ball Destroy Effect")]
-    public GameObject destroyEffectPrefab;
+    [SerializeField] GameObject destroyEffectPrefab;
 
     public bool isGameFinished;
 
@@ -22,6 +22,7 @@ public class CrazyManager : MonoBehaviour
 
     private static readonly float initLocalPosY = 2.5f;
     private static readonly float initHeight = 4f;
+    private static readonly float successTime = 2f;
     private static readonly float failTime = 2f;
 
     static CrazyManager instance;
@@ -53,7 +54,7 @@ public class CrazyManager : MonoBehaviour
         {
             float deltaTime = (Time.time - prevTime) * curSpeed;
             remainedTime -= deltaTime;
-            UpdateHealthBar(deltaTime);
+            UpdateHealthBar(-deltaTime);
             UpdateSpeed();
 
             prevTime = Time.time;
@@ -83,21 +84,46 @@ public class CrazyManager : MonoBehaviour
         }
     }
 
+    public void SuccessToReceiveBall()
+    {
+        remainedTime += successTime;
+        UpdateHealthBar(successTime);
+    }
+
     public void FailToReceiveBall()
     {
         remainedTime -= failTime;
-        UpdateHealthBar(failTime);
+        UpdateHealthBar(-failTime);
         if (remainedTime <= 0)
         {
             GameOver();
         }
     }
 
+    public void DestroyBall(GameObject ball)
+    {
+        GameObject effect = Instantiate(destroyEffectPrefab, ball.transform.position, Quaternion.identity);
+        Destroy(effect, 2f);
+        BallManager.Instance.DestroyBall(ball);
+        Destroy(ball);
+    }
+
+    IEnumerator DestroyBallCoroutine(GameObject ball, float time)
+    {
+        yield return new WaitForSecondsRealtime(time);
+        DestroyBall(ball);
+    }
+
+    public void DestroyBall(GameObject ball, float time)
+    {
+        StartCoroutine(DestroyBallCoroutine(ball, time));
+    }
+
     private void UpdateHealthBar(float time)
     {
         for (int i = 0; i < healthBar.Length; i++)
         {
-            healthBar[i].transform.localPosition -= new Vector3(0f, (initHeight / initRemainedTime) * time, 0f);
+            healthBar[i].transform.localPosition += new Vector3(0f, (initHeight / initRemainedTime) * time, 0f);
         }
     }
 

@@ -100,13 +100,24 @@ public class BallManager : MonoBehaviour
                 if (ballList[i].transform.position.z <= -6.5f)
                 {
                     GameObject ball = ballList[i];
-                    ballList.RemoveAt(i);
                     if (!ball.GetComponent<Ball>().hitByRacket)
                     {
                         CrazyManager.Instance.FailToReceiveBall();
                     }
-                    Destroy(ball);
+                    CrazyManager.Instance.DestroyBall(ball);
                 }
+            }
+        }
+    }
+
+    public void DestroyBall(GameObject ball)
+    {
+        for (int i = 0; i < ballList.Count; i++)
+        {
+            if (ballList[i] == ball)
+            {
+                ballList.RemoveAt(i);
+                return;
             }
         }
     }
