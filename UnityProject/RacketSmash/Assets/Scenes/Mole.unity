@@ -2233,6 +2233,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2166492941270796057, guid: afa8ed2729258334eabdddb8038c2c1d, type: 3}
+--- !u!54 &838912120
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838912117}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 2
+  m_Constraints: 126
+  m_CollisionDetection: 1
 --- !u!1 &971127049
 GameObject:
   m_ObjectHideFlags: 0
@@ -7496,6 +7512,7 @@ MonoBehaviour:
   - {fileID: 4564677337280977054, guid: 1b3ad09ec558745449dedbd1d75738d3, type: 3}
   curMode: 0
   maxVelocity: 20
+  hitByRacket: 0
   groundHitCount: 0
 --- !u!33 &8257815102724912965
 MeshFilter:
