@@ -5565,6 +5565,7 @@ MonoBehaviour:
   - {fileID: 4564677337280977054, guid: 1b3ad09ec558745449dedbd1d75738d3, type: 3}
   curMode: 2
   maxVelocity: 15
+  hitByRacket: 0
   groundHitCount: 0
 --- !u!4 &8879726885961832711
 Transform:

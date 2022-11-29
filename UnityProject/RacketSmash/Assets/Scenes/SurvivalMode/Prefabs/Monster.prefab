@@ -117,6 +117,10 @@ MonoBehaviour:
   idleSpeed: 0.3
   fallSpeed: 1
   hurtMaterial: {fileID: 0}
+  hitEffect: {fileID: 4824981893085829882, guid: c3d2271fea43cee42b5e3b615fa0b502,
+    type: 3}
+  dieEffect: {fileID: 1391196713543022287, guid: 1dfb4a3daf9cb57498fd432d4024cf01,
+    type: 3}
   currentState: 0
 --- !u!54 &-4712686239976315756
 Rigidbody:

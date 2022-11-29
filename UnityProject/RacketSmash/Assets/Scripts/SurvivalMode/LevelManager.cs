@@ -136,7 +136,7 @@ namespace SurvivalMode
                         //if (row.Count == 0)
                             //rows.Remove(row);
                     }
-                    Destroy(monster.gameObject);
+                    monster.Kill();
                 }
             }
             if(!isSpawning)

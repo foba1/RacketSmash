@@ -19,6 +19,9 @@ namespace SurvivalMode
 
         [SerializeField] Material hurtMaterial;
 
+        [SerializeField] GameObject hitEffect;
+        [SerializeField] GameObject dieEffect;
+
         MeshRenderer renderer;
 
         public State CurrentState { get { return currentState; } private set { currentState = value; } }
@@ -58,15 +61,35 @@ namespace SurvivalMode
         {
             currentHp -= 1;
             if (currentHp <= 0)
+            {
+                Instantiate(dieEffect, transform.position, Quaternion.identity);
                 CurrentState = State.Dead;
+            }
             else
             {
-                if(hurtMaterial != null)
+                Instantiate(hitEffect, transform.position, Quaternion.identity);
+                if (hurtMaterial != null)
                     renderer.material = hurtMaterial;
             }
             Debug.Log("Monser Hit!");
         }
-
+        public void Kill()
+        {
+            StartCoroutine(Die());
+        }
+        IEnumerator Die()
+        {
+            float eTime = 0f;
+            float duration = 0.5f;
+            Vector3 originalScale = transform.localScale;
+            while(eTime < duration)
+            {
+                eTime += Time.deltaTime;
+                transform.localScale = Vector3.Lerp(originalScale, Vector3.zero, eTime / duration);
+                yield return null;
+            }
+            Destroy(gameObject);
+        }
         void Update()
         {
             if(CurrentState == State.Moving)
