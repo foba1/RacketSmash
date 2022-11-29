@@ -40,7 +40,6 @@ public class BallBouncer : MonoBehaviour
             Rigidbody ballRB = ball.gameObject.GetComponent<Rigidbody>();
 
             Vector3 collisionPoint = ball.transform.position;
-
             Vector3 collisionToPlayer = collisionPoint - player.transform.position;
             float xOffset = collisionToPlayer.x * landZOffset / collisionToPlayer.z;   
             if (!controlXAxis)

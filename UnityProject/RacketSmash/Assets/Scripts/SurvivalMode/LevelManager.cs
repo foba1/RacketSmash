@@ -17,10 +17,11 @@ namespace SurvivalMode
         [SerializeField] float yDistance;
         [SerializeField] float monsterSpawnInterval;
         [SerializeField] float rowSpawnInterval;
+        [SerializeField] float roundInterval;
         [SerializeField] float dropWaitTime;
         [SerializeField] float dropInterval;
-        [SerializeField] int monsterPerRow;
-        [SerializeField] Monster monsterPrefab;
+        [SerializeField] float rowDropInterval;
+        [SerializeField] Monster [] monsterPrefabs;
 
         [Header("Settings")]
         [SerializeField] int _life = 3;
@@ -35,36 +36,47 @@ namespace SurvivalMode
         [SerializeField] TextMeshPro lifeText;
 
 
-        List<Monster> monsters = new List<Monster>();
+        [Header("ReadOnly")]
+        [SerializeField] List<Monster> monsters = new List<Monster>();
 
         List<List<Monster>> rows = new List<List<Monster>>();
 
         int startXToggle = 1;
+        bool isSpawning = false;
         public void Start()
         {
             StartCoroutine(SpawnCoroutine());
         }
         IEnumerator SpawnCoroutine()
         {
-            while(true)
+            for(int i=0; i<monsterSpawnPatterns.Count; i++)
             {
-                yield return SpawnRow(monsterPerRow);
-                yield return SpawnRow(monsterPerRow);
-                yield return SpawnRow(monsterPerRow);
-                yield return new WaitForSeconds(dropWaitTime);
-                yield return Drop();
-                yield return Drop();
-                yield return Drop();
-                yield return new WaitForSeconds(rowSpawnInterval);
-
-                foreach (List<Monster> row in rows.ToList())
-                {
-                    if (row.Count == 0)
-                        rows.Remove(row);
-                }
+                yield return ExecuteSpawnPattern(monsterSpawnPatterns[i]);
+                while (monsters.Count > 0)
+                    yield return null;
+                yield return new WaitForSeconds(roundInterval);
 
             }
-            
+
+        }
+        IEnumerator ExecuteSpawnPattern(string code)
+        {
+            string[] patterns = code.Split("-");
+            isSpawning = true;
+            for (int i=0; i<patterns.Length; i++)
+            {
+                int type = patterns[i][0] - '1';
+                int count = patterns[i][1] - '0';
+
+                yield return SpawnRow(type, count);
+                yield return new WaitForSeconds(rowSpawnInterval);
+            }
+            isSpawning = false;
+            while (rows.Count > 0)
+            {
+                yield return Drop();
+                yield return new WaitForSeconds(rowDropInterval);
+            }
         }
         IEnumerator Drop()
         {
@@ -77,7 +89,7 @@ namespace SurvivalMode
                 yield return new WaitForSeconds(dropInterval);
             }
         }
-        IEnumerator SpawnRow(int monsterCount)
+        IEnumerator SpawnRow(int monsterType, int monsterCount)
         {
             List<Monster> row = new List<Monster>();
             rows.Add(row);
@@ -89,15 +101,15 @@ namespace SurvivalMode
             {
                 float x = -wallScale.x / 2 * startXToggle + frontWall.position.x;
                 x += (i + 0.5f) * (wallScale.x / monsterCount) * startXToggle;
-                row.Add(SpawnMonster(x, y, startX));
+                row.Add(SpawnMonster(monsterType, x, y, startX));
                 yield return new WaitForSeconds(monsterSpawnInterval);
             }
             startXToggle *= -1;
         }
-        Monster SpawnMonster(float x, float y, float startX)
+        Monster SpawnMonster(int monsterType, float x, float y, float startX)
         {
             float z = frontWall.position.z;
-            Monster monster = Instantiate(monsterPrefab, new Vector3(startX, y, z), Quaternion.identity);
+            Monster monster = Instantiate(monsterPrefabs[monsterType], new Vector3(startX, y, z), Quaternion.identity);
             monster.SetStartPosition(new Vector3(x, y, z));
             monsters.Add(monster);
             return monster;
@@ -125,6 +137,14 @@ namespace SurvivalMode
                             //rows.Remove(row);
                     }
                     Destroy(monster.gameObject);
+                }
+            }
+            if(!isSpawning)
+            {
+                foreach (List<Monster> row in rows.ToList())
+                {
+                    if (row.Count == 0)
+                        rows.Remove(row);
                 }
             }
         }

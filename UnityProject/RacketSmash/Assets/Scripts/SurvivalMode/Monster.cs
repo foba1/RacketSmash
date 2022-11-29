@@ -9,11 +9,17 @@ namespace SurvivalMode
     {
         public enum State { Spawning, Moving, Dead}
 
+        [SerializeField] int maxHp;
+        int currentHp;
         [SerializeField] float moveSpeed;
         [SerializeField] float idleRange;
         [SerializeField] float idleSpeed;
 
         [SerializeField] float fallSpeed;
+
+        [SerializeField] Material hurtMaterial;
+
+        MeshRenderer renderer;
 
         public State CurrentState { get { return currentState; } private set { currentState = value; } }
 
@@ -22,6 +28,11 @@ namespace SurvivalMode
         {
             CurrentState = State.Spawning;
             StartCoroutine(EntranceCoroutine(startPosition));
+        }
+        private void Awake()
+        {
+            currentHp = maxHp;
+            renderer = GetComponent<MeshRenderer>();
         }
         IEnumerator EntranceCoroutine(Vector3 startPosition)
         {
@@ -45,7 +56,14 @@ namespace SurvivalMode
         }
         public void OnHitted()
         {
-            CurrentState = State.Dead;
+            currentHp -= 1;
+            if (currentHp <= 0)
+                CurrentState = State.Dead;
+            else
+            {
+                if(hurtMaterial != null)
+                    renderer.material = hurtMaterial;
+            }
             Debug.Log("Monser Hit!");
         }
 
