@@ -64,9 +64,13 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+*.dwlt
+
 # Packed Addressables
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+UnityProject/RacketSmash/UserSettings/EditorUserSettings.asset
+UnityProject/RacketSmash/UserSettings/Search.settings

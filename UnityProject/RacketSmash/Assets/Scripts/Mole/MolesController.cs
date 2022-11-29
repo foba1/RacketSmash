@@ -7,13 +7,16 @@ namespace WhackAMole
     public class MolesController : MonoBehaviour
     { 
         [SerializeField] private GameObject[] moles;
+        [SerializeField] private LevelManager levelManager;
         private List<int> randomMoles;
         private bool isRoundCleared = false;
         private float timer;
         private int randomSize;
+        [Header("Random spawn delay range")]
+        [SerializeField] private int maxSpawnDelay;
         public int randomMoleSize { get { return randomSize; } set { randomSize = value; } }
 
-        [Header("test")]
+        [Header("Waiting time for next wave")]
         [SerializeField] private int waitingTime;
         public bool roundClearState { get { return isRoundCleared; } set { isRoundCleared = value; } }
         private System.Random random;
@@ -32,6 +35,7 @@ namespace WhackAMole
 
             // 랜덤으로 두더지 움직임 활성화
             spawnMoles();
+
         }
 
         // Update is called once per frame
@@ -48,8 +52,8 @@ namespace WhackAMole
                     // 두더지 초기화
                     for (int i = 0; i < randomMoles.Count; i++)
                     {
-                        moles[randomMoles[i]].GetComponent<MoleBase>().setMoleNotMove();
-                        moles[randomMoles[i]].GetComponent<MoleBase>().setMoleUnHit();
+                        moles[randomMoles[i]].GetComponent<MoleBase>().moveState=false;
+                        moles[randomMoles[i]].GetComponent<MoleBase>().hitState=false;
                     }
                     randomMoles.Clear();
                     spawnMoles();
@@ -80,8 +84,9 @@ namespace WhackAMole
             Debug.Log("randomMoles size : "+ randomMoles.Count.ToString());
             // 두더지 움직임 활성화
             for (int i = 0; i < randomSize; i++)
-            {   
-                moles[randomMoles[i]].GetComponent<MoleBase>().setMoleMove(randomMoles[i]);
+            {
+                moles[randomMoles[i]].GetComponent<MoleBase>().spawnTime= random.Next(1, maxSpawnDelay);
+                moles[randomMoles[i]].GetComponent<MoleBase>().moveState=true;
             }
         }
 
