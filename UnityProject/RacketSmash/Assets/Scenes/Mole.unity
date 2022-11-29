@@ -1361,8 +1361,9 @@ GameObject:
   - component: {fileID: 612824759}
   - component: {fileID: 612824758}
   - component: {fileID: 612824760}
+  - component: {fileID: 612824761}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: AltCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1418,6 +1419,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 1409050825}
+--- !u!114 &612824761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612824756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eebb2df99e63c147a4277b3dc768f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6993014774094267567}
+  landZOffset: -2.5
+  controlXAxis: 0
+  ball: {fileID: 1521238266129960707}
+  ballShootDir: {x: 0, y: 10, z: 10}
 --- !u!1 &626986443 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2732684518155842968, guid: c73ae6621f8832748a78dfb8aec6dd12,
@@ -1565,8 +1583,9 @@ GameObject:
   - component: {fileID: 694626876}
   - component: {fileID: 694626875}
   - component: {fileID: 694626877}
+  - component: {fileID: 694626878}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: AltCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1622,6 +1641,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 626986443}
+--- !u!114 &694626878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694626873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eebb2df99e63c147a4277b3dc768f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6993014774094267567}
+  landZOffset: -2.5
+  controlXAxis: 0
+  ball: {fileID: 1521238266129960707}
+  ballShootDir: {x: 0, y: 10, z: 10}
 --- !u!1 &729489353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,8 +1807,9 @@ GameObject:
   - component: {fileID: 734901950}
   - component: {fileID: 734901949}
   - component: {fileID: 734901951}
+  - component: {fileID: 734901952}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: AltCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1828,6 +1865,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 1350810379}
+--- !u!114 &734901952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734901947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eebb2df99e63c147a4277b3dc768f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6993014774094267567}
+  landZOffset: -2.5
+  controlXAxis: 0
+  ball: {fileID: 1521238266129960707}
+  ballShootDir: {x: 0, y: 10, z: 10}
 --- !u!1 &746376963
 GameObject:
   m_ObjectHideFlags: 0
@@ -2215,7 +2269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6993014774094267567}
-  landZOffset: 1
+  landZOffset: -2.5
   controlXAxis: 0
   ball: {fileID: 1521238266129960707}
   ballShootDir: {x: 0, y: 10, z: 10}
@@ -2261,8 +2315,9 @@ GameObject:
   - component: {fileID: 971127052}
   - component: {fileID: 971127051}
   - component: {fileID: 971127053}
+  - component: {fileID: 971127054}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: AltCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2318,6 +2373,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 836883685}
+--- !u!114 &971127054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971127049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eebb2df99e63c147a4277b3dc768f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6993014774094267567}
+  landZOffset: -2.5
+  controlXAxis: 0
+  ball: {fileID: 1521238266129960707}
+  ballShootDir: {x: 0, y: 10, z: 10}
 --- !u!1 &986143479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2330,8 +2402,9 @@ GameObject:
   - component: {fileID: 986143482}
   - component: {fileID: 986143481}
   - component: {fileID: 986143483}
+  - component: {fileID: 986143484}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: AltCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2387,6 +2460,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 2097970602}
+--- !u!114 &986143484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986143479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eebb2df99e63c147a4277b3dc768f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6993014774094267567}
+  landZOffset: -2.5
+  controlXAxis: 0
+  ball: {fileID: 1521238266129960707}
+  ballShootDir: {x: 0, y: 10, z: 10}
 --- !u!1 &1069154227
 GameObject:
   m_ObjectHideFlags: 0
@@ -2703,8 +2793,9 @@ GameObject:
   - component: {fileID: 1145912154}
   - component: {fileID: 1145912153}
   - component: {fileID: 1145912155}
+  - component: {fileID: 1145912156}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: AltCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2760,6 +2851,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 1089262200}
+--- !u!114 &1145912156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145912151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eebb2df99e63c147a4277b3dc768f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6993014774094267567}
+  landZOffset: -2.5
+  controlXAxis: 0
+  ball: {fileID: 1521238266129960707}
+  ballShootDir: {x: 0, y: 10, z: 10}
 --- !u!1 &1146999241
 GameObject:
   m_ObjectHideFlags: 0
@@ -2772,8 +2880,9 @@ GameObject:
   - component: {fileID: 1146999244}
   - component: {fileID: 1146999243}
   - component: {fileID: 1146999245}
+  - component: {fileID: 1146999246}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: AltCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2829,6 +2938,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 233169694}
+--- !u!114 &1146999246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146999241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eebb2df99e63c147a4277b3dc768f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6993014774094267567}
+  landZOffset: -2.5
+  controlXAxis: 0
+  ball: {fileID: 1521238266129960707}
+  ballShootDir: {x: 0, y: 10, z: 10}
 --- !u!1 &1155048019
 GameObject:
   m_ObjectHideFlags: 0
@@ -3832,8 +3958,9 @@ GameObject:
   - component: {fileID: 1425739664}
   - component: {fileID: 1425739663}
   - component: {fileID: 1425739665}
+  - component: {fileID: 1425739666}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: AltCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3889,6 +4016,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 9976188}
+--- !u!114 &1425739666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425739661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eebb2df99e63c147a4277b3dc768f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6993014774094267567}
+  landZOffset: -2.5
+  controlXAxis: 0
+  ball: {fileID: 1521238266129960707}
+  ballShootDir: {x: 0, y: 10, z: 10}
 --- !u!1 &1448379382
 GameObject:
   m_ObjectHideFlags: 0
@@ -6080,8 +6224,9 @@ GameObject:
   - component: {fileID: 2088323965}
   - component: {fileID: 2088323964}
   - component: {fileID: 2088323966}
+  - component: {fileID: 2088323967}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: AltCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6137,6 +6282,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 1100923641}
+--- !u!114 &2088323967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088323962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eebb2df99e63c147a4277b3dc768f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6993014774094267567}
+  landZOffset: -2.5
+  controlXAxis: 0
+  ball: {fileID: 1521238266129960707}
+  ballShootDir: {x: 0, y: 10, z: 10}
 --- !u!1 &2097970602 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2732684518155842968, guid: c73ae6621f8832748a78dfb8aec6dd12,
