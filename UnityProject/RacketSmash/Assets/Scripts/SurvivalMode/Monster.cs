@@ -15,8 +15,9 @@ namespace SurvivalMode
 
         [SerializeField] float fallSpeed;
 
-        public State CurrentState { get; private set; } = State.Spawning;
+        public State CurrentState { get { return currentState; } private set { currentState = value; } }
 
+        [SerializeField] State currentState = State.Spawning;
         public void SetStartPosition(Vector3 startPosition)
         {
             CurrentState = State.Spawning;
@@ -56,7 +57,6 @@ namespace SurvivalMode
         }
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other.gameObject.GetComponent<Ball>());
             if (other.gameObject.GetComponent<Ball>() != null)
             {
                 OnHitted();

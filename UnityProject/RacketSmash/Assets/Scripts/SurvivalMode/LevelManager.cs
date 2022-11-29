@@ -14,6 +14,7 @@ namespace SurvivalMode
         [SerializeField] Transform frontWall;
         [SerializeField] global::Ball ball;
         [Header("Monster")]
+        [SerializeField] float yDistance;
         [SerializeField] float monsterSpawnInterval;
         [SerializeField] float rowSpawnInterval;
         [SerializeField] float dropWaitTime;
@@ -24,6 +25,7 @@ namespace SurvivalMode
         [Header("Settings")]
         [SerializeField] int _life = 3;
         [SerializeField] int _score = 0;
+        [SerializeField] List<string> monsterSpawnPatterns;
 
         int life { get { return _life;  } set { _life = value; lifeText.text = "Life : " + _life.ToString(); } }
         int score { get { return _score;  } set { _score = value; scoreText.text = "Score : " + _score.ToString(); } }
@@ -47,9 +49,20 @@ namespace SurvivalMode
             while(true)
             {
                 yield return SpawnRow(monsterPerRow);
+                yield return SpawnRow(monsterPerRow);
+                yield return SpawnRow(monsterPerRow);
                 yield return new WaitForSeconds(dropWaitTime);
                 yield return Drop();
+                yield return Drop();
+                yield return Drop();
                 yield return new WaitForSeconds(rowSpawnInterval);
+
+                foreach (List<Monster> row in rows.ToList())
+                {
+                    if (row.Count == 0)
+                        rows.Remove(row);
+                }
+
             }
             
         }
@@ -69,7 +82,7 @@ namespace SurvivalMode
             List<Monster> row = new List<Monster>();
             rows.Add(row);
             Vector3 wallScale = frontWall.localScale;
-            float y = wallScale.y / 2 + frontWall.position.y - 1;
+            float y = wallScale.y / 2 + frontWall.position.y - (rows.Count-1) * yDistance;
             float startX = startXToggle * wallScale.x / 2 + frontWall.position.x;
 
             for(int i=0; i<monsterCount; i++)
@@ -108,8 +121,8 @@ namespace SurvivalMode
                     foreach(List<Monster> row in rows.ToList())
                     {
                         row.Remove(monster);
-                        if (row.Count == 0)
-                            rows.Remove(row);
+                        //if (row.Count == 0)
+                            //rows.Remove(row);
                     }
                     Destroy(monster.gameObject);
                 }
