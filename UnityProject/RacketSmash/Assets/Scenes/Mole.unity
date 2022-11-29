@@ -153,8 +153,8 @@ MonoBehaviour:
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
-  zMax: 1.2
-  zMin: 0
+  zMax: 0.7
+  zMin: 0.1
   score: 0
   isSpawned: 0
   isMove: 0
@@ -503,8 +503,8 @@ MonoBehaviour:
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
-  zMax: 1.2
-  zMin: 0
+  zMax: 0.7
+  zMin: 0.1
   score: 0
   isSpawned: 0
   isMove: 0
@@ -1466,8 +1466,8 @@ MonoBehaviour:
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
-  zMax: 1.2
-  zMin: 0
+  zMax: 0.7
+  zMin: 0.1
   score: 0
   isSpawned: 0
   isMove: 0
@@ -2057,8 +2057,8 @@ MonoBehaviour:
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
-  zMax: 1.2
-  zMin: 0
+  zMax: 0.7
+  zMin: 0.1
   score: 0
   isSpawned: 0
   isMove: 0
@@ -2547,8 +2547,8 @@ MonoBehaviour:
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
-  zMax: 1.2
-  zMin: 0
+  zMax: 0.7
+  zMin: 0.1
   score: 0
   isSpawned: 0
   isMove: 0
@@ -2682,8 +2682,8 @@ MonoBehaviour:
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
-  zMax: 1.2
-  zMin: 0
+  zMax: 0.7
+  zMin: 0.1
   score: 0
   isSpawned: 0
   isMove: 0
@@ -3223,8 +3223,8 @@ MonoBehaviour:
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
-  zMax: 1.2
-  zMin: 0
+  zMax: 0.7
+  zMin: 0.1
   score: 0
   isSpawned: 0
   isMove: 0
@@ -3358,8 +3358,8 @@ MonoBehaviour:
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
-  zMax: 1.2
-  zMin: 0
+  zMax: 0.7
+  zMin: 0.1
   score: 0
   isSpawned: 0
   isMove: 0
@@ -5185,7 +5185,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press 'SPACE' to restart game.
+  m_text: Press 'R' to restart game.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6335,8 +6335,8 @@ MonoBehaviour:
   - {fileID: 2955623459812423943, guid: 50ce8c76b0cce2041acbb248abd28aa7, type: 3}
   - {fileID: 8443315704496310910, guid: 5090afc691fd16e4a9e0ea4671902b6c, type: 3}
   direction: 0.15
-  zMax: 1.2
-  zMin: 0
+  zMax: 0.7
+  zMin: 0.1
   score: 0
   isSpawned: 0
   isMove: 0
