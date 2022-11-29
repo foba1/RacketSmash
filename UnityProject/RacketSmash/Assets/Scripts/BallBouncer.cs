@@ -26,7 +26,8 @@ public class BallBouncer : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if(ball != null)
+            if (ball != null)
+                Debug.Log("Space pressed");
                 ball.velocity = ballShootDir;
         }
     }
@@ -37,6 +38,7 @@ public class BallBouncer : MonoBehaviour
         Ball ball = collision.gameObject.GetComponent<Ball>();
         if (ball != null)
         {
+            Debug.Log("Ballbouncer detected collision");
             Rigidbody ballRB = ball.gameObject.GetComponent<Rigidbody>();
 
             Vector3 collisionPoint = ball.transform.position;

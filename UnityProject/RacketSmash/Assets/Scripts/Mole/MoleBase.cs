@@ -102,6 +102,7 @@ namespace WhackAMole
                         if (transform.localPosition.z >= zMax)
                         {
                             currentPosition = zMax;
+                            isSpawned = false;
                         }
                     }
                     transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, currentPosition);
