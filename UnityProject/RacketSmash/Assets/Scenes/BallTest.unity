@@ -784,9 +784,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712d6fb9c16d357488093d351728cdd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originObject: {fileID: 1894048414}
-  leftControllerObject: {fileID: 1409089175}
-  rightControllerObject: {fileID: 1809094866}
 --- !u!4 &1320633881
 Transform:
   m_ObjectHideFlags: 0
@@ -1872,7 +1869,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5433357726418547501}
-  landZOffset: 2
+  landZOffset: 1
+  landTime: 0.5
   controlXAxis: 1
   ball: {fileID: 8814382052000581744}
   ballShootDir: {x: 3, y: 5, z: 10}
@@ -1914,6 +1912,9 @@ MonoBehaviour:
   - {fileID: 3005609866406114602, guid: b8d10229191f736418d953a0ae80958e, type: 3}
   - {fileID: 5082203971281735965, guid: 10434d6bf3af98b46a88ab696f543ee3, type: 3}
   - {fileID: 4564677337280977054, guid: 1b3ad09ec558745449dedbd1d75738d3, type: 3}
+  curMode: 0
+  maxVelocity: 15
+  hitByRacket: 0
   groundHitCount: 0
 --- !u!33 &1413680886023906232
 MeshFilter:
@@ -2482,7 +2483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 4387819459699052471}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 849
+  m_shaderPropertyID: 854
   m_materialData:
   - m_trailRenderer: {fileID: 7722543886838927611}
     m_uvTiling: {x: 0.06, y: 0.4}

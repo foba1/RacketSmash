@@ -7,6 +7,7 @@ public class BallBouncer : MonoBehaviour
     [Header("Settings")]
     [SerializeField] Transform player;
     [SerializeField] float landZOffset = 1;
+    [SerializeField] float landTime = 1;
     [SerializeField] bool controlXAxis = false;
 
     [Header("Test Variables")]
@@ -50,9 +51,12 @@ public class BallBouncer : MonoBehaviour
             Vector3 targetPoint = player.transform.position + new Vector3(xOffset, 0, landZOffset);
             Vector3 directLine = targetPoint - collisionPoint;
 
-            float v0 =  -Physics.gravity.y/2 - Mathf.Abs(directLine.y);
-                
-            ballRB.velocity = new Vector3(directLine.x, v0, directLine.z);
+            //float v0 =  -Physics.gravity.y/2 - Mathf.Abs(directLine.y);
+            float t = landTime;
+            float v0 = -Physics.gravity.y/2 * t - Mathf.Abs(directLine.y) / t;
+
+
+            ballRB.velocity = new Vector3(directLine.x / t , v0, directLine.z / t);
         }
     }
 
