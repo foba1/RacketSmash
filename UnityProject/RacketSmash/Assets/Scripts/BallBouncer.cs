@@ -26,7 +26,7 @@ public class BallBouncer : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if(ball != null)
+            if (ball != null)
                 ball.velocity = ballShootDir;
         }
     }
