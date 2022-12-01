@@ -2,19 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CrazyManager : MonoBehaviour
 {
     [Header("Health Bar")]
     [SerializeField] GameObject[] healthBar;
 
-    [Header("Main Panel")]
+    [Header("Panel")]
     [SerializeField] GameObject mainPanel;
+    [SerializeField] GameObject resultPanel;
 
     [Header("Ball Destroy Effect")]
     [SerializeField] GameObject destroyEffectPrefab;
 
     public bool isGameFinished;
+
+    private float gameStartTime;
+    private int ballSuccessCount;
 
     private float prevTime;
     private float speedTime;
@@ -50,7 +55,8 @@ public class CrazyManager : MonoBehaviour
     private void Start()
     {
         isGameFinished = true;
-        mainPanel.SetActive(true);
+        SetMainPanel(true);
+        SetResultPanel(false);
     }
 
     private void Update()
@@ -66,21 +72,34 @@ public class CrazyManager : MonoBehaviour
         }
     }
 
-    public void Main()
+    public void Exit()
     {
         SceneManager.LoadScene("Main");
+    }
+
+    public void SetMainPanel(bool state)
+    {
+        mainPanel.SetActive(state);
+    }
+
+    public void SetResultPanel(bool state)
+    {
+        resultPanel.SetActive(state);
     }
 
     public void StartGame()
     {
         isGameFinished = false;
-        mainPanel.SetActive(false);
         BallManager.Instance.StartGame();
+        SetMainPanel(false);
+        SetResultPanel(false);
 
         speedTime = Time.time;
         prevTime = Time.time;
         remainedTime = initRemainedTime;
         curSpeed = initSpeed;
+        gameStartTime = Time.time;
+        ballSuccessCount = 0;
 
         for (int i = 0; i < healthBar.Length; i++)
         {
@@ -92,6 +111,7 @@ public class CrazyManager : MonoBehaviour
     {
         remainedTime += successTime;
         UpdateHealthBar(successTime);
+        ballSuccessCount++;
     }
 
     public void FailToReceiveBall()
@@ -157,7 +177,13 @@ public class CrazyManager : MonoBehaviour
     private void GameOver()
     {
         isGameFinished = true;
-        mainPanel.SetActive(true);
         BallManager.Instance.GameOver();
+
+        SetMainPanel(false);
+        SetResultPanel(true);
+
+        string resultTime = (Mathf.Round((Time.time - gameStartTime) * 10f) * 0.1f).ToString();
+        string resultHit = (Mathf.Round((float)ballSuccessCount / (float)BallManager.Instance.ballCount * 1000f) * 0.1f).ToString();
+        resultPanel.transform.GetChild(2).GetComponent<Text>().text = "버틴 시간 : " + resultTime + "초\n공 타격률 : " + resultHit + "%";
     }
 }

@@ -12,6 +12,8 @@ public class BallManager : MonoBehaviour
     [SerializeField] bool controlXAxis = false;
     [SerializeField] GameObject playerPoint;
 
+    public int ballCount;
+
     private List<GameObject> ballPoint;
     private List<GameObject> ballList;
     private float prevSpawnTime;
@@ -73,6 +75,7 @@ public class BallManager : MonoBehaviour
                     int index = Random.Range(0, ballPoint.Count);
                     GameObject ball = Instantiate(ballPrefab, ballPoint[index].transform.position, Quaternion.identity);
                     ballList.Add(ball);
+                    ballCount++;
 
                     Vector3 collisionPoint = ball.transform.position;
                     Vector3 collisionToPlayer = collisionPoint - playerPoint.transform.position;
@@ -128,6 +131,7 @@ public class BallManager : MonoBehaviour
         curLevel = 0;
         spawnCount = 2;
         curSpawnCount = -1;
+        ballCount = 0;
         ballList.Clear();
     }
 
