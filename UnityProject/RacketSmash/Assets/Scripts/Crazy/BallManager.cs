@@ -128,6 +128,7 @@ public class BallManager : MonoBehaviour
         curLevel = 0;
         spawnCount = 2;
         curSpawnCount = -1;
+        ballList.Clear();
     }
 
     public void GameOver()

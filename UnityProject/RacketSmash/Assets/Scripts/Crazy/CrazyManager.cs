@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CrazyManager : MonoBehaviour
 {
     [Header("Health Bar")]
     [SerializeField] GameObject[] healthBar;
+
+    [Header("Main Panel")]
+    [SerializeField] GameObject mainPanel;
 
     [Header("Ball Destroy Effect")]
     [SerializeField] GameObject destroyEffectPrefab;
@@ -45,7 +49,8 @@ public class CrazyManager : MonoBehaviour
 
     private void Start()
     {
-        StartGame();
+        isGameFinished = true;
+        mainPanel.SetActive(true);
     }
 
     private void Update()
@@ -59,18 +64,17 @@ public class CrazyManager : MonoBehaviour
 
             prevTime = Time.time;
         }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                StartGame();
-            }
-        }
+    }
+
+    public void Main()
+    {
+        SceneManager.LoadScene("Main");
     }
 
     public void StartGame()
     {
         isGameFinished = false;
+        mainPanel.SetActive(false);
         BallManager.Instance.StartGame();
 
         speedTime = Time.time;
@@ -153,6 +157,7 @@ public class CrazyManager : MonoBehaviour
     private void GameOver()
     {
         isGameFinished = true;
+        mainPanel.SetActive(true);
         BallManager.Instance.GameOver();
     }
 }
