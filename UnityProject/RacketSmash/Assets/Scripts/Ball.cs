@@ -52,7 +52,7 @@ public class Ball : MonoBehaviour
             Racket racket = collision.transform.parent.GetComponent<Racket>();
             if (racket.velocity >= 0.015f && Time.time - prevCollisionTime >= 0.4f)
             {
-                collision.transform.parent.GetComponent<AudioSource>().Play();
+                collision.gameObject.GetComponent<AudioSource>().Play();
                 GameObject.Find("RightHand Controller").GetComponent<XRController>().SendHapticImpulse(amplitude[racket.selectedRacket], duration[racket.selectedRacket]);
 
                 GameObject effect = Instantiate(hitEffectPrefab[racket.selectedRacket], transform.position, Quaternion.identity);
