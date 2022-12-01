@@ -365,8 +365,8 @@ MonoBehaviour:
   healthBar:
   - {fileID: 341047675}
   - {fileID: 772361684}
-  mainPanel: {fileID: 0}
-  resultPanel: {fileID: 0}
+  mainPanel: {fileID: 150820142}
+  resultPanel: {fileID: 1107167275}
   destroyEffectPrefab: {fileID: 2065676739775510494, guid: f34d53a9f8cd409428b8d1e3addf4807,
     type: 3}
   isGameFinished: 0
