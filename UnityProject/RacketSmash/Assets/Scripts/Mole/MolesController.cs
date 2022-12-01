@@ -52,7 +52,7 @@ namespace WhackAMole
                     // 두더지 초기화
                     for (int i = 0; i < randomMoles.Count; i++)
                     {
-                        moles[randomMoles[i]].GetComponent<MoleBase>().moveState=false;
+                        moles[randomMoles[i]].GetComponent<MoleBase>().spawnState=false;
                         moles[randomMoles[i]].GetComponent<MoleBase>().hitState=false;
                     }
                     randomMoles.Clear();
@@ -86,7 +86,7 @@ namespace WhackAMole
             for (int i = 0; i < randomSize; i++)
             {
                 moles[randomMoles[i]].GetComponent<MoleBase>().spawnTime= random.Next(1, maxSpawnDelay);
-                moles[randomMoles[i]].GetComponent<MoleBase>().moveState=true;
+                moles[randomMoles[i]].GetComponent<MoleBase>().spawnState=true;
             }
         }
 

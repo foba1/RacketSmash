@@ -32,7 +32,7 @@ namespace WhackAMole
         Quaternion rotate;
 
         public int moleScore { get { return score; } set { score = value; } }
-        public bool moveState { get { return isSpawned; } set { isSpawned = value; } }
+        public bool spawnState { get { return isSpawned; } set { isSpawned = value; } }
         public bool hitState { get { return isHit; } set { isHit = value; } }
         public int totalMoleCount { get { return moleCount; } set { moleCount = value; } }
         public int spawnTime { get { return spawnWaitingTime; } set { spawnWaitingTime = value; } }
@@ -111,12 +111,13 @@ namespace WhackAMole
 
         }
 
-        public void collisionEnter(Collision collision)
+
+        private void OnCollisionEnter(Collision collision)
         {
             Ball ball = collision.gameObject.GetComponent<Ball>();
             if (ball != null)
             {
-                if (!isHit)
+                if (!isHit&&isSpawned)
                 {
                     // µÎ´õÁö ÇÇ°Ý È¿°ú
                     randomEffectIdx = random.Next(0, 4);
@@ -127,9 +128,9 @@ namespace WhackAMole
                     levelManger.count = 1;
                     // ÃÑÁ¡ Áõ°¡
                     levelManger.totalScore = score;
-                    Debug.Log(score.ToString() + "Á¡ È¹µæ! \n ÇöÀç ½ºÄÚ¾î : " + levelManger.totalScore);
+                    Debug.Log(gameObject.name+"/"+score.ToString() + "Á¡ È¹µæ! \n ÇöÀç ½ºÄÚ¾î : " + levelManger.totalScore);
                     // µÎ´õÁö Å¸°Ý Ã¼Å©
-                    isHit = true;
+                    isHit = true; 
                 }
             }
         }
