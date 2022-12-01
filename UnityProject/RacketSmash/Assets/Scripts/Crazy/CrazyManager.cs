@@ -68,6 +68,8 @@ public class CrazyManager : MonoBehaviour
             UpdateHealthBar(-deltaTime);
             UpdateSpeed();
 
+            if (remainedTime <= 0f) GameOver();
+
             prevTime = Time.time;
         }
     }
