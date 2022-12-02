@@ -12,12 +12,14 @@ public class BallManager : MonoBehaviour
     [SerializeField] bool controlXAxis = false;
     [SerializeField] GameObject playerPoint;
 
+    public int ballCount;
+
     private List<GameObject> ballPoint;
     private List<GameObject> ballList;
     private float prevSpawnTime;
     private float waveDeltaTime = 3f;
-    private float[] spawnDeltaTime = new float[10] { 1.5f, 1.3f, 1.1f, 0.9f, 0.7f, 0.5f, 0.4f, 0.3f, 0.2f, 0.1f };
-    private int maxSpawnCount = 7;
+    private float[] spawnDeltaTime = new float[10] { 1.5f, 1.3f, 1.1f, 0.9f, 0.8f, 0.7f, 0.6f, 0.5f, 0.4f, 0.3f };
+    private int maxSpawnCount = 10;
     private int spawnCount;
     private int curSpawnCount;
     private int curLevel;
@@ -73,6 +75,7 @@ public class BallManager : MonoBehaviour
                     int index = Random.Range(0, ballPoint.Count);
                     GameObject ball = Instantiate(ballPrefab, ballPoint[index].transform.position, Quaternion.identity);
                     ballList.Add(ball);
+                    ballCount++;
 
                     Vector3 collisionPoint = ball.transform.position;
                     Vector3 collisionToPlayer = collisionPoint - playerPoint.transform.position;
@@ -128,6 +131,8 @@ public class BallManager : MonoBehaviour
         curLevel = 0;
         spawnCount = 2;
         curSpawnCount = -1;
+        ballCount = 0;
+        ballList.Clear();
     }
 
     public void GameOver()

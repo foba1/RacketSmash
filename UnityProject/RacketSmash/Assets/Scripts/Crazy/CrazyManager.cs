@@ -1,16 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CrazyManager : MonoBehaviour
 {
     [Header("Health Bar")]
     [SerializeField] GameObject[] healthBar;
 
+    [Header("Panel")]
+    [SerializeField] GameObject mainPanel;
+    [SerializeField] GameObject resultPanel;
+
     [Header("Ball Destroy Effect")]
     [SerializeField] GameObject destroyEffectPrefab;
 
     public bool isGameFinished;
+
+    private float gameStartTime;
+    private int ballSuccessCount;
 
     private float prevTime;
     private float speedTime;
@@ -22,7 +31,7 @@ public class CrazyManager : MonoBehaviour
 
     private static readonly float initLocalPosY = 2.5f;
     private static readonly float initHeight = 4f;
-    private static readonly float successTime = 2f;
+    private static readonly float successTime = 2.5f;
     private static readonly float failTime = 2f;
 
     static CrazyManager instance;
@@ -45,7 +54,9 @@ public class CrazyManager : MonoBehaviour
 
     private void Start()
     {
-        StartGame();
+        isGameFinished = true;
+        SetMainPanel(true);
+        SetResultPanel(false);
     }
 
     private void Update()
@@ -57,26 +68,40 @@ public class CrazyManager : MonoBehaviour
             UpdateHealthBar(-deltaTime);
             UpdateSpeed();
 
+            if (remainedTime <= 0f) GameOver();
+
             prevTime = Time.time;
         }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                StartGame();
-            }
-        }
+    }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
+    public void SetMainPanel(bool state)
+    {
+        mainPanel.SetActive(state);
+    }
+
+    public void SetResultPanel(bool state)
+    {
+        resultPanel.SetActive(state);
     }
 
     public void StartGame()
     {
         isGameFinished = false;
         BallManager.Instance.StartGame();
+        SetMainPanel(false);
+        SetResultPanel(false);
 
         speedTime = Time.time;
         prevTime = Time.time;
         remainedTime = initRemainedTime;
         curSpeed = initSpeed;
+        gameStartTime = Time.time;
+        ballSuccessCount = 0;
 
         for (int i = 0; i < healthBar.Length; i++)
         {
@@ -88,6 +113,7 @@ public class CrazyManager : MonoBehaviour
     {
         remainedTime += successTime;
         UpdateHealthBar(successTime);
+        ballSuccessCount++;
     }
 
     public void FailToReceiveBall()
@@ -102,10 +128,13 @@ public class CrazyManager : MonoBehaviour
 
     public void DestroyBall(GameObject ball)
     {
-        GameObject effect = Instantiate(destroyEffectPrefab, ball.transform.position, Quaternion.identity);
-        Destroy(effect, 2f);
-        BallManager.Instance.DestroyBall(ball);
-        Destroy(ball);
+        if (ball != null)
+        {
+            GameObject effect = Instantiate(destroyEffectPrefab, ball.transform.position, Quaternion.identity);
+            Destroy(effect, 2f);
+            BallManager.Instance.DestroyBall(ball);
+            Destroy(ball);
+        }
     }
 
     IEnumerator DestroyBallCoroutine(GameObject ball, float time)
@@ -121,9 +150,20 @@ public class CrazyManager : MonoBehaviour
 
     private void UpdateHealthBar(float time)
     {
-        for (int i = 0; i < healthBar.Length; i++)
+        if (remainedTime >= initRemainedTime)
         {
-            healthBar[i].transform.localPosition += new Vector3(0f, (initHeight / initRemainedTime) * time, 0f);
+            remainedTime = initRemainedTime;
+            for (int i = 0; i < healthBar.Length; i++)
+            {
+                healthBar[i].transform.localPosition = new Vector3(healthBar[i].transform.localPosition.x, initLocalPosY, healthBar[i].transform.localPosition.z);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < healthBar.Length; i++)
+            {
+                healthBar[i].transform.localPosition += new Vector3(0f, (initHeight / initRemainedTime) * time, 0f);
+            }
         }
     }
 
@@ -131,7 +171,7 @@ public class CrazyManager : MonoBehaviour
     {
         if (Time.time - speedTime >= 10f)
         {
-            curSpeed += 0.5f;
+            curSpeed += 0.3f;
             speedTime = Time.time;
         }
     }
@@ -140,5 +180,12 @@ public class CrazyManager : MonoBehaviour
     {
         isGameFinished = true;
         BallManager.Instance.GameOver();
+
+        SetMainPanel(false);
+        SetResultPanel(true);
+
+        string resultTime = (Mathf.Round((Time.time - gameStartTime) * 10f) * 0.1f).ToString();
+        string resultHit = (Mathf.Round((float)ballSuccessCount / (float)BallManager.Instance.ballCount * 1000f) * 0.1f).ToString();
+        resultPanel.transform.GetChild(2).GetComponent<Text>().text = "버틴 시간 : " + resultTime + "초\n공 타격률 : " + resultHit + "%";
     }
 }
