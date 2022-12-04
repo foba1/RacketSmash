@@ -13,7 +13,7 @@ public class WeightlessWall : MonoBehaviour
     [SerializeField] Rigidbody ball;
     [SerializeField] Vector3 ballShootDir = new Vector3(0, 10, 10);
 
-    private bool isGettingOut = false;
+    private bool isGettingOut = true;
 
     private void OnDrawGizmos()
     {
