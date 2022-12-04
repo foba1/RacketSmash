@@ -25,13 +25,14 @@ public class CrazyManager : MonoBehaviour
     private float speedTime;
     private float remainedTime;
     private float curSpeed;
+    private static readonly float[] successTime = new float[8] { 2.5f, 2.4f, 2.3f, 2.2f, 2.1f, 2.0f, 1.7f, 1.4f };
+
 
     private float initRemainedTime = 60f;
-    private float initSpeed = 1f;
+    private float initSpeed = 2f;
 
     private static readonly float initLocalPosY = 2.5f;
     private static readonly float initHeight = 4f;
-    private static readonly float successTime = 2.5f;
     private static readonly float failTime = 2f;
 
     static CrazyManager instance;
@@ -111,8 +112,9 @@ public class CrazyManager : MonoBehaviour
 
     public void SuccessToReceiveBall()
     {
-        remainedTime += successTime;
-        UpdateHealthBar(successTime);
+        float time = successTime[BallManager.Instance.curLevel];
+        remainedTime += time;
+        UpdateHealthBar(time);
         ballSuccessCount++;
     }
 

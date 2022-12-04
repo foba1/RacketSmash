@@ -13,17 +13,17 @@ public class BallManager : MonoBehaviour
     [SerializeField] GameObject playerPoint;
 
     public int ballCount;
+    public int curLevel;
 
     private List<GameObject> ballPoint;
     private List<GameObject> ballList;
     private float prevSpawnTime;
-    private float[] waveDeltaTime = new float[15] { 3f, 2.8f, 2.7f, 2.6f, 2.5f, 2.4f, 2.3f, 2.4f, 2.5f, 2.5f, 2.6f, 2.7f, 3f, 3.3f, 3.5f };
-    private float[] spawnDeltaTime = new float[15] { 1.5f, 1.4f, 1.3f, 1.2f, 1.1f, 1f, 0.9f, 0.8f, 0.7f, 0.6f, 0.5f, 0.4f, 0.37f, 0.3f, 0.2f };
+    private float waveDeltaTime = 2.5f;
+    private float[] spawnDeltaTime = new float[8] { 1f, 0.7f, 0.5f, 0.4f, 0.3f, 0.27f, 0.24f, 0.2f};
     private int maxSpawnCount = 15;
     private int prevSpawnSide;
     private int spawnCount;
     private int curSpawnCount;
-    private int curLevel;
 
     static BallManager instance;
     public static BallManager Instance
@@ -61,7 +61,7 @@ public class BallManager : MonoBehaviour
         {
             if (curSpawnCount == -1)
             {
-                if (Time.time - prevSpawnTime >= waveDeltaTime[curLevel])
+                if (Time.time - prevSpawnTime >= waveDeltaTime)
                 {
                     curSpawnCount++;
                     prevSpawnTime = Time.time - spawnDeltaTime[curLevel];
@@ -162,7 +162,7 @@ public class BallManager : MonoBehaviour
     {
         prevSpawnTime = Time.time;
         curLevel = 0;
-        spawnCount = 2;
+        spawnCount = 5;
         curSpawnCount = -1;
         ballCount = 0;
         ballList.Clear();
