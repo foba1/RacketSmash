@@ -14,9 +14,6 @@ public class BrickGameManager : MonoBehaviour
 
     private float initSpeed = 1f;
 
-    private static readonly float initLocalPosY = 2.5f;
-    private static readonly float initHeight = 4f;
-
     static BrickGameManager instance;
     public static BrickGameManager Instance
     {
@@ -54,8 +51,6 @@ public class BrickGameManager : MonoBehaviour
     public void StartGame()
     {
         isGameFinished = false;
-        BrickManager.Instance.StartGame();
-
         speedTime = Time.time;
         curSpeed = initSpeed;
     }
@@ -64,8 +59,6 @@ public class BrickGameManager : MonoBehaviour
     {
         GameObject effect = Instantiate(destroyEffectPrefab, brick.transform.position, Quaternion.identity);
         Destroy(effect, 2f);
-        BrickManager.Instance.DestroyBrick(brick);
-        Destroy(brick);
     }
 
     IEnumerator DestroyBrickCoroutine(GameObject brick, float time)
@@ -91,6 +84,5 @@ public class BrickGameManager : MonoBehaviour
     private void GameOver()
     {
         isGameFinished = true;
-        BrickManager.Instance.GameOver();
     }
 }
