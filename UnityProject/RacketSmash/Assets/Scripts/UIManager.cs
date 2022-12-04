@@ -28,6 +28,12 @@ public class UIManager : MonoBehaviour
         settingPanel.SetActive(state);
     }
 
+    public void RestartGame(bool state)
+    {
+        Debug.Log("Restart clicked");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void SelectMode(int index)
     {
         if (index == (int)Mode.mole)
@@ -51,5 +57,10 @@ public class UIManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void ExitToMain()
+    {
+        SceneManager.LoadScene("Main");
     }
 }
