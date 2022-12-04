@@ -27,7 +27,6 @@ public class CrazyManager : MonoBehaviour
     private float curSpeed;
     private static readonly float[] successTime = new float[8] { 2.5f, 2.4f, 2.3f, 2.2f, 2.1f, 2.0f, 1.7f, 1.4f };
 
-
     private float initRemainedTime = 60f;
     private float initSpeed = 2f;
 

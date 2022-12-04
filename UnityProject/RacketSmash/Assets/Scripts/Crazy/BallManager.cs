@@ -104,7 +104,7 @@ public class BallManager : MonoBehaviour
                         temp = (Random.Range(0, 10) > 3);
                         if (temp) prevSpawnSide = 0;
                     }
-                    Vector3 spawnOffset = new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.6f, 1.5f), Random.Range(-0.1f, 0.1f));
+                    Vector3 spawnOffset = new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.2f, 1f), Random.Range(-0.1f, 0.1f));
                     GameObject ball = Instantiate(ballPrefab, ballPoint[index].transform.position + spawnOffset, Quaternion.identity);
                     ballList.Add(ball);
                     ballCount++;
@@ -114,7 +114,7 @@ public class BallManager : MonoBehaviour
                     float xOffset = collisionToPlayer.x * landZOffset / collisionToPlayer.z;
                     if (!controlXAxis)
                         xOffset = 0;
-                    float randomZOffset = Random.Range(-0.25f, 0.25f);
+                    float randomZOffset = Random.Range(-0.1f, 0.3f);
                     Vector3 targetPoint = playerPoint.transform.position + new Vector3(xOffset, 0, landZOffset + randomZOffset);
                     Vector3 directLine = targetPoint - collisionPoint;
                     float v0 = -Physics.gravity.y / 2 - Mathf.Abs(directLine.y);
