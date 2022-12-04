@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Mole
   - Wall
+  - Brick
   layers:
   - Default
   - TransparentFX
