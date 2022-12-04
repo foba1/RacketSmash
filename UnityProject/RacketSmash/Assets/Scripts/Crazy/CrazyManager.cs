@@ -169,9 +169,9 @@ public class CrazyManager : MonoBehaviour
 
     private void UpdateSpeed()
     {
-        if (Time.time - speedTime >= 10f)
+        if (Time.time - speedTime >= 5f)
         {
-            curSpeed += 0.3f;
+            curSpeed += 0.15f;
             speedTime = Time.time;
         }
     }

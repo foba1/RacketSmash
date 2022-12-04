@@ -17,9 +17,10 @@ public class BallManager : MonoBehaviour
     private List<GameObject> ballPoint;
     private List<GameObject> ballList;
     private float prevSpawnTime;
-    private float waveDeltaTime = 3f;
-    private float[] spawnDeltaTime = new float[10] { 1.5f, 1.3f, 1.1f, 0.9f, 0.8f, 0.7f, 0.6f, 0.5f, 0.4f, 0.3f };
-    private int maxSpawnCount = 10;
+    private float[] waveDeltaTime = new float[15] { 3f, 2.8f, 2.7f, 2.6f, 2.5f, 2.4f, 2.3f, 2.4f, 2.5f, 2.5f, 2.6f, 2.7f, 3f, 3.3f, 3.5f };
+    private float[] spawnDeltaTime = new float[15] { 1.5f, 1.4f, 1.3f, 1.2f, 1.1f, 1f, 0.9f, 0.8f, 0.7f, 0.6f, 0.5f, 0.4f, 0.37f, 0.3f, 0.2f };
+    private int maxSpawnCount = 15;
+    private int prevSpawnSide;
     private int spawnCount;
     private int curSpawnCount;
     private int curLevel;
@@ -60,7 +61,7 @@ public class BallManager : MonoBehaviour
         {
             if (curSpawnCount == -1)
             {
-                if (Time.time - prevSpawnTime >= waveDeltaTime)
+                if (Time.time - prevSpawnTime >= waveDeltaTime[curLevel])
                 {
                     curSpawnCount++;
                     prevSpawnTime = Time.time - spawnDeltaTime[curLevel];
@@ -72,8 +73,39 @@ public class BallManager : MonoBehaviour
                 {
                     prevSpawnTime = Time.time;
 
-                    int index = Random.Range(0, ballPoint.Count);
-                    GameObject ball = Instantiate(ballPrefab, ballPoint[index].transform.position, Quaternion.identity);
+                    int index;
+                    if (prevSpawnSide == 0)
+                    {
+                        bool temp = (Random.Range(0, 2) == 1);
+                        if (temp)
+                        {
+                            index = Random.Range(0, 7);
+                        }
+                        else
+                        {
+                            index = Random.Range(14, 21);
+                        }
+
+                        temp = (Random.Range(0, 10) > 3);
+                        if (temp) prevSpawnSide = 1;
+                    }
+                    else
+                    {
+                        bool temp = (Random.Range(0, 2) == 1);
+                        if (temp)
+                        {
+                            index = Random.Range(8,14);
+                        }
+                        else
+                        {
+                            index = Random.Range(21, ballPoint.Count);
+                        }
+
+                        temp = (Random.Range(0, 10) > 3);
+                        if (temp) prevSpawnSide = 0;
+                    }
+                    Vector3 spawnOffset = new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.6f, 1.5f), Random.Range(-0.1f, 0.1f));
+                    GameObject ball = Instantiate(ballPrefab, ballPoint[index].transform.position + spawnOffset, Quaternion.identity);
                     ballList.Add(ball);
                     ballCount++;
 
@@ -82,7 +114,8 @@ public class BallManager : MonoBehaviour
                     float xOffset = collisionToPlayer.x * landZOffset / collisionToPlayer.z;
                     if (!controlXAxis)
                         xOffset = 0;
-                    Vector3 targetPoint = playerPoint.transform.position + new Vector3(xOffset, 0, landZOffset);
+                    float randomZOffset = Random.Range(-0.25f, 0.25f);
+                    Vector3 targetPoint = playerPoint.transform.position + new Vector3(xOffset, 0, landZOffset + randomZOffset);
                     Vector3 directLine = targetPoint - collisionPoint;
                     float v0 = -Physics.gravity.y / 2 - Mathf.Abs(directLine.y);
                     ball.GetComponent<Rigidbody>().velocity = new Vector3(directLine.x, v0, directLine.z);
@@ -133,6 +166,7 @@ public class BallManager : MonoBehaviour
         curSpawnCount = -1;
         ballCount = 0;
         ballList.Clear();
+        prevSpawnSide = 0;
     }
 
     public void GameOver()
