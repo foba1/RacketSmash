@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6424076332555399182}
   - component: {fileID: 6424076332555399183}
   - component: {fileID: 6424076332555399179}
-  - component: {fileID: -4712686239976315756}
+  - component: {fileID: 4388364514408992759}
   m_Layer: 0
-  m_Name: Monster
+  m_Name: Monster2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8cfb3f1ebf26c714eab73e593dae64b0, type: 2}
+  - {fileID: 2100000, guid: 7e93989eb5a3be84391529fa23d9c070, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,18 +111,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6831f80618c6ba4c86f5bb7a5e4a97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 1
-  moveSpeed: 3
+  maxHp: 2
+  moveSpeed: 2
   idleRange: 0.15
-  idleSpeed: 0.3
-  fallSpeed: 1
-  hurtMaterial: {fileID: 0}
+  idleSpeed: 0.2
+  fallSpeed: 0.8
+  hurtMaterial: {fileID: 2100000, guid: 997adb0fb8ef6a147b285381fedf5c9d, type: 2}
   hitEffect: {fileID: 4824981893085829882, guid: c3d2271fea43cee42b5e3b615fa0b502,
     type: 3}
   dieEffect: {fileID: 1391196713543022287, guid: 1dfb4a3daf9cb57498fd432d4024cf01,
     type: 3}
   currentState: 0
---- !u!54 &-4712686239976315756
+--- !u!54 &4388364514408992759
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

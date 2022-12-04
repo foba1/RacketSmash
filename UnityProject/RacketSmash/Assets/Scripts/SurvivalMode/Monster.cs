@@ -9,18 +9,33 @@ namespace SurvivalMode
     {
         public enum State { Spawning, Moving, Dead}
 
+        [SerializeField] int maxHp;
+        int currentHp;
         [SerializeField] float moveSpeed;
         [SerializeField] float idleRange;
         [SerializeField] float idleSpeed;
 
         [SerializeField] float fallSpeed;
 
-        public State CurrentState { get; private set; } = State.Spawning;
+        [SerializeField] Material hurtMaterial;
 
+        [SerializeField] GameObject hitEffect;
+        [SerializeField] GameObject dieEffect;
+
+        MeshRenderer renderer;
+
+        public State CurrentState { get { return currentState; } private set { currentState = value; } }
+
+        [SerializeField] State currentState = State.Spawning;
         public void SetStartPosition(Vector3 startPosition)
         {
             CurrentState = State.Spawning;
             StartCoroutine(EntranceCoroutine(startPosition));
+        }
+        private void Awake()
+        {
+            currentHp = maxHp;
+            renderer = GetComponent<MeshRenderer>();
         }
         IEnumerator EntranceCoroutine(Vector3 startPosition)
         {
@@ -44,10 +59,37 @@ namespace SurvivalMode
         }
         public void OnHitted()
         {
-            CurrentState = State.Dead;
+            currentHp -= 1;
+            if (currentHp <= 0)
+            {
+                Instantiate(dieEffect, transform.position, Quaternion.identity);
+                CurrentState = State.Dead;
+            }
+            else
+            {
+                Instantiate(hitEffect, transform.position, Quaternion.identity);
+                if (hurtMaterial != null)
+                    renderer.material = hurtMaterial;
+            }
             Debug.Log("Monser Hit!");
         }
-
+        public void Kill()
+        {
+            StartCoroutine(Die());
+        }
+        IEnumerator Die()
+        {
+            float eTime = 0f;
+            float duration = 0.5f;
+            Vector3 originalScale = transform.localScale;
+            while(eTime < duration)
+            {
+                eTime += Time.deltaTime;
+                transform.localScale = Vector3.Lerp(originalScale, Vector3.zero, eTime / duration);
+                yield return null;
+            }
+            Destroy(gameObject);
+        }
         void Update()
         {
             if(CurrentState == State.Moving)
@@ -56,7 +98,6 @@ namespace SurvivalMode
         }
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other.gameObject.GetComponent<Ball>());
             if (other.gameObject.GetComponent<Ball>() != null)
             {
                 OnHitted();
