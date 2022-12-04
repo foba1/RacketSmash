@@ -4231,7 +4231,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665945607}
-  m_Material: {fileID: 13400000, guid: f24a330ab748fb04fa716bf7e3c9177f, type: 2}
+  m_Material: {fileID: 13400000, guid: 17733bf067d3e4f6ea5b7dc4e19be3a3, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -10614,6 +10614,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db14362d940a9b648b2bcf5e50a0564c, type: 3}
+--- !u!54 &1640360269 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 4171640764981400328, guid: db14362d940a9b648b2bcf5e50a0564c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1640360268}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1654292272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11338,6 +11344,55 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1755803502}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1757444300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1757444302}
+  - component: {fileID: 1757444301}
+  m_Layer: 0
+  m_Name: BallBouncer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1757444301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757444300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eebb2df99e63c147a4277b3dc768f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  landZOffset: 1
+  controlXAxis: 0
+  ball: {fileID: 1640360269}
+  ballShootDir: {x: 0, y: 10, z: 10}
+--- !u!4 &1757444302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757444300}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5113013, y: 2.1301367, z: 2.5840154}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1765823474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13098,7 +13153,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1980964973}
-  m_Material: {fileID: 13400000, guid: f24a330ab748fb04fa716bf7e3c9177f, type: 2}
+  m_Material: {fileID: 13400000, guid: 17733bf067d3e4f6ea5b7dc4e19be3a3, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -14066,7 +14121,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083077675}
-  m_Material: {fileID: 13400000, guid: f24a330ab748fb04fa716bf7e3c9177f, type: 2}
+  m_Material: {fileID: 13400000, guid: 17733bf067d3e4f6ea5b7dc4e19be3a3, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -16012,6 +16067,7 @@ GameObject:
   - component: {fileID: 2111381925712680807}
   - component: {fileID: 8793727628748511620}
   - component: {fileID: 8793727628748511619}
+  - component: {fileID: 8793727628748511621}
   m_Layer: 0
   m_Name: CurvedWall
   m_TagString: Wall
@@ -16049,6 +16105,23 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: f17fe84f7def5744ba877be45ee0ba1d, type: 3}
+--- !u!114 &8793727628748511621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8793727628748511618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71d5ea8fad3bd42e2baa01a15460323d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1894048415}
+  landZOffset: 1
+  controlXAxis: 0
+  ball: {fileID: 1640360269}
+  ballShootDir: {x: 0, y: 10, z: 10}
 --- !u!137 &8801700728600391072
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

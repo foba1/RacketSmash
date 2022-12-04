@@ -26,7 +26,11 @@ public class WeightlessWall : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        isGettingOut = !isGettingOut;
+        Ball ball = collider.gameObject.GetComponent<Ball>();
+        if (ball != null)
+        {
+            isGettingOut = !isGettingOut;
+        }
     }
 
     private void OnTriggerExit(Collider collider)
