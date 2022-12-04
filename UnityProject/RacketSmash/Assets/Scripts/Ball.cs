@@ -19,8 +19,8 @@ public class Ball : MonoBehaviour
     private GameObject leftControllerObject;
     private bool isStickedToController = false;
     public bool hitByRacket = false;
-    private float[] amplitude = new float[5] { 0.5f, 0.38f, 0.44f, 0.6f, 0.45f };
-    private float[] duration = new float[5] { 0.25f, 0.18f, 0.22f, 0.3f, 0.24f };
+    private float[] amplitude = new float[5] { 0.8f, 0.65f, 0.7f, 1f, 0.75f };
+    private float[] duration = new float[5] { 0.33f, 0.27f, 0.28f, 0.36f, 0.29f };
 
     [SerializeField] private int groundHitCount;
     public int groundHit { get { return groundHitCount; } set { groundHitCount += value; } }
