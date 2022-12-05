@@ -72,7 +72,8 @@ public class Ball : MonoBehaviour
             {
                 // �δ��� Ÿ����
                 AudioSource audioSource = collision.gameObject.GetComponent<AudioSource>();
-                if (!audioSource.isPlaying)
+                Debug.Log("공이 "+collision.gameObject.name+"에 충돌");
+                if (!audioSource.isPlaying&&!collision.gameObject.GetComponent<WhackAMole.MoleBase>().hitState)
                 {
                     audioSource.Play();
                 }
