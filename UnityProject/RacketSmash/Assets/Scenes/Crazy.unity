@@ -3632,6 +3632,7 @@ GameObject:
   - component: {fileID: 1894048415}
   - component: {fileID: 1894048416}
   - component: {fileID: 1894048417}
+  - component: {fileID: 1894048418}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -3768,6 +3769,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1894048418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894048414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf51eb097213a5e4683c541d8f28051f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBGM: 1
 --- !u!1 &1907357189
 GameObject:
   m_ObjectHideFlags: 0
@@ -4796,6 +4810,7 @@ GameObject:
   - component: {fileID: 1071585312477942919}
   - component: {fileID: 1071585312477942916}
   - component: {fileID: 1071585312477942917}
+  - component: {fileID: 1071585312477942920}
   m_Layer: 0
   m_Name: Rigidbody2
   m_TagString: Racket
@@ -4819,6 +4834,19 @@ Transform:
   m_Father: {fileID: 6689911547726295835}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1071585312477942920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071585312477942918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf51eb097213a5e4683c541d8f28051f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBGM: 0
 --- !u!1 &1071585312485526456
 GameObject:
   m_ObjectHideFlags: 0
@@ -4830,6 +4858,7 @@ GameObject:
   - component: {fileID: 1071585312485526457}
   - component: {fileID: 1071585312485526462}
   - component: {fileID: 1071585312485526463}
+  - component: {fileID: 1071585312485526464}
   m_Layer: 0
   m_Name: Rigidbody5
   m_TagString: Racket
@@ -4965,6 +4994,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1071585312485526464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071585312485526456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf51eb097213a5e4683c541d8f28051f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBGM: 0
 --- !u!4 &1071585312839497520
 Transform:
   m_ObjectHideFlags: 0
@@ -5008,6 +5050,7 @@ GameObject:
   - component: {fileID: 1071585312839497520}
   - component: {fileID: 1071585312839497521}
   - component: {fileID: 1071585312839497526}
+  - component: {fileID: 1071585312839497527}
   m_Layer: 0
   m_Name: Rigidbody1
   m_TagString: Racket
@@ -5111,6 +5154,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1071585312839497527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071585312839497523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf51eb097213a5e4683c541d8f28051f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBGM: 0
 --- !u!1 &1071585313093796361
 GameObject:
   m_ObjectHideFlags: 0
@@ -5122,6 +5178,7 @@ GameObject:
   - component: {fileID: 1071585313093796366}
   - component: {fileID: 1071585313093796367}
   - component: {fileID: 1071585313093796364}
+  - component: {fileID: 1071585313093796368}
   m_Layer: 0
   m_Name: Rigidbody4
   m_TagString: Racket
@@ -5257,6 +5314,19 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &1071585313093796368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071585313093796361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf51eb097213a5e4683c541d8f28051f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBGM: 0
 --- !u!1 &1071585314472628329
 GameObject:
   m_ObjectHideFlags: 0
@@ -5268,6 +5338,7 @@ GameObject:
   - component: {fileID: 1071585314472628334}
   - component: {fileID: 1071585314472628335}
   - component: {fileID: 1071585314472628332}
+  - component: {fileID: 1071585314472628336}
   m_Layer: 0
   m_Name: Rigidbody3
   m_TagString: Racket
@@ -5403,6 +5474,19 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &1071585314472628336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071585314472628329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf51eb097213a5e4683c541d8f28051f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBGM: 0
 --- !u!23 &2111381925712680807
 MeshRenderer:
   m_ObjectHideFlags: 0
