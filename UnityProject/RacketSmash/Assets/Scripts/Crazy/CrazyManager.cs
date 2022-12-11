@@ -12,6 +12,7 @@ public class CrazyManager : MonoBehaviour
     [Header("Panel")]
     [SerializeField] GameObject mainPanel;
     [SerializeField] GameObject resultPanel;
+    [SerializeField] GameObject startText;
 
     [Header("Ball Destroy Effect")]
     [SerializeField] GameObject destroyEffectPrefab;
@@ -89,12 +90,22 @@ public class CrazyManager : MonoBehaviour
         resultPanel.SetActive(state);
     }
 
+    IEnumerator StartText()
+    {
+        startText.SetActive(true);
+
+        yield return new WaitForSecondsRealtime(1.5f);
+
+        startText.SetActive(false);
+    }
+
     public void StartGame()
     {
         isGameFinished = false;
         BallManager.Instance.StartGame();
         SetMainPanel(false);
         SetResultPanel(false);
+        StartCoroutine(StartText());
 
         speedTime = Time.time;
         prevTime = Time.time;
