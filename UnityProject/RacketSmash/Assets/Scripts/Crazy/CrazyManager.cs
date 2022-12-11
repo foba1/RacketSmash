@@ -196,8 +196,23 @@ public class CrazyManager : MonoBehaviour
         SetMainPanel(false);
         SetResultPanel(true);
 
-        string resultTime = (Mathf.Round((Time.time - gameStartTime) * 10f) * 0.1f).ToString();
-        string resultHit = (Mathf.Round((float)ballSuccessCount / (float)BallManager.Instance.ballCount * 1000f) * 0.1f).ToString();
-        resultPanel.transform.GetChild(2).GetComponent<Text>().text = "버틴 시간 : " + resultTime + "초\n공 타격률 : " + resultHit + "%";
+        float score = Mathf.Round((Time.time - gameStartTime) * 10f) * 0.1f;
+        string hitScore = (Mathf.Round((float)ballSuccessCount / (float)BallManager.Instance.ballCount * 1000f) * 0.1f).ToString();
+        resultPanel.transform.GetChild(2).GetComponent<Text>().text = "버틴 시간 : " + score.ToString() + "초\n공 타격률 : " + hitScore + "%";
+
+        if (PlayerPrefs.HasKey("Crazy"))
+        {
+            string prevHighScore = PlayerPrefs.GetString("Crazy");
+            if (float.Parse(prevHighScore.Substring(0, prevHighScore.Length - 1)) < score)
+            {
+                PlayerPrefs.SetString("Crazy", score.ToString() + "초");
+                PlayerPrefs.Save();
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetString("Crazy", score.ToString() + "초");
+            PlayerPrefs.Save();
+        }
     }
 }
