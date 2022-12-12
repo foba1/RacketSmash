@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Linq;
 
@@ -10,9 +11,6 @@ namespace SurvivalMode
 {
     public class LevelManager : MonoBehaviour
     {
-        [Header("Refs")]
-        [SerializeField] Transform frontWall;
-        [SerializeField] global::Ball ball;
         [Header("Monster")]
         [SerializeField] float yDistance;
         [SerializeField] float monsterSpawnInterval;
@@ -24,16 +22,25 @@ namespace SurvivalMode
         [SerializeField] Monster [] monsterPrefabs;
 
         [Header("Settings")]
-        [SerializeField] int _life = 3;
+        [SerializeField] int _life = 5;
         [SerializeField] int _score = 0;
         [SerializeField] List<string> monsterSpawnPatterns;
+        [SerializeField] bool stopAtGameOver = false;
 
-        int life { get { return _life;  } set { _life = value; lifeText.text = "Life : " + _life.ToString(); } }
-        int score { get { return _score;  } set { _score = value; scoreText.text = "Score : " + _score.ToString(); } }
+        [Header("Refs")]
+        [SerializeField] Transform frontWall;
+        [SerializeField] global::Ball ball;
+        [SerializeField] Transform xrOrigin;
 
         [Header("UIs")]
         [SerializeField] TextMeshPro scoreText;
         [SerializeField] TextMeshPro lifeText;
+        [SerializeField] GameObject mainPanel;
+        [SerializeField] GameObject resultPanel;
+        [SerializeField] Text resultText;
+        [SerializeField] Text resultScoreText;
+        [SerializeField] Text highScoreText;
+        [SerializeField] GameObject startText;
 
 
         [Header("ReadOnly")]
@@ -41,21 +48,49 @@ namespace SurvivalMode
 
         List<List<Monster>> rows = new List<List<Monster>>();
 
+        int life { get { return _life; } set { _life = value; lifeText.text = "Life : " + _life.ToString(); } }
+        int score { get { return _score; } set { _score = value; scoreText.text = "Score : " + _score.ToString(); } }
+
         int startXToggle = 1;
         bool isSpawning = false;
+        bool isGameOver = false;
+
+        Coroutine spawnCoroutine = null;
         public void Start()
         {
-            StartCoroutine(SpawnCoroutine());
+        }
+        public void OnExitPressed()
+        {
+            SceneManager.LoadScene("Main");
+        }
+        public void Clear()
+        {
+            monsters = new List<Monster>();
+            rows = new List<List<Monster>>();
+            life = 5;
+            score = 0;
+        }
+        public void OnStartPressed()
+        {
+            mainPanel.SetActive(false);
+            spawnCoroutine  = StartCoroutine(SpawnCoroutine());
+        }
+        public void OnRestartPressed()
+        {
+            SceneManager.LoadScene("Survival");
         }
         IEnumerator SpawnCoroutine()
         {
-            for(int i=0; i<monsterSpawnPatterns.Count; i++)
+            startText.SetActive(true);
+            yield return new WaitForSeconds(2);
+            startText.SetActive(false);
+
+            for (int i=0; i<monsterSpawnPatterns.Count; i++)
             {
                 yield return ExecuteSpawnPattern(monsterSpawnPatterns[i]);
                 while (monsters.Count > 0)
                     yield return null;
                 yield return new WaitForSeconds(roundInterval);
-
             }
 
         }
@@ -110,6 +145,7 @@ namespace SurvivalMode
         {
             float z = frontWall.position.z;
             Monster monster = Instantiate(monsterPrefabs[monsterType], new Vector3(startX, y, z), Quaternion.identity);
+            monster.GetComponent<BallBouncer>().Player = xrOrigin;
             monster.SetStartPosition(new Vector3(x, y, z));
             monsters.Add(monster);
             return monster;
@@ -121,7 +157,7 @@ namespace SurvivalMode
             {
                 if (monster.transform.position.y + monster.transform.localScale.y/2 <= 0 || monster.CurrentState == Monster.State.Dead)
                 {
-                    if(monster.transform.position.y + monster.transform.localScale.y / 2 <= 0)
+                    if(monster.transform.position.y - monster.transform.localScale.y / 2 <= 0)
                     {
                         OnMonsterHitGround();
                     }
@@ -166,7 +202,31 @@ namespace SurvivalMode
         }
         void GameOver()
         {
+            if (isGameOver)
+                return;
+            isGameOver = true;
+            if (stopAtGameOver && spawnCoroutine != null)
+                StopCoroutine(spawnCoroutine);
+            ShowResults();
             Debug.Log("Game Over");
+        }
+        void ShowResults()
+        {
+            if (!isGameOver)
+                resultText.text = "Game Clear!";
+
+            resultScoreText.text = "최고기록: " + score.ToString() + "점";
+
+            string highScoreString = PlayerPrefs.GetString("Survival", "0점");
+            int highScore = int.Parse(highScoreString.Substring(0, highScoreString.Length - 1));
+            highScoreText.text = "점수: " + highScore.ToString() + "점";
+
+            if (score > highScore)
+            {
+                PlayerPrefs.SetString("Survival", score.ToString() + "점");
+                PlayerPrefs.Save();
+            }
+            resultPanel.SetActive(true);
         }
     }
 

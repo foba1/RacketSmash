@@ -96,9 +96,9 @@ namespace SurvivalMode
                 transform.position += new Vector3(0, -1, 0) * fallSpeed * Time.deltaTime;
 
         }
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision collision)
         {
-            if (other.gameObject.GetComponent<Ball>() != null)
+            if (collision.gameObject.GetComponent<Ball>() != null)
             {
                 OnHitted();
             }
