@@ -26,6 +26,8 @@ namespace SurvivalMode
 
         public State CurrentState { get { return currentState; } private set { currentState = value; } }
 
+        public SFXPlayer SFXPlayer { get; set; }
+
         [SerializeField] State currentState = State.Spawning;
         public void SetStartPosition(Vector3 startPosition)
         {
@@ -64,14 +66,20 @@ namespace SurvivalMode
             {
                 Instantiate(dieEffect, transform.position, Quaternion.identity);
                 CurrentState = State.Dead;
+                SFXPlayer.PlaySound("MonsterDead");
             }
             else
             {
                 Instantiate(hitEffect, transform.position, Quaternion.identity);
                 if (hurtMaterial != null)
                     renderer.material = hurtMaterial;
+                SFXPlayer.PlaySound("MonsterHitted");
             }
             Debug.Log("Monser Hit!");
+        }
+        public void Stop()
+        {
+            fallSpeed = 0f;
         }
         public void Kill()
         {

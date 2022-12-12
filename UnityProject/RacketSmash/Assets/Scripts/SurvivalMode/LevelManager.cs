@@ -20,6 +20,7 @@ namespace SurvivalMode
         [SerializeField] float dropInterval;
         [SerializeField] float rowDropInterval;
         [SerializeField] Monster [] monsterPrefabs;
+        [SerializeField] GameObject damagePrefab;
 
         [Header("Settings")]
         [SerializeField] int _life = 5;
@@ -31,6 +32,9 @@ namespace SurvivalMode
         [SerializeField] Transform frontWall;
         [SerializeField] global::Ball ball;
         [SerializeField] Transform xrOrigin;
+        [SerializeField] SFXPlayer sfxPlayer;
+        [SerializeField] AudioSource bgmSource;
+        [SerializeField] BallBouncer ballBouncer;
 
         [Header("UIs")]
         [SerializeField] TextMeshPro scoreText;
@@ -81,10 +85,12 @@ namespace SurvivalMode
         }
         IEnumerator SpawnCoroutine()
         {
+            bgmSource.volume *= 0.5f;
+            sfxPlayer.PlaySound("Intro");
             startText.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(3f);
             startText.SetActive(false);
-
+            bgmSource.Play();
             for (int i=0; i<monsterSpawnPatterns.Count; i++)
             {
                 yield return ExecuteSpawnPattern(monsterSpawnPatterns[i]);
@@ -92,6 +98,8 @@ namespace SurvivalMode
                     yield return null;
                 yield return new WaitForSeconds(roundInterval);
             }
+
+            ShowResults();
 
         }
         IEnumerator ExecuteSpawnPattern(string code)
@@ -145,6 +153,7 @@ namespace SurvivalMode
         {
             float z = frontWall.position.z;
             Monster monster = Instantiate(monsterPrefabs[monsterType], new Vector3(startX, y, z), Quaternion.identity);
+            monster.SFXPlayer = sfxPlayer;
             monster.GetComponent<BallBouncer>().Player = xrOrigin;
             monster.SetStartPosition(new Vector3(x, y, z));
             monsters.Add(monster);
@@ -155,11 +164,11 @@ namespace SurvivalMode
         {
             foreach (Monster monster in monsters.ToList())
             {
-                if (monster.transform.position.y + monster.transform.localScale.y/2 <= 0 || monster.CurrentState == Monster.State.Dead)
+                if (monster.transform.position.y - monster.transform.localScale.y/2 <= 0 || monster.CurrentState == Monster.State.Dead)
                 {
                     if(monster.transform.position.y - monster.transform.localScale.y / 2 <= 0)
                     {
-                        OnMonsterHitGround();
+                        OnMonsterHitGround(monster.transform.position + new Vector3(0,-monster.transform.localScale.y / 2 + 0.3f,0));
                     }
                     else
                     {
@@ -192,13 +201,15 @@ namespace SurvivalMode
                 GameOver();
             }
         }
-        void OnMonsterHitGround()
+        void OnMonsterHitGround(Vector3 position)
         {
             life -= 1;
             if (life <= 0)
             {
                 GameOver();
             }
+            sfxPlayer.PlaySound("GroundHitted");
+            Instantiate(damagePrefab, position, Quaternion.identity);
         }
         void GameOver()
         {
@@ -207,13 +218,21 @@ namespace SurvivalMode
             isGameOver = true;
             if (stopAtGameOver && spawnCoroutine != null)
                 StopCoroutine(spawnCoroutine);
+            foreach (Monster monster in monsters)
+                monster.Stop();
             ShowResults();
             Debug.Log("Game Over");
         }
         void ShowResults()
         {
+            ballBouncer.enabled = false;
             if (!isGameOver)
+            {
                 resultText.text = "Game Clear!";
+                sfxPlayer.PlaySound("GameClear");
+            }
+            else
+                sfxPlayer.PlaySound("GameOver");
 
             resultScoreText.text = "최고기록: " + score.ToString() + "점";
 
