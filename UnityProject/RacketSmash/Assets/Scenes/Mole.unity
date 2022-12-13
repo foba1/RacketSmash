@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276807, g: 0.21589197, b: 0.29782572, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -609,7 +609,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMax
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMin
@@ -759,7 +759,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMax
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMin
@@ -2584,7 +2584,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMax
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMin
@@ -2704,7 +2704,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMax
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMin
@@ -3415,7 +3415,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMax
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMin
@@ -3825,7 +3825,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMax
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMin
@@ -3969,7 +3969,7 @@ MonoBehaviour:
   scoreText: {fileID: 1634026186}
   molesController: {fileID: 524831529}
   ball: {fileID: 4902466900986962670}
-  timeOut: 30
+  timeOut: 40
   mainPanel: {fileID: 939986888}
   resultPanel: {fileID: 266302019}
   instructionPanel: {fileID: 600451309}
@@ -5063,7 +5063,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMax
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMin
@@ -5344,7 +5344,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMax
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMin
@@ -5661,7 +5661,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMax
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1089262203, guid: c73ae6621f8832748a78dfb8aec6dd12, type: 3}
       propertyPath: zMin
@@ -6518,7 +6518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 5711372471081400404}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 867
+  m_shaderPropertyID: 853
   m_materialData:
   - m_trailRenderer: {fileID: 1769221077781636888}
     m_uvTiling: {x: 0.06, y: 0.4}
