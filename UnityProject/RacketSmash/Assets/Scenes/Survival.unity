@@ -5795,7 +5795,7 @@ GameObject:
   - component: {fileID: 1920333868}
   - component: {fileID: 1920333867}
   m_Layer: 0
-  m_Name: 'Ball '
+  m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5923,11 +5923,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 1920333872}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 850
+  m_shaderPropertyID: 853
   m_materialData:
   - m_trailRenderer: {fileID: 1920333867}
     m_uvTiling: {x: 0.06, y: 0.4}
-    m_move: 0.04296
+    m_move: 0
 --- !u!114 &1920333869
 MonoBehaviour:
   m_ObjectHideFlags: 0
