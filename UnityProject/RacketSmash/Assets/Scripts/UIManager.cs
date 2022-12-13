@@ -89,7 +89,7 @@ public class UIManager : MonoBehaviour
         }
         else if (index == (int)Mode.brick)
         {
-
+            SceneManager.LoadScene("Brickout");
         }
     }
 
