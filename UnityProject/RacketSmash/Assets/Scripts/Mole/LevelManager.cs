@@ -49,13 +49,13 @@ namespace WhackAMole
         {
             if (isGameStart)
             {
-                // Á¡¼ö Ç¥½Ã
+                // ì ìˆ˜ í‘œì‹œ
                 scoreText.text = "Score : " + totalScore;
 
-                // Å¸ÀÓ¾Æ¿ô °ÔÀÓ ¿À¹ö
+                // íƒ€ì„ì•„ì›ƒ ê²Œì„ ì˜¤ë²„
                 if (elapsedTime >= timeOut)
                 {
-                    resultPanel.transform.GetChild(2).GetComponent<Text>().text = "°æ°ú ½Ã°£ : " + string.Format("{0:N}", elapsedTime) + "ÃÊ\nÁ¡¼ö : " + totalScore.ToString() + "Á¡";
+                    resultPanel.transform.GetChild(2).GetComponent<Text>().text = "ê²½ê³¼ ì‹œê°„ : " + string.Format("{0:N}", elapsedTime) + "ì´ˆ\nì ìˆ˜ : " + totalScore.ToString() + "ì ";
                     //gameEndText.GetComponent<TextMeshPro>().text = "Game Over !\nScore : " + totalScore.ToString();
                     SetMainPanel(false);
                     SetResultPanel(true);
@@ -70,18 +70,18 @@ namespace WhackAMole
                 }
 
 
-                // Àç½ÃÀÛ
+                // ì¬ì‹œì‘
                 if (Input.GetKeyDown(KeyCode.R))
                 {
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 }
 
-                // ´Ù Àâ¾ÒÀ» ½Ã
+                // ë‹¤ ì¡ì•˜ì„ ì‹œ
 
                 if (catchCount == molesController.randomMoleSize)
                 {
                     Debug.Log(catchCount.ToString() + "/" + molesController.randomMoleSize.ToString());
-                    Debug.Log("¶ó¿îµå Å¬¸®¾î");
+                    Debug.Log("ë¼ìš´ë“œ í´ë¦¬ì–´");
                     catchCount = 0;
                     molesController.roundClearState = true;
                 }
@@ -101,8 +101,8 @@ namespace WhackAMole
         public void StartGame()
         {
             isGameStart = true;
-            instructionPanel.gameObject.SetActive(false);
             SetMainPanel(true);
+            instructionPanel.gameObject.SetActive(false);
             molesController.gameObject.SetActive(true);
             ball.SetActive(true);
         }
