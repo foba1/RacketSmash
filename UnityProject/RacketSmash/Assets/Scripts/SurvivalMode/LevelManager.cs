@@ -62,6 +62,8 @@ namespace SurvivalMode
         Coroutine spawnCoroutine = null;
         public void Start()
         {
+            life = 5;
+            score = 0;
         }
         public void OnExitPressed()
         {
@@ -78,6 +80,7 @@ namespace SurvivalMode
         {
             mainPanel.SetActive(false);
             spawnCoroutine  = StartCoroutine(SpawnCoroutine());
+            ball.gameObject.SetActive(true);
         }
         public void OnRestartPressed()
         {
