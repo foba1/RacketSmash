@@ -101,7 +101,6 @@ public class Ball : MonoBehaviour
         }
         else if (curMode == (int)Mode.brick)
         {
-
         }
     }
 
