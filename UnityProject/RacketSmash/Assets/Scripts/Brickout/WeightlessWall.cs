@@ -11,7 +11,6 @@ public class WeightlessWall : MonoBehaviour
 
     [Header("Test Variables")]
     [SerializeField] Rigidbody ball;
-    [SerializeField] Vector3 ballShootDir = new Vector3(0, 10, 10);
 
     private bool isGettingOut = true;
 
@@ -52,22 +51,8 @@ public class WeightlessWall : MonoBehaviour
         Vector3 collisionPoint = ball.transform.position;
 
         Vector3 collisionToPlayer = collisionPoint - player.transform.position;
-        float xOffset = collisionToPlayer.x * landZOffset / collisionToPlayer.z;
-        if (!controlXAxis)
-            xOffset = 0;
 
 
-        Vector3 targetPoint = player.transform.position + new Vector3(xOffset, 0, landZOffset);
-        Vector3 directLine = targetPoint - collisionPoint;
-
-        float v0 = -Mathf.Abs(directLine.y);
-
-        ballRB.velocity = new Vector3(directLine.x, v0, directLine.z);
+        ballRB.velocity = collisionToPlayer;
     }
-
-    float SolveEquation(float a, float b, float c)
-    {
-        return (-b + Mathf.Sqrt(b * b - 4 * a * c)) / 2 * a;
-    }
-
 }
