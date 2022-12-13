@@ -16,6 +16,7 @@ public class CrazyManager : MonoBehaviour
 
     [Header("Ball Destroy Effect")]
     [SerializeField] GameObject destroyEffectPrefab;
+    [SerializeField] GameObject successSound;
 
     public bool isGameFinished;
 
@@ -122,6 +123,7 @@ public class CrazyManager : MonoBehaviour
 
     public void SuccessToReceiveBall()
     {
+        successSound.GetComponent<AudioSource>().Play();
         float time = successTime[BallManager.Instance.curLevel];
         remainedTime += time;
         UpdateHealthBar(time);
