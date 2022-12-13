@@ -23,6 +23,9 @@ namespace WhackAMole
         [SerializeField] private Quaternion initRotation;
         private System.Random random;
         private int randomEffectIdx;
+        private float elapsedTime;
+        private float waitingTime;
+        private bool isFront;
         private Animator anim;
         private float timer;
         private int moleCount;
@@ -36,6 +39,7 @@ namespace WhackAMole
         public bool hitState { get { return isHit; } set { isHit = value; } }
         public int totalMoleCount { get { return moleCount; } set { moleCount = value; } }
         public int spawnTime { get { return spawnWaitingTime; } set { spawnWaitingTime = value; } }
+        public float moleWaitTime { get { return waitingTime; } set { waitingTime = value; } }
         // Start is called before the first frame update
         void Start()
         {
@@ -50,7 +54,6 @@ namespace WhackAMole
         // Update is called once per frame
         void Update()
         {
-            currentPosition += Time.deltaTime * direction;
 
             // 소환할 두더지면 코루틴 실행하여 랜덤으로 움직임 시작
             if (isSpawned)
@@ -65,6 +68,8 @@ namespace WhackAMole
                         // 두더지 똑바로 세우기
                         transform.rotation = initRotation;
                         anim.speed = 1;
+
+                        // 나왔을 때 랜덤 시간 동안 머무르기
                         // 나오기
                         if (currentPosition == zMax)
                         {
@@ -83,6 +88,7 @@ namespace WhackAMole
                         }
                         else if (currentPosition < zMin)
                         {
+                            isFront = true;
                             direction *= -1;
                             currentPosition = zMin;
                         }
@@ -105,7 +111,20 @@ namespace WhackAMole
                             isSpawned = false;
                         }
                     }
-                    transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, currentPosition);
+                    if (isFront)
+                    {
+                        elapsedTime += Time.deltaTime;
+                        if (elapsedTime > waitingTime)
+                        {
+                            isFront = false;
+                            elapsedTime = 0;
+                        }
+                    }
+                    else
+                    {
+                        currentPosition += Time.deltaTime * direction;
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, currentPosition);
+                    }
                 }
             }
 
