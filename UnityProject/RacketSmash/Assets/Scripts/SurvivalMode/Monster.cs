@@ -79,6 +79,7 @@ namespace SurvivalMode
         }
         public void Stop()
         {
+            GetComponent<Collider>().enabled = false;
             fallSpeed = 0f;
         }
         public void Kill()

@@ -218,13 +218,13 @@ namespace SurvivalMode
             isGameOver = true;
             if (stopAtGameOver && spawnCoroutine != null)
                 StopCoroutine(spawnCoroutine);
-            foreach (Monster monster in monsters)
-                monster.Stop();
             ShowResults();
             Debug.Log("Game Over");
         }
         void ShowResults()
         {
+            foreach (Monster monster in monsters)
+                monster.Stop();
             ballBouncer.enabled = false;
             if (!isGameOver)
             {
