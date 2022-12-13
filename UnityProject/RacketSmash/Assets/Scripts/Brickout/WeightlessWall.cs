@@ -50,7 +50,7 @@ public class WeightlessWall : MonoBehaviour
 
         Vector3 collisionPoint = ball.transform.position;
 
-        Vector3 collisionToPlayer = collisionPoint - player.transform.position;
+        Vector3 collisionToPlayer = player.transform.position - collisionPoint;
 
 
         ballRB.velocity = collisionToPlayer;
