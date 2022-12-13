@@ -18,8 +18,12 @@ namespace BaseSquash
         [SerializeField] Transform right;
         [SerializeField] Transform front;
         [SerializeField] Transform back;
+
+        [SerializeField] bool doValidate = false;
         private void OnValidate()
         {
+            if (!doValidate)
+                return;
             ground.position = new Vector3(0, -thickness / 2, 0);
             ground.localScale = new Vector3(xSize + 2 * thickness, thickness, zSize + 2 * thickness);
             top.position = new Vector3(0, ySize - thickness / 2, 0);

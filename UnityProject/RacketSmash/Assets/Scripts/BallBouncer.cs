@@ -14,6 +14,8 @@ public class BallBouncer : MonoBehaviour
     [SerializeField] Rigidbody ball;
     [SerializeField] Vector3 ballShootDir = new Vector3(0, 10, 10);
 
+
+    public Transform Player { get { return player; } set { player = value; } }
     private void OnDrawGizmos()
     {
         if(player != null)
