@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276807, g: 0.21589197, b: 0.29782572, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1986,7 +1986,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729489353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.132, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2992,7 +2992,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1.3
-  m_Text: "\uBC84\uD2F4 \uC2DC\uAC04 : 0.0\uCD08\n\uACF5 \uD0C0\uACA9\uB960 : 0.0%"
+  m_Text: "\uBC84\uD2F4 \uC2DC\uAC04 : 0.0\uCD08"
 --- !u!222 &1390024919
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6518,11 +6518,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 5711372471081400404}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 853
+  m_shaderPropertyID: 867
   m_materialData:
   - m_trailRenderer: {fileID: 1769221077781636888}
     m_uvTiling: {x: 0.06, y: 0.4}
-    m_move: 0
+    m_move: 0.04296
 --- !u!1 &4107147055809594944
 GameObject:
   m_ObjectHideFlags: 0

@@ -55,7 +55,7 @@ namespace WhackAMole
                 // 타임아웃 게임 오버
                 if (elapsedTime >= timeOut)
                 {
-                    resultPanel.transform.GetChild(2).GetComponent<Text>().text = "경과 시간 : " + string.Format("{0:N}", elapsedTime) + "초\n점수 : " + totalScore.ToString() + "점";
+                    resultPanel.transform.GetChild(2).GetComponent<Text>().text = "점수 : " + totalScore.ToString() + "점";
                     //gameEndText.GetComponent<TextMeshPro>().text = "Game Over !\nScore : " + totalScore.ToString();
                     SetMainPanel(false);
                     SetResultPanel(true);
