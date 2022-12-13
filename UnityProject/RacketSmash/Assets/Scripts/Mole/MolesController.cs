@@ -86,6 +86,9 @@ namespace WhackAMole
             for (int i = 0; i < randomSize; i++)
             {
                 moles[randomMoles[i]].GetComponent<MoleBase>().spawnTime= random.Next(1, maxSpawnDelay);
+                // 두더지가 기다릴 시간
+                moles[randomMoles[i]].GetComponent<MoleBase>().moleWaitTime = random.Next(3, 7);
+                Debug.Log("두더지 웨이팅 : " + moles[randomMoles[i]].GetComponent<MoleBase>().moleWaitTime);
                 moles[randomMoles[i]].GetComponent<MoleBase>().spawnState=true;
             }
         }

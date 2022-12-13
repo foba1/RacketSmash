@@ -62,6 +62,7 @@ namespace WhackAMole
                     ball.SetActive(false);
                     molesController.hideMoles();
                     isGameOver = true;
+                    PlayerPrefs.SetString("Mole", score.ToString() + "점");
                 }
                 if (!isGameOver)
                 {
