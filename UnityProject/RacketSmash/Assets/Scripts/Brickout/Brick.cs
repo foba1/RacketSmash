@@ -10,13 +10,12 @@ public class Brick : MonoBehaviour
     private void Awake()
     {
         destroyParticle = Resources.Load<GameObject>("Brick_Destory_Particle");
-        destroySound = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         ShowBrickDestoryEffect(transform.position);
-        destroySound.Play(0);
+        destroySound.PlayOneShot(destroySound.clip);
         Destroy(gameObject);
     }
 
