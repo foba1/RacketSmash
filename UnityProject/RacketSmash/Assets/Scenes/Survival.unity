@@ -1561,7 +1561,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722539377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6829, z: -3.07}
+  m_LocalPosition: {x: 0, y: 1.6829, z: -2.44}
   m_LocalScale: {x: 4.49, y: 6.126035, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1989,7 +1989,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Gam Over
+  m_Text: Game Over
 --- !u!222 &765356241
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2177,8 +2177,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864923313}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 1.6407, z: 3.22}
-  m_LocalScale: {x: 6.0032, y: 2.6766908, z: 0.07}
+  m_LocalPosition: {x: 0, y: 1.6407, z: 3.22}
+  m_LocalScale: {x: 4.9996934, y: 2.6766908, z: 0.07}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 40962405}
@@ -4937,7 +4937,7 @@ MonoBehaviour:
   monsterSpawnInterval: 1
   rowSpawnInterval: 2
   roundInterval: 2
-  dropWaitTime: 2
+  dropWaitTime: 5
   dropInterval: 1.5
   rowDropInterval: 2
   monsterPrefabs:
