@@ -6,22 +6,8 @@ public class WeightlessWall : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] Transform player;
-    [SerializeField] float landZOffset = 1;
-    [SerializeField] bool controlXAxis = false;
 
-    [Header("Test Variables")]
-    [SerializeField] Rigidbody ball;
-
-    private bool isGettingOut = true;
-
-    private void OnDrawGizmos()
-    {
-        if (player != null)
-        {
-            Gizmos.DrawLine(player.transform.position + new Vector3(-1, -player.position.y + 0.05f, landZOffset),
-                player.transform.position + new Vector3(1, -player.position.y + 0.05f, landZOffset));
-        }
-    }
+    public bool isGettingOut = true;
 
     private void OnTriggerEnter(Collider collider)
     {

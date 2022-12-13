@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class BrickGameManager : MonoBehaviour
 {
-    [Header("Brick Destroy Effect")]
-    [SerializeField] GameObject destroyEffectPrefab;
-
     public bool isGameFinished;
 
-    private float speedTime;
-    private float curSpeed;
+    public Transform ballSpawnPosition;
+    public Transform userPoint;
 
-    private float initSpeed = 1f;
+    private GameObject ball;
+    private GameObject ballPrefab;
+
 
     static BrickGameManager instance;
     public static BrickGameManager Instance
@@ -30,6 +29,7 @@ public class BrickGameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        ballPrefab = Resources.Load<GameObject>("Ball_NoGravity");
     }
 
     private void Start()
@@ -39,46 +39,22 @@ public class BrickGameManager : MonoBehaviour
 
     private void Update()
     {
-        if (isGameFinished)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                StartGame();
-            }
-        }
+
     }
 
     public void StartGame()
     {
         isGameFinished = false;
-        speedTime = Time.time;
-        curSpeed = initSpeed;
+
+        Invoke("SpawnBall", 3);
+        //Instantiate Ball
     }
 
-    public void DestroyBrick(GameObject brick)
+    public void SpawnBall()
     {
-        GameObject effect = Instantiate(destroyEffectPrefab, brick.transform.position, Quaternion.identity);
-        Destroy(effect, 2f);
-    }
-
-    IEnumerator DestroyBrickCoroutine(GameObject brick, float time)
-    {
-        yield return new WaitForSecondsRealtime(time);
-        DestroyBrick(brick);
-    }
-
-    public void DestroyBrick(GameObject brick, float time)
-    {
-        StartCoroutine(DestroyBrickCoroutine(brick, time));
-    }
-
-    private void UpdateSpeed()
-    {
-        if (Time.time - speedTime >= 10f)
-        {
-            curSpeed += 0.5f;
-            speedTime = Time.time;
-        }
+        ball = Instantiate(ballPrefab, ballSpawnPosition.transform.position, Quaternion.identity);
+        Vector3 shootVelocity = userPoint.transform.position - ballSpawnPosition.transform.position;
+        ball.gameObject.GetComponent<Rigidbody>().velocity = shootVelocity;
     }
 
     private void GameOver()

@@ -19,7 +19,7 @@ public class BallManager : MonoBehaviour
     private List<GameObject> ballList;
     private float prevSpawnTime;
     private float waveDeltaTime = 2.5f;
-    private float[] spawnDeltaTime = new float[8] { 1f, 0.7f, 0.5f, 0.4f, 0.3f, 0.27f, 0.24f, 0.2f};
+    private float[] spawnDeltaTime = new float[8] { 1f, 0.7f, 0.5f, 0.4f, 0.3f, 0.27f, 0.24f, 0.2f };
     private int maxSpawnCount = 15;
     private int prevSpawnSide;
     private int spawnCount;
@@ -94,7 +94,7 @@ public class BallManager : MonoBehaviour
                         bool temp = (Random.Range(0, 2) == 1);
                         if (temp)
                         {
-                            index = Random.Range(8,14);
+                            index = Random.Range(8, 14);
                         }
                         else
                         {
