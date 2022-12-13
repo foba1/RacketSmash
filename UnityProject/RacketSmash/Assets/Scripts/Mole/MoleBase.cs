@@ -146,7 +146,7 @@ namespace WhackAMole
                     // 두더지 잡은 횟수 증가
                     levelManger.count = 1;
                     // 총점 증가
-                    levelManger.totalScore = score;
+                    levelManger.totalScore = score*10;
                     Debug.Log(gameObject.name+"/"+score.ToString() + "점 획득! \n 현재 스코어 : " + levelManger.totalScore);
                     // 두더지 타격 체크
                     isHit = true; 
