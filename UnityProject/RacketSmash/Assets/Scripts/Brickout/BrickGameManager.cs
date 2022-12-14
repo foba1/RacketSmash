@@ -12,6 +12,7 @@ public class BrickGameManager : MonoBehaviour
     // [SerializeField] GameObject highestScoreText;
     [SerializeField] GameObject startText;
     [SerializeField] GameObject bricks;
+    [SerializeField] GameObject weightlessWall;
 
     public AudioSource bgmPlayer;
     public AudioClip brickoutBgm;
@@ -84,6 +85,11 @@ public class BrickGameManager : MonoBehaviour
         bricksCloned = Instantiate(bricks);
         bricksCloned.SetActive(true);
         isGameFinished = false;
+        InitializeIsGettingOut();
+        if (ball != null)
+        {
+            Destroy(ball);
+        }
         Invoke("SpawnBall", 3f);
     }
 
@@ -119,7 +125,13 @@ public class BrickGameManager : MonoBehaviour
     public void SpawnBall()
     {
         ball = Instantiate(ballPrefab, ballSpawnPosition.transform.position, Quaternion.identity);
+        ball.name = "Ball";
         Vector3 shootVelocity = userPoint.transform.position - ballSpawnPosition.transform.position;
         ball.gameObject.GetComponent<Rigidbody>().velocity = shootVelocity;
+    }
+
+    public void InitializeIsGettingOut()
+    {
+        weightlessWall.GetComponent<WeightlessWall>().isGettingOut = true;
     }
 }

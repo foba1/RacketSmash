@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 9174666317355750607}
   - component: {fileID: 255281146007205511}
   - component: {fileID: 4171640764981400328}
+  - component: {fileID: 821639853473344391}
   - component: {fileID: 4893225684941267455}
   - component: {fileID: 255281146007205510}
   - component: {fileID: 2926671620367289219}
@@ -233,6 +234,19 @@ Rigidbody:
   m_Interpolate: 2
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &821639853473344391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8365760437748977269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38018f0248c62ee49ac0ac5458be8832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minVelocity: 5
 --- !u!114 &4893225684941267455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 9174666317355750607}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 853
+  m_shaderPropertyID: 871
   m_materialData:
   - m_trailRenderer: {fileID: 2926671620367289219}
     m_uvTiling: {x: 0.06, y: 0.4}

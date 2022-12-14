@@ -48,8 +48,7 @@ public class BrickVRInteractionManager : MonoBehaviour
             if (prevLeftPrimaryButtonValue)
             {
                 prevLeftPrimaryButtonValue = false;
-                // GameObject ball = GameObject.Find("Ball");
-                // if (ball != null) ball.GetComponent<Ball>().RespawnOrDrop();
+                BrickGameManager.Instance.StartGame();
             }
         }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.67712927, g: 0.7714684, b: 0.87563556, a: 1}
+  m_IndirectSpecularColor: {r: 0.6771295, g: 0.77146876, b: 0.87563455, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5551,7 +5551,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1697268096}
-  - component: {fileID: 1697268095}
+  - component: {fileID: 1697268097}
   m_Layer: 0
   m_Name: VRInteractionManager
   m_TagString: Untagged
@@ -5559,18 +5559,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1697268095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697268094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4809f7bc3ac95464eb5c5c4a4cf59a0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1697268096
 Transform:
   m_ObjectHideFlags: 0
@@ -5586,6 +5574,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1697268097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697268094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d94b8a92375d64479875366448eec2b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1755803502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7350,6 +7350,7 @@ MonoBehaviour:
   failPanel: {fileID: 75491571}
   startText: {fileID: 1768700451}
   bricks: {fileID: 1093939305}
+  weightlessWall: {fileID: 8793727628748511618}
   bgmPlayer: {fileID: 1828316623}
   brickoutBgm: {fileID: 8300000, guid: 8287837c946b0924884db77c31ad18d3, type: 3}
   successBgm: {fileID: 8300000, guid: dfc8970b4cc81411e82b0ea9043a4610, type: 3}
