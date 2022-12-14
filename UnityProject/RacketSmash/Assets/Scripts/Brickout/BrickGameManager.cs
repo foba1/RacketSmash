@@ -7,14 +7,24 @@ public class BrickGameManager : MonoBehaviour
 {
     [Header("Panel")]
     [SerializeField] GameObject mainPanel;
-    [SerializeField] GameObject resultPanel;
+    [SerializeField] GameObject successPanel;
+    [SerializeField] GameObject failPanel;
+    // [SerializeField] GameObject highestScoreText;
     [SerializeField] GameObject startText;
+    [SerializeField] GameObject bricks;
+
+    public AudioSource bgmPlayer;
+    public AudioClip brickoutBgm;
+    public AudioClip successBgm;
+    public AudioClip failBgm;
 
     public Transform ballSpawnPosition;
     public Transform userPoint;
 
     private GameObject ball;
     private GameObject ballPrefab;
+    private GameObject bricksCloned;
+    private bool isGameFinished = true;
 
     static BrickGameManager instance;
     public static BrickGameManager Instance
@@ -38,12 +48,18 @@ public class BrickGameManager : MonoBehaviour
     private void Start()
     {
         mainPanel.SetActive(true);
-        resultPanel.SetActive(false);
+        // highestScoreText.SetActive(true);
+        successPanel.SetActive(false);
+        failPanel.SetActive(false);
+        startText.SetActive(false);
     }
 
     public void PushStartButton()
     {
+        bgmPlayer.clip = brickoutBgm;
+        bgmPlayer.Play();
         mainPanel.SetActive(false);
+        // highestScoreText.SetActive(false);
         startText.SetActive(true);
         Invoke("ShutDownMainPanel", 1.5f);
         StartGame();
@@ -56,6 +72,18 @@ public class BrickGameManager : MonoBehaviour
 
     public void StartGame()
     {
+        mainPanel.SetActive(false);
+        // highestScoreText.SetActive(false);
+        successPanel.SetActive(false);
+        failPanel.SetActive(false);
+        bricks.SetActive(false);
+        if (bricksCloned != null)
+        {
+            Destroy(bricksCloned);
+        }
+        bricksCloned = Instantiate(bricks);
+        bricksCloned.SetActive(true);
+        isGameFinished = false;
         Invoke("SpawnBall", 3f);
     }
 
@@ -66,11 +94,24 @@ public class BrickGameManager : MonoBehaviour
 
     private void Update()
     {
-        if (ball != null)
+        if (isGameFinished == false)
         {
-            if (ball.transform.position.z < -6f)
+            if (ball != null)
+            {
+                if (ball.transform.position.z < -6f)
+                {
+                    Destroy(ball);
+                    failPanel.SetActive(true);
+                    bgmPlayer.PlayOneShot(failBgm);
+                    isGameFinished = true;
+                }
+            }
+            if (bricksCloned.transform.childCount == 0)
             {
                 Destroy(ball);
+                successPanel.SetActive(true);
+                bgmPlayer.PlayOneShot(successBgm);
+                isGameFinished = true;
             }
         }
     }
