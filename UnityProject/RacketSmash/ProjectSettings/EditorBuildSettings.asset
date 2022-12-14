@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Survival.unity
     guid: 2fb7b46d6923834418ce018afa18f8e3
+  - enabled: 1
+    path: Assets/Scenes/Brickout.unity
+    guid: 81f1b89efc2bf458cbc33935b0be76f9
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}
